@@ -16,7 +16,8 @@ export default [
     name: "Chloe",
     age: 18,
     distance: "1 mile away",
-    text: "The C and the L are silent."
+    text:
+      "I keep calling the plumber round, and he keeps fixing stuff. Where am I going wrong?"
   },
   {
     pics: [
