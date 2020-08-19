@@ -18,7 +18,7 @@ const from = i => ({ rot: 0, scale: 1.5, y: -1000 });
 
 const trans = (r, s) =>
   `perspective(1500px) rotateX(30deg) rotateY(${r /
-    10}deg) rotateZ(${r}deg) scale(${s})`;
+  10}deg) rotateZ(${r}deg) scale(${s})`;
 
 function Deck() {
   const [gone] = useState(() => new Set());
@@ -68,6 +68,7 @@ function Deck() {
 
   return props.map(({ x, y, rot, scale }, i) => (
     <Card
+      key={i}
       i={i}
       x={x}
       y={y}
