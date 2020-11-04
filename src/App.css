@@ -1,0 +1,87 @@
+.styled-container {
+  max-height: 1024px;
+  overflow-y: auto;
+}
+
+.container {
+  max-height: 1024px;
+  overflow-y: auto;
+}
+
+.fbold {
+  font-weight: bold;
+}
+
+/* Font style */
+.fs40 {
+  font-size: 40px;
+}
+.fs36 {
+  font-size: 36px;
+}
+.fs33 {
+  font-size: 33px;
+}
+.fs28 {
+  font-size: 28px;
+}
+.fs26 {
+  font-size: 26px;
+}
+.fs24 {
+  font-size: 24px;
+}
+.fs22 {
+  font-size: 22px;
+}
+.fs21 {
+  font-size: 21px;
+}
+.fs20 {
+  font-size: 20px;
+}
+.fs17 {
+  font-size: 17px;
+}
+.fs15 {
+  font-size: 15px;
+}
+.fs14 {
+  font-size: 14px;
+}
+.fs13 {
+  font-size: 13px;
+}
+.fs12 {
+  font-size: 12px;
+}
+.fs10 {
+  font-size: 10px;
+}
+
+/* App style */
+.App {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.lineHeight {
+  line-height: 36px;
+}
+
+.borderBottom {
+  border-bottom-width: 1px;
+  border-bottom-color: #c4c4c4;
+  border-bottom-style: solid;
+}
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+}
