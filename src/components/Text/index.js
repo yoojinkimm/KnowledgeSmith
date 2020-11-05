@@ -21,6 +21,8 @@ const Text = ({ children, bold, size, color, style, mode, className }) => {
         return colors.defaultBlack;
       case "pink":
         return colors.pink;
+      case 'green':
+        return colors.green;
       default:
         return color;
     }

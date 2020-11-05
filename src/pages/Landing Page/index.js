@@ -24,9 +24,26 @@ const LandingPage = () => {
         </Text>
       </div>
     </StyledBackground>
-    <StyledBtn>
-      <Text size={24} bold color={'pink'}>Start Crafting</Text>
-    </StyledBtn>
+
+     <StyledFloating style={{bottom: 84, justifyContent: 'space-between'}}>
+      <StyledBtn 
+      onClick={()=>setLanguage('ko')}
+      style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green}}>
+        <Text size={12} bold color={language === 'ko' ? 'green' : 'pink'}>한국어</Text>
+      </StyledBtn>
+      <StyledBtn 
+      onClick={()=>setLanguage('en')}
+      style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green}}>
+        <Text size={12} bold color={language === 'en' ? 'green' : 'pink'}>English</Text>
+      </StyledBtn>
+    </StyledFloating>
+
+    <StyledFloating>
+      <StyledBtn>
+        <Text size={24} bold color={'pink'}>Start Crafting</Text>
+      </StyledBtn>
+    </StyledFloating>
+    
     </div>
   );
 };
@@ -44,14 +61,21 @@ const StyledBackground = styled.div`
 `;
 
 const StyledBtn = styled.div`
-  position: absolute;
-  bottom: 24px;
-  left: 16px;
-  right: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${colors.green};
   border: 0.5px solid ${colors.pink};
   height: 48px;
+  width: 100%;
+`;
+
+const StyledFloating = styled.div`
+  position: fixed;
+  bottom: 24px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
