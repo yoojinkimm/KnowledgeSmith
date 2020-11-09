@@ -5,7 +5,7 @@ import Text from "../../components/Text";
 import * as colors from '../../data/constants';
 import styled from 'styled-components';
 
-const LandingPage = () => {
+const LandingPage = ({history}) => {
   const [language, setLanguage] = useState('ko');
 
 
@@ -23,27 +23,25 @@ const LandingPage = () => {
           분류의 기술
         </Text>
       </div>
+      <StyledFloating style={{bottom: 84, justifyContent: 'space-between'}}>
+        <StyledBtn 
+        onClick={()=>setLanguage('ko')}
+        style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green}}>
+          <Text size={12} bold color={language === 'ko' ? 'green' : 'pink'}>한국어</Text>
+        </StyledBtn>
+        <StyledBtn 
+        onClick={()=>setLanguage('en')}
+        style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green}}>
+          <Text size={12} bold color={language === 'en' ? 'green' : 'pink'}>English</Text>
+        </StyledBtn>
+      </StyledFloating>
+
+      <StyledFloating>
+        <StyledBtn onClick={() => {history.push('/game')}}>
+          <Text size={24} bold color={'pink'}>Start Crafting</Text>
+        </StyledBtn>
+      </StyledFloating>
     </StyledBackground>
-
-     <StyledFloating style={{bottom: 84, justifyContent: 'space-between'}}>
-      <StyledBtn 
-      onClick={()=>setLanguage('ko')}
-      style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green}}>
-        <Text size={12} bold color={language === 'ko' ? 'green' : 'pink'}>한국어</Text>
-      </StyledBtn>
-      <StyledBtn 
-      onClick={()=>setLanguage('en')}
-      style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green}}>
-        <Text size={12} bold color={language === 'en' ? 'green' : 'pink'}>English</Text>
-      </StyledBtn>
-    </StyledFloating>
-
-    <StyledFloating>
-      <StyledBtn>
-        <Text size={24} bold color={'pink'}>Start Crafting</Text>
-      </StyledBtn>
-    </StyledFloating>
-    
     </div>
   );
 };

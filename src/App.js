@@ -4,7 +4,7 @@ import {
   Switch,
   BrowserRouter as Router,
 } from "react-router-dom";
-import { LandingPage } from './pages';
+import { LandingPage, GameCardPage, TutorialCardPage } from './pages';
 
 
 function App() {
@@ -13,6 +13,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/' component={LandingPage} />
+          <Route exact path='/tutorial' component={TutorialCardPage} />
+          <Route exact path='/game' component={GameCardPage} />
         </Switch>
       </Router>
     </div>
