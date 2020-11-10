@@ -33,13 +33,11 @@ const GameCardPage = (props) => {
     if(selectedPage === null) setSelectedPage(data)
     else {
       const list = []
-      data.map((dataItem)=>{
-        selectedPage.map((selectedItem)=>{
-          if (dataItem.pageid === selectedItem.pageId){
-            list.push(dataItem)
-          }
-        })
-      })
+      for(let i=0; i<data.length; i++){
+        for(let j=0; j<selectedPage.length; j++){
+          if (data[i].pageid === selectedPage[j].pageid) list.push(data[i])
+        }
+      }
       console.log(list);
       setSelectedPage(list);
     }
@@ -55,9 +53,13 @@ const GameCardPage = (props) => {
       // const categoryQuery = '그래프 이론'
       const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmlimit=1000`
 
-      const result = await axios.get(`${base_url}${categoryPage_url}`);
-      filterPage(result.data.query)
-      console.log(result.data.query);
+      try {
+        const result = await axios.get(`${base_url}${categoryPage_url}`);
+        filterPage(result.data.query.categorymembers)
+        // console.log(result.data.query.categorymembers);
+      } catch (e) {
+        console.log(e)
+      }
   }
 
 
@@ -66,7 +68,11 @@ const GameCardPage = (props) => {
     /* 중간에 &origin=* 이거 반드시 넣어야 cors 안 막힘 */
     const category_url = `action=query&format=json&list=allcategories&origin=*&aclimit=1000`
 
+    try {
     const result = await axios.get(`${base_url}${category_url}`);
+    } catch (e) {
+        console.log(e)
+      }
 
     // ... 랜덤으로 카테고리 선택하는 로직 필요
   }
@@ -76,11 +82,16 @@ const GameCardPage = (props) => {
   const searchSubCategory = async (categoryQuery) => {
     const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
 
+    try{
     const result = await axios.get(`${base_url}${subcategory_url}`);
+    } catch (e) {
+        console.log(e)
+      }
   }
 
   useEffect(() => {
-    searchAllCategory()
+    searchPage('그래프 이론')
+    searchPage('그래프 알고리즘')
   }, [])
 
   return (
