@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Animated from "animated/lib/targets/react-dom";
 import "../../App.css";
 import Text from "../../components/Text";
 
@@ -15,11 +16,19 @@ const styles = {
     height: 520,
     backgroundColor: colors.pink,
     color: colors.green,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    display: 'flex',
   }
 };
 
 const GameCardPage = (props) => {
   const {language, history} = props;
+
+  const [cardIndex, setCardIndex] = useState(0);
+  let position = new Animated.Value(0);
+
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [selectedPage, setSelectedPage] = useState(null)
 
@@ -94,6 +103,18 @@ const GameCardPage = (props) => {
     searchPage('그래프 알고리즘')
   }, [])
 
+  const handleChangeIndex = index => {
+    setCardIndex(index);
+  }
+
+  const handleSwitch = (index, type) => {
+    if (type === 'end'){
+      Animated.spring(position, { toValue: index }).start();
+      return;
+    }
+    position.setValue(index);
+  }
+
   return (
     <div style={{display: 'flex', flex: 1}}>
     <StyledBackground>
@@ -103,17 +124,48 @@ const GameCardPage = (props) => {
             </Text>
         </div>
         <SwipeableViews
-        enableMouseEvents
+        index={cardIndex}
+        onChangeIndex={handleChangeIndex}
+        onSwitching={handleSwitch}
+        // enableMouseEvents
         >
-            <div style={Object.assign({}, styles.slide)}>
-            1번이다
-            </div>
-            <div style={Object.assign({}, styles.slide)}>
-            2번이다
-            </div>
-            <div style={Object.assign({}, styles.slide)}>
-            3번이다
-            </div>
+            {selectedPage !== null && 
+            selectedPage.map((item, currentIndex) => {
+              const inputRange = selectedPage.map((_, i) => i);
+              const scale = position.interpolate({
+                inputRange,
+                outputRange: inputRange.map(i => {
+                  return currentIndex === i ? 1 : 0.7;
+                }),
+              });
+              const opacity = position.interpolate({
+                inputRange,
+                outputRange: inputRange.map(i => {
+                  return currentIndex === i ? 1 : 0.3;
+                }),
+              });
+              const translateX = position.interpolate({
+                inputRange,
+                outputRange: inputRange.map(i => {
+                  return (100 / 2) * (i - currentIndex);
+                }),
+              });
+
+              return (
+                <Animated.div
+                  key={String(currentIndex)}
+                  style={Object.assign(
+                    {
+                      opacity,
+                      transform: [{ scale }, { translateX }],
+                    },
+                    styles.slide,
+                  )}
+                >
+                  {item.title}
+                </Animated.div>
+              );
+            })}
         </SwipeableViews>
     </StyledBackground>
 
