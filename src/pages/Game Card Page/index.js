@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
 import Text from "../../components/Text";
 
@@ -6,6 +6,8 @@ import * as colors from '../../data/constants';
 import styled from 'styled-components';
 
 import SwipeableViews from 'react-swipeable-views';
+
+import axios from 'axios';
 
 const styles = {
   slide: {
@@ -17,8 +19,31 @@ const styles = {
 };
 
 const GameCardPage = () => {
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState('ko');
+  const [data, setData] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState([])
 
+  const searchWiki = async () => {
+      /* 중간에 &origin=* 이거 반드시 넣어야 cors 안 막힘 */
+      const base_url = `https://${language}.wikipedia.org/w/api.php?`;
+      const searchQuery = '김연아';
+      const search_url = `format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts|pageimages&pithumbsize=400&origin=*&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${searchQuery}`
+
+      const category_url = `action=query&format=json&list=allcategories&origin=*&aclimit=200`
+
+      const categoryQuery = '그래프 이론'
+      const categorySecond = '그래프 알고리즘'
+      const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
+      const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&Category:${categorySecond}&cmlimit=100`
+
+      const result = await axios.get(`${base_url}${categoryPage_url}`);
+      setData(result.data.query)
+      console.log(result.data.query);
+  }
+
+  useEffect(() => {
+    searchWiki();
+  }, [])
 
   return (
     <div style={{display: 'flex', flex: 1}}>
@@ -30,7 +55,6 @@ const GameCardPage = () => {
         </div>
         <SwipeableViews
         enableMouseEvents
-        springConfig={{duration: '0.3s', easeFunction: '...', delay: '0s'}}
         >
             <div style={Object.assign({}, styles.slide)}>
             1번이다
@@ -44,13 +68,13 @@ const GameCardPage = () => {
         </SwipeableViews>
     </StyledBackground>
 
-     <StyledFloating style={{justifyContent: 'space-between'}}>
+    <StyledFloating style={{justifyContent: 'space-between'}}>
       <StyledBtn 
       onClick={()=>setLanguage('ko')}
       style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green}}>
         <Text size={12} bold color={language === 'ko' ? 'green' : 'pink'}>Pass</Text>
       </StyledBtn>
-      <StyledBtn 
+      <StyledBtn
       onClick={()=>setLanguage('en')}
       style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green}}>
         <Text size={12} bold color={language === 'en' ? 'green' : 'pink'}>Flip</Text>
