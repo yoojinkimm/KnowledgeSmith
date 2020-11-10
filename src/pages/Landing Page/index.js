@@ -37,7 +37,7 @@ const LandingPage = ({history}) => {
       </StyledFloating>
 
       <StyledFloating>
-        <StyledBtn onClick={() => {history.push('/game')}}>
+        <StyledBtn onClick={() => {history.push(`/game/${language}`)}}>
           <Text size={24} bold color={'pink'}>Start Crafting</Text>
         </StyledBtn>
       </StyledFloating>

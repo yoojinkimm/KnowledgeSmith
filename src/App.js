@@ -7,14 +7,17 @@ import {
 import { LandingPage, GameCardPage, TutorialCardPage } from './pages';
 
 
-function App() {
+function App({history}) {
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path='/' component={LandingPage} />
           <Route exact path='/tutorial' component={TutorialCardPage} />
-          <Route exact path='/game' component={GameCardPage} />
+          <Route exact path='/game/:language' 
+            component={({ match }) => (
+              <GameCardPage history={history} language={match.params.language} />
+            )} />
         </Switch>
       </Router>
     </div>

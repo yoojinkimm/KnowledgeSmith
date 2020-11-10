@@ -18,31 +18,69 @@ const styles = {
   }
 };
 
-const GameCardPage = () => {
-  const [language, setLanguage] = useState('ko');
-  const [data, setData] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState([])
+const GameCardPage = (props) => {
+  const {language, history} = props;
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [selectedPage, setSelectedPage] = useState(null)
 
-  const searchWiki = async () => {
-      /* 중간에 &origin=* 이거 반드시 넣어야 cors 안 막힘 */
-      const base_url = `https://${language}.wikipedia.org/w/api.php?`;
+  // wiki api 요청하는 기본 url
+  const base_url = `https://${language}.wikipedia.org/w/api.php?`;
+
+
+  // 이전에 선택한 카테고리와 겹치는 페이지만 새로 저장하는 함수
+  const filterPage = (data) => {
+    // 처음엔 비교 안하고 새로 저장함
+    if(selectedPage === null) setSelectedPage(data)
+    else {
+      const list = []
+      data.map((dataItem)=>{
+        selectedPage.map((selectedItem)=>{
+          if (dataItem.pageid === selectedItem.pageId){
+            list.push(dataItem)
+          }
+        })
+      })
+      console.log(list);
+      setSelectedPage(list);
+    }
+  }
+
+
+  // 해당 카테고리의 페이지 정보를 불러오는 함수
+  const searchPage = async (categoryQuery) => {
+      // 그냥 검색 url
       const searchQuery = '김연아';
       const search_url = `format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts|pageimages&pithumbsize=400&origin=*&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${searchQuery}`
-
-      const category_url = `action=query&format=json&list=allcategories&origin=*&aclimit=200`
-
-      const categoryQuery = '그래프 이론'
-      const categorySecond = '그래프 알고리즘'
-      const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
-      const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&Category:${categorySecond}&cmlimit=100`
+      
+      // const categoryQuery = '그래프 이론'
+      const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmlimit=1000`
 
       const result = await axios.get(`${base_url}${categoryPage_url}`);
-      setData(result.data.query)
+      filterPage(result.data.query)
       console.log(result.data.query);
   }
 
+
+  // 위키피디아의 모든 카테고리를 불러오는 함수
+  const searchAllCategory = async () => {
+    /* 중간에 &origin=* 이거 반드시 넣어야 cors 안 막힘 */
+    const category_url = `action=query&format=json&list=allcategories&origin=*&aclimit=1000`
+
+    const result = await axios.get(`${base_url}${category_url}`);
+
+    // ... 랜덤으로 카테고리 선택하는 로직 필요
+  }
+
+
+  // 해당 카테고리의 하위 카테고리를 불러오는 함수
+  const searchSubCategory = async (categoryQuery) => {
+    const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
+
+    const result = await axios.get(`${base_url}${subcategory_url}`);
+  }
+
   useEffect(() => {
-    searchWiki();
+    searchAllCategory()
   }, [])
 
   return (
@@ -70,14 +108,14 @@ const GameCardPage = () => {
 
     <StyledFloating style={{justifyContent: 'space-between'}}>
       <StyledBtn 
-      onClick={()=>setLanguage('ko')}
-      style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green}}>
-        <Text size={12} bold color={language === 'ko' ? 'green' : 'pink'}>Pass</Text>
+      onClick={()=>{}}
+      style={{height: 32, backgroundColor: colors.green}}>
+        <Text size={12} bold color={'pink'}>Pass</Text>
       </StyledBtn>
       <StyledBtn
-      onClick={()=>setLanguage('en')}
-      style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green}}>
-        <Text size={12} bold color={language === 'en' ? 'green' : 'pink'}>Flip</Text>
+      onClick={()=>{}}
+      style={{height: 32, backgroundColor: colors.pink}}>
+        <Text size={12} bold color={'green'}>Flip</Text>
       </StyledBtn>
     </StyledFloating>
     </div>
