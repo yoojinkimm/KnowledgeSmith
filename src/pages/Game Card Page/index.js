@@ -75,10 +75,10 @@ class GameCardPage extends Component {
     const result = await axios.get(`${base_url}${subcategory_url}`);
   }
 
-  // useEffect(() => {
-  //   searchPage('그래프 이론')
-  //   searchPage('그래프 알고리즘')
-  // }, [])
+  useEffect(() => {
+    searchPage('그래프 이론')
+    searchPage('그래프 알고리즘')
+  }, [])
 
 
   return (
