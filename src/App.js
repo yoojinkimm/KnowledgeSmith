@@ -5,7 +5,9 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 import { LandingPage, GameCardPage, TutorialCardPage } from './pages';
+import React from 'react';
 
+import './App.css';
 
 function App({history}) {
   return (

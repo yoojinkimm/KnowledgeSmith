@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import "../../App.css";
 import Text from "../../components/Text";
 
 import * as colors from '../../data/constants';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 import Cards, { Card } from 'react-swipe-card'
 
 import axios from 'axios';
 
+import '../../App.css';
 
-const GameCardPage = (props) => {
-  const {language, history} = props;
 
-  const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedPage, setSelectedPage] = useState(null)
+class GameCardPage extends Component {
+  render() {
+
+  const {language, history} = this.props;
+
+  let selectedPage = null
 
   // wiki api 요청하는 기본 url
   const base_url = `https://${language}.wikipedia.org/w/api.php?`;
@@ -23,7 +26,7 @@ const GameCardPage = (props) => {
   // 이전에 선택한 카테고리와 겹치는 페이지만 새로 저장하는 함수
   const filterPage = (data) => {
     // 처음엔 비교 안하고 새로 저장함
-    if(selectedPage === null) setSelectedPage(data)
+    if(selectedPage === null) selectedPage = data
     else {
       const list = []
       for(let i=0; i<data.length; i++){
@@ -32,7 +35,7 @@ const GameCardPage = (props) => {
         }
       }
       console.log(list);
-      setSelectedPage(list);
+      selectedPage = list;
     }
   }
 
@@ -82,31 +85,31 @@ const GameCardPage = (props) => {
       }
   }
 
-  useEffect(() => {
-    searchPage('그래프 이론')
-    searchPage('그래프 알고리즘')
-  }, [])
+  // useEffect(() => {
+  //   searchPage('그래프 이론')
+  //   searchPage('그래프 알고리즘')
+  // }, [])
 
 
   return (
     <div style={{display: 'flex', flex: 1}}>
-    <StyledBackground>
+    {/* <StyledBackground>
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <Text size={40} bold color={'pink'}>
                 Knowledgesmith
             </Text>
-        </div>
+        </div> */}
          <Cards onEnd={()=>{}}>
           {selectedPage !== null && 
             selectedPage.map((item, index) => 
             <Card 
               onSwipeLeft={()=>{}} 
               onSwipeRight={()=>{}}>
-              <h2>{item.title}</h2>
+              <h2>카드카드카드</h2>
             </Card>
           )}
         </Cards>
-    </StyledBackground>
+    {/* </StyledBackground>
 
     <StyledFloating style={{justifyContent: 'space-between'}}>
       <StyledBtn 
@@ -119,39 +122,40 @@ const GameCardPage = (props) => {
       style={{height: 32, backgroundColor: colors.pink}}>
         <Text size={12} bold color={'green'}>Flip</Text>
       </StyledBtn>
-    </StyledFloating>
+    </StyledFloating> */}
     </div>
   );
+  }
 };
 
 export default GameCardPage;
 
-const StyledBackground = styled.div`
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  background-color: ${colors.green};
-`;
+// const StyledBackground = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 16px;
+//   background-color: ${colors.green};
+// `;
 
-const StyledBtn = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${colors.green};
-  border: 0.5px solid ${colors.pink};
-  height: 48px;
-  width: 100%;
-`;
+// const StyledBtn = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: ${colors.green};
+//   border: 0.5px solid ${colors.pink};
+//   height: 48px;
+//   width: 100%;
+// `;
 
-const StyledFloating = styled.div`
-  position: fixed;
-  bottom: 24px;
-  left: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+// const StyledFloating = styled.div`
+//   position: fixed;
+//   bottom: 24px;
+//   left: 16px;
+//   right: 16px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;

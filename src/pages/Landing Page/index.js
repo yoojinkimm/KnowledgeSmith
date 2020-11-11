@@ -3,7 +3,8 @@ import "../../App.css";
 import Text from "../../components/Text";
 
 import * as colors from '../../data/constants';
-import styled from 'styled-components';
+
+import './index'
 
 const LandingPage = ({history}) => {
   const [language, setLanguage] = useState('ko');
@@ -11,7 +12,7 @@ const LandingPage = ({history}) => {
 
   return (
     <div style={{display: 'flex', flex: 1}}>
-    <StyledBackground>
+    {/* <StyledBackground>
       <Text size={40} bold color={'pink'}>
         Knowledgesmith
       </Text>
@@ -41,39 +42,9 @@ const LandingPage = ({history}) => {
           <Text size={24} bold color={'pink'}>Start Crafting</Text>
         </StyledBtn>
       </StyledFloating>
-    </StyledBackground>
+    </StyledBackground> */}
     </div>
   );
 };
 
 export default LandingPage;
-
-const StyledBackground = styled.div`
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  background-color: ${colors.green};
-`;
-
-const StyledBtn = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${colors.green};
-  border: 0.5px solid ${colors.pink};
-  height: 48px;
-  width: 100%;
-`;
-
-const StyledFloating = styled.div`
-  position: fixed;
-  bottom: 24px;
-  left: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
