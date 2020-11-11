@@ -1,3 +1,4 @@
-import { Text } from './Text';
+import  Text from './Text';
+import  SwipeCard from './SwipeCard';
 
-export { Text }
+export { Text, SwipeCard }

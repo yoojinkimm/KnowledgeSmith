@@ -1,23 +1,40 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
+// import Animated from "animated/lib/targets/react-dom";
 import "../../App.css";
-import Text from "../../components/Text";
+import {Text} from '../../components';
 
 import * as colors from '../../data/constants';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-import Cards, { Card } from 'react-swipe-card'
+// import SwipeableViews from 'react-swipeable-views';
 
 import axios from 'axios';
 
-import '../../App.css';
+import Deck from './Deck'
+
+// const styles = {
+//   slide: {
+//     padding: 15,
+//     height: 520,
+//     backgroundColor: colors.pink,
+//     color: colors.green,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     flexDirection: 'column',
+//     display: 'flex',
+//   }
+// };
 
 
-class GameCardPage extends Component {
-  render() {
+const GameCardPage = (props) => {
+  const {language, history} = props;
 
-  const {language, history} = this.props;
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [selectedPage, setSelectedPage] = useState(null)
 
-  let selectedPage = null
+  // const [cardIndex, setCardIndex] = useState(0);
+  // let position = new Animated.Value(0);
+  
 
   // wiki api 요청하는 기본 url
   const base_url = `https://${language}.wikipedia.org/w/api.php?`;
@@ -26,18 +43,16 @@ class GameCardPage extends Component {
   // 이전에 선택한 카테고리와 겹치는 페이지만 새로 저장하는 함수
   const filterPage = (data) => {
     // 처음엔 비교 안하고 새로 저장함
-    if(selectedPage === null) selectedPage = data
+    if(selectedPage === null) setSelectedPage(data)
     else {
       const list = []
-      data.map((dataItem)=>{
-        selectedPage.map((selectedItem)=>{
-          if (dataItem.pageid === selectedItem.pageId){
-            list.push(dataItem)
-          }
-        })
-      })
+      for(let i=0; i<data.length; i++){
+        for(let j=0; j<selectedPage.length; j++){
+          if (data[i].pageid === selectedPage[j].pageid) list.push(data[i])
+        }
+      }
       console.log(list);
-      selectedPage = list;
+      setSelectedPage(list);
     }
   }
 
@@ -51,9 +66,13 @@ class GameCardPage extends Component {
       // const categoryQuery = '그래프 이론'
       const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmlimit=1000`
 
-      const result = await axios.get(`${base_url}${categoryPage_url}`);
-      filterPage(result.data.query)
-      console.log(result.data.query);
+      try {
+        const result = await axios.get(`${base_url}${categoryPage_url}`);
+        filterPage(result.data.query.categorymembers)
+        // console.log(result.data.query.categorymembers);
+      } catch (e) {
+        console.log(e)
+      }
   }
 
 
@@ -62,7 +81,11 @@ class GameCardPage extends Component {
     /* 중간에 &origin=* 이거 반드시 넣어야 cors 안 막힘 */
     const category_url = `action=query&format=json&list=allcategories&origin=*&aclimit=1000`
 
+    try {
     const result = await axios.get(`${base_url}${category_url}`);
+    } catch (e) {
+        console.log(e)
+      }
 
     // ... 랜덤으로 카테고리 선택하는 로직 필요
   }
@@ -72,33 +95,88 @@ class GameCardPage extends Component {
   const searchSubCategory = async (categoryQuery) => {
     const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
 
+    try{
     const result = await axios.get(`${base_url}${subcategory_url}`);
+    console.log(result.data.query)
+    setSelectedCategory(result.data.query)
+    } catch (e) {
+        console.log(e)
+      }
   }
 
   useEffect(() => {
-    searchAllCategory()
+    // searchPage('그래프 이론')
+    // searchPage('그래프 알고리즘')
+    searchSubCategory('사람')
   }, [])
+
+  // const handleChangeIndex = index => {
+  //   setCardIndex(index);
+  // }
+
+  // const handleSwitch = (index, type) => {
+  //   if (type === 'end'){
+  //     Animated.spring(position, { toValue: index }).start();
+  //     return;
+  //   }
+  //   position.setValue(index);
+  // }
 
 
   return (
     <div style={{display: 'flex', flex: 1}}>
-    {/* <StyledBackground>
+    <StyledBackground>
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <Text size={40} bold color={'pink'}>
                 Knowledgesmith
             </Text>
-        </div> */}
-         <Cards onEnd={()=>{}}>
-          {selectedPage !== null && 
-            selectedPage.map((item, index) => 
-            <Card 
-              onSwipeLeft={()=>{}} 
-              onSwipeRight={()=>{}}>
-              <h2>카드카드카드</h2>
-            </Card>
-          )}
-        </Cards>
-    {/* </StyledBackground>
+        </div>
+        {/* <SwipeableViews
+        index={cardIndex}
+        onChangeIndex={handleChangeIndex}
+        onSwitching={handleSwitch}
+        enableMouseEvents
+        >
+            {selectedPage !== null && 
+            selectedPage.map((item, currentIndex) => {
+              const inputRange = selectedPage.map((_, i) => i);
+              const scale = position.interpolate({
+                inputRange,
+                outputRange: inputRange.map(i => {
+                  return currentIndex === i ? 1 : 0.7;
+                }),
+              });
+              const opacity = position.interpolate({
+                inputRange,
+                outputRange: inputRange.map(i => {
+                  return currentIndex === i ? 1 : 0.3;
+                }),
+              });
+              const translateX = position.interpolate({
+                inputRange,
+                outputRange: inputRange.map(i => {
+                  return (100 / 2) * (i - currentIndex);
+                }),
+              });
+
+              return (
+                <Animated.div
+                  key={String(currentIndex)}
+                  style={Object.assign(
+                    {
+                      opacity,
+                      transform: [{ scale }, { translateX }],
+                    },
+                    styles.slide,
+                  )}
+                >
+                  {item.title}
+                </Animated.div>
+              );
+            })}
+        </SwipeableViews> */}
+        <Deck data={selectedCategory && selectedCategory} />
+    </StyledBackground>
 
     <StyledFloating style={{justifyContent: 'space-between'}}>
       <StyledBtn 
@@ -111,40 +189,39 @@ class GameCardPage extends Component {
       style={{height: 32, backgroundColor: colors.pink}}>
         <Text size={12} bold color={'green'}>Flip</Text>
       </StyledBtn>
-    </StyledFloating> */}
+    </StyledFloating>
     </div>
   );
-  }
 };
 
 export default GameCardPage;
 
-// const StyledBackground = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   flex: 1;
-//   display: flex;
-//   flex-direction: column;
-//   padding: 16px;
-//   background-color: ${colors.green};
-// `;
+const StyledBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: ${colors.green};
+`;
 
-// const StyledBtn = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: ${colors.green};
-//   border: 0.5px solid ${colors.pink};
-//   height: 48px;
-//   width: 100%;
-// `;
+const StyledBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.green};
+  border: 0.5px solid ${colors.pink};
+  height: 48px;
+  width: 100%;
+`;
 
-// const StyledFloating = styled.div`
-//   position: fixed;
-//   bottom: 24px;
-//   left: 16px;
-//   right: 16px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
+const StyledFloating = styled.div`
+  position: fixed;
+  bottom: 24px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
