@@ -76,8 +76,7 @@ class GameCardPage extends Component {
   }
 
   useEffect(() => {
-    searchPage('그래프 이론')
-    searchPage('그래프 알고리즘')
+    searchAllCategory()
   }, [])
 
 
