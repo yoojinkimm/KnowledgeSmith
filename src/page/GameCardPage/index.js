@@ -10,11 +10,15 @@ import cardData from '../../data/cardData';
 
 import './game.css';
 
+import { Swipeable, direction } from 'react-deck-swiper';
+
 
 const GameCardPage = (props) => {
   const {language, history} = props;
   const [selectedCategory, setSelectedCategory] = useState([])
   const [selectedPage, setSelectedPage] = useState([]);
+
+  const [cardIndex, setCardIndex] = useState(0);
 
   // wiki api 요청하는 기본 url
   const base_url = `https://${language}.wikipedia.org/w/api.php?`;
@@ -94,6 +98,25 @@ const GameCardPage = (props) => {
 
   
 
+  const handleOnSwipe = (swipeDirection) => {
+    if (swipeDirection === direction.RIGHT) {
+      // handle right swipe
+      console.log('right')
+    }
+
+    if (swipeDirection === direction.LEFT) {
+      // handle left swipe
+      console.log('left')
+    }
+
+    // let list = selectedCategory
+    // list.pop()
+    // console.log(list);
+    // setSelectedCategory(list);
+
+    let index = cardIndex + 1;
+    setCardIndex(index);
+  }
 
   return (
     <div style={{display: 'flex', flex: 1}}>
@@ -103,8 +126,20 @@ const GameCardPage = (props) => {
                     Knowledgesmith
                 </Text>
             </div> 
+            <Swipeable onSwipe={handleOnSwipe}>
+                {/* selectedCategory.map((item, index)=>{
+                    return(
+                        <div className="card">
+                            {item.title}
+                        </div>
+                    )
+                }) */}
+                <div className="card">
+                    {selectedCategory[cardIndex] !== undefined && selectedCategory[cardIndex].title}
+                </div>
+            </Swipeable>
 
-            <CardDeck data={cardData} language={language} />
+            {/* <CardDeck data={cardData} /> */}
         </div>
 
          <div className="floating" style={{justifyContent: 'space-between'}}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSprings } from "react-spring/hooks";
-import { useGesture } from "react-with-gesture";
+import { useGesture } from "react-use-gesture";
 
 import SwipeCard from "../SwipeCard/index.js";
 
@@ -27,7 +27,6 @@ const trans = (r, s) =>
 function CardDeck({data, language}) {
   const [selectedCategory, setSelectedCategory] = useState(data)
   const [selectedPage, setSelectedPage] = useState([]);
-
 
   const [gone] = useState(() => new Set());
 
@@ -153,12 +152,13 @@ function CardDeck({data, language}) {
     // searchPage('그래프 알고리즘')
 
     // 개수의 문제도 아니고 렌더링 순서 문제도 아님. 뭐가 문제일까? 
-    // searchSubCategory('그래프 이론')
+    searchSubCategory('그래프 이론')
+    console.log(props)
   }, [])
 
-  useEffect(() => {
-    set(i => to(i))
-  })
+useEffect(() => {
+  console.log(props)
+}, [selectedCategory, props])
 
   return (
     <>

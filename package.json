@@ -7,10 +7,12 @@
     "nuka-carousel": "^4.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-deck-swiper": "^1.0.9",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "react-spring": "^7.2.11",
+    "react-use-gesture": "^8.0.0",
     "react-with-gesture": "^4.0.8"
   },
   "scripts": {
