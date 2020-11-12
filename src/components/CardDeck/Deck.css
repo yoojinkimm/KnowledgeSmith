@@ -31,9 +31,6 @@ body {
   width: 100vw;
   height: 100vh;
   will-change: transform;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .card {
@@ -91,10 +88,10 @@ h5:last-of-type {
   height: 500px !important;
 }
 
-.slider-control-bottomcenter {
+/* .slider-control-bottomcenter {
   bottom: -15px !important;
 }
 
 .slider-control-bottomcenter > ul > li > button {
   color: salmon !important;
-}
+} */

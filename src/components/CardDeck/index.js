@@ -10,14 +10,16 @@ const to = i => ({
   x: 0,
   y: i * -10,
   scale: 1,
+
+  // 이거 rot 바꾸면 카드들 일정해짐
   rot: -10 + Math.random() * 20,
   delay: i * 100
 });
 const from = i => ({ rot: 0, scale: 1.5, y: -1000 });
 
 const trans = (r, s) =>
-  `perspective(1500px) rotateX(30deg) rotateY(${r /
-  10}deg) rotateZ(${r}deg) scale(${s})`;
+  `perspective(0px) rotateX(0deg) rotateY(${r /
+  10}deg) rotateZ(${r}deg) scale(1)`;
 
 function CardDeck({data}) {
   const [gone] = useState(() => new Set());

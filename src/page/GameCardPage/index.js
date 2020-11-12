@@ -8,13 +8,14 @@ import axios from 'axios';
 
 import cardData from '../../data/cardData';
 
+import './game.css';
 
 
 const GameCardPage = (props) => {
   const {language, history} = props;
 
-  const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedPage, setSelectedPage] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState([])
+  const [selectedPage, setSelectedPage] = useState([]);
 
   // wiki api 요청하는 기본 url
   const base_url = `https://${language}.wikipedia.org/w/api.php?`;
@@ -93,7 +94,28 @@ const GameCardPage = (props) => {
 
   return (
     <div style={{display: 'flex', flex: 1}}>
-        <CardDeck data={cardData} />
+        <div className="background">
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Text size={40} bold color={'pink'}>
+                    Knowledgesmith
+                </Text>
+            </div> 
+
+            <CardDeck data={cardData} />
+        </div>
+
+         <div className="floating" style={{justifyContent: 'space-between'}}>
+            <div className="styled-btn"
+            onClick={()=>{}}
+            style={{height: 32, backgroundColor: colors.green}}>
+                <Text size={12} bold color={'pink'}>Pass</Text>
+            </div>
+            <div className="styled-btn"
+            onClick={()=>{}}
+            style={{height: 32, backgroundColor: colors.pink}}>
+                <Text size={12} bold color={'green'}>Flip</Text>
+            </div>
+        </div>
     </div>
     );
 };
