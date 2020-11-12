@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { useSprings } from "react-spring/hooks";
 import { useGesture } from "react-with-gesture";
 
-import Card from "./Card";
-import data from "../data.js";
+import SwipeCard from "../SwipeCard/index.js";
 
-import "../styles/Deck.css";
+import "./Deck.css";
 
 const to = i => ({
   x: 0,
@@ -20,7 +19,7 @@ const trans = (r, s) =>
   `perspective(1500px) rotateX(30deg) rotateY(${r /
   10}deg) rotateZ(${r}deg) scale(${s})`;
 
-function Deck() {
+function CardDeck({data}) {
   const [gone] = useState(() => new Set());
 
   const [props, set] = useSprings(data.length, i => ({
@@ -67,7 +66,7 @@ function Deck() {
   );
 
   return props.map(({ x, y, rot, scale }, i) => (
-    <Card
+    <SwipeCard
       key={i}
       i={i}
       x={x}
@@ -81,4 +80,4 @@ function Deck() {
   ));
 }
 
-export default Deck;
+export default CardDeck;
