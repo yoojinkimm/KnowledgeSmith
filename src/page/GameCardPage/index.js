@@ -13,7 +13,6 @@ import './game.css';
 
 const GameCardPage = (props) => {
   const {language, history} = props;
-
   const [selectedCategory, setSelectedCategory] = useState([])
   const [selectedPage, setSelectedPage] = useState([]);
 
@@ -76,10 +75,10 @@ const GameCardPage = (props) => {
   const searchSubCategory = async (categoryQuery) => {
     const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
 
-    try{
+    try {
     const result = await axios.get(`${base_url}${subcategory_url}`);
-    console.log(result.data.query)
-    setSelectedCategory(result.data.query)
+    console.log(result.data.query.categorymembers)
+    setSelectedCategory(result.data.query.categorymembers)
     } catch (e) {
         console.log(e)
       }
@@ -88,8 +87,12 @@ const GameCardPage = (props) => {
   useEffect(() => {
     // searchPage('그래프 이론')
     // searchPage('그래프 알고리즘')
-    searchSubCategory('사람')
+
+    // 개수의 문제도 아니고 렌더링 순서 문제도 아님. 뭐가 문제일까? 
+    searchSubCategory('그래프 이론')
   }, [])
+
+  
 
 
   return (
@@ -101,7 +104,7 @@ const GameCardPage = (props) => {
                 </Text>
             </div> 
 
-            <CardDeck data={cardData} />
+            <CardDeck data={cardData} language={language} />
         </div>
 
          <div className="floating" style={{justifyContent: 'space-between'}}>

@@ -4,7 +4,8 @@ import { animated, interpolate } from "react-spring/hooks";
 import Carousel from "nuka-carousel";
 
 const SwipeCard = ({ i, x, y, rot, scale, trans, bind, data }) => {
-  const { name, age, distance, text, pics } = data[i];
+  // const { name, age, distance, text, pics } = data[i];
+  const {title, pageid} = data[i]
 
   return (
     <animated.div
@@ -20,7 +21,7 @@ const SwipeCard = ({ i, x, y, rot, scale, trans, bind, data }) => {
         }}
       >
         <div className="card">
-          <Carousel>
+          {/* <Carousel>
             {pics.map((pic, index) => (
               <img src={pic} key={index} alt="profilePicture" />
             ))}
@@ -28,7 +29,8 @@ const SwipeCard = ({ i, x, y, rot, scale, trans, bind, data }) => {
           <h2>{name},</h2>
           <h2>{age}</h2>
           <h5>{distance}</h5>
-          <h5>{text}</h5>
+          <h5>{text}</h5> */}
+          <h2>{title}</h2>
         </div>
       </animated.div>
     </animated.div>
