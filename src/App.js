@@ -12,7 +12,8 @@ import './App.css';
 function App({history}) {
   return (
     <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
+      {/* <Router basename={process.env.PUBLIC_URL}> */}
+      <Router>
         <Switch>
           <Route exact path='/' component={LandingPage} />
           {/* <Route exact path='/tutorial' component={TutorialCardPage} /> */}
