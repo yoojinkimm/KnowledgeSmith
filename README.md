@@ -4,7 +4,7 @@
 
 ## WebSite
 
-https://tinder-cards.firebaseapp.com
+https://segong.work/
 
 ## Preview
 
