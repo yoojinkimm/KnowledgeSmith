@@ -76,7 +76,7 @@ const GameCardPage = (props) => {
 
     // 객체 형태로 옴
     // console.log('list :', list)
-    for (let i=0; i < list.length; i++){
+    for (let i=0; i < list.length; i ++) {
         let categoryData = showMainCategory;
         for(let key in list[i]){
             let value = list[i][key];
@@ -84,8 +84,12 @@ const GameCardPage = (props) => {
             // 문자열 리스트로 바꿔서 저장
             setShowMainCategory(categoryData)
         }
+        var min = Math.ceil(0);
+        var max = Math.floor(30);
+        var random = Math.floor(Math.random() * (max-min)) + min;
+        i += random;
     }
-    // console.log('showMainCategory : ', showMainCategory)
+    console.log('showMainCategory : ', showMainCategory)
     } catch (e) {
         console.log(e)
       }
@@ -154,22 +158,35 @@ const GameCardPage = (props) => {
                     Knowledgesmith
                 </Text>
             </div> 
-            <Swipeable onSwipe={handleOnSwipe}>
-                {/* selectedCategory.map((item, index)=>{
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text size={24} color={'pink'}>
+                    {selectedCategory.length} / 5
+                </Text>
+                <Text size={24} color={'pink'}>
+                    results: {selectedPage.length}
+                </Text>
+            </div>
+            <div className="swipe">
+                <Swipeable onSwipe={handleOnSwipe}>
+                    <div className="card">
+                        {showMainCategory[cardIndex] !== undefined && 
+                        showMainCategory[cardIndex]
+                        }
+                    </div>
+                </Swipeable>
+            </div>
+            <div style={{marginBottom: 100}}>
+                {selectedCategory.map((item, index) => {
                     return(
-                        <div className="card">
-                            {item.title}
+                        <div>
+                            <Text size={24} color={'pink'}>
+                                {item}
+                            </Text>
                         </div>
                     )
-                }) */}
-                <div className="card">
-                    {showMainCategory[cardIndex] !== undefined && 
-                    showMainCategory[cardIndex]
-                    }
-                </div>
-            </Swipeable>
-
-            {/* <CardDeck data={cardData} /> */}
+                })}
+            </div>
+            
         </div>
 
          <div className="floating" style={{justifyContent: 'space-between'}}>

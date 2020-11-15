@@ -29,18 +29,22 @@
 }
 
 .card {
-  position: absolute;
+  /* position: absolute; */
   will-change: transform;
   padding: 5px;
   background-color: #e0b0ce;
-  background-size: auto 85%;
+  /* background-size: auto 85%;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center center; */
   width: 300px;
-  height: 550px;
+  height: 500px;
   margin-top: 32px;
   margin-left: 16px;
   will-change: transform;
   border-radius: 10px;
   box-shadow: 10px 10px 20px -10px rgba(80, 80, 80, 0.6);
+}
+
+.swipe {
+  height: 600px !important;
 }
