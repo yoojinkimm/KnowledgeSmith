@@ -1,8 +1,8 @@
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
-html,
+/* html,
 body {
   overscroll-behavior-y: contain;
   margin: 0;
@@ -13,9 +13,9 @@ body {
   font-family: Raleway, sans-serif;
   position: fixed;
   overflow: hidden;
-}
+} */
 
-.card {
+/* .card {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -31,10 +31,10 @@ body {
   margin-left: 16px;
   will-change: transform;
   border-radius: 10px;
-  /* box-shadow: 0 10px 50px -10px rgba(50, 50, 50, 0.1); */
-}
+  box-shadow: 0 10px 50px -10px rgba(50, 50, 50, 0.1);
+} */
 
-img {
+/* img {
   height: 380px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -71,7 +71,7 @@ h5:last-of-type {
 
 .card {
   height: 500px !important;
-}
+} */
 
 /* .slider-control-bottomcenter {
   bottom: -15px !important;

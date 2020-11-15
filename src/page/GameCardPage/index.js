@@ -18,6 +18,9 @@ const GameCardPage = (props) => {
   const [selectedCategory, setSelectedCategory] = useState([])
   const [selectedPage, setSelectedPage] = useState([]);
 
+  const [showMainCategory, setShowMainCategory] = useState([]);
+  const [showSubCategory, setShowSubCategory] = useState([])
+
   const [cardIndex, setCardIndex] = useState(0);
 
   // wiki api 요청하는 기본 url
@@ -27,7 +30,10 @@ const GameCardPage = (props) => {
   // 이전에 선택한 카테고리와 겹치는 페이지만 새로 저장하는 함수
   const filterPage = (data) => {
     // 처음엔 비교 안하고 새로 저장함
-    if(selectedPage === null) setSelectedPage(data)
+    if(selectedPage === null || selectedPage.length === 0) {
+        console.log('data' , data)
+        setSelectedPage(data)
+    }
     else {
       const list = []
       for(let i=0; i<data.length; i++){
@@ -35,7 +41,7 @@ const GameCardPage = (props) => {
           if (data[i].pageid === selectedPage[j].pageid) list.push(data[i])
         }
       }
-      console.log(list);
+      console.log('filtered selected page', list);
       setSelectedPage(list);
     }
   }
@@ -43,11 +49,7 @@ const GameCardPage = (props) => {
 
   // 해당 카테고리의 페이지 정보를 불러오는 함수
   const searchPage = async (categoryQuery) => {
-      // 그냥 검색 url
-      const searchQuery = '김연아';
-      const search_url = `format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts|pageimages&pithumbsize=400&origin=*&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${searchQuery}`
-      
-      // const categoryQuery = '그래프 이론'
+
       const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmlimit=1000`
 
       try {
@@ -63,11 +65,27 @@ const GameCardPage = (props) => {
   // 위키피디아의 모든 카테고리를 불러오는 함수
   const searchAllCategory = async () => {
     /* 중간에 &origin=* 이거 반드시 넣어야 cors 안 막힘 */
-    const category_url = `action=query&format=json&list=allcategories&origin=*&acmin=200&aclimit=1000`
+
+    // 200페이지 정도면 괜찮다
+    // 500개까지만 옴
+    const category_url = `action=query&format=json&list=allcategories&origin=*&acmin=500&aclimit=500`
 
     try {
-    const result = await axios.get(`${base_url}${category_url}`);
-    console.log(result.data.query)
+    const { data } = await axios.get(`${base_url}${category_url}`);
+    let list = data.query.allcategories
+
+    // 객체 형태로 옴
+    // console.log('list :', list)
+    for (let i=0; i < list.length; i++){
+        let categoryData = showMainCategory;
+        for(let key in list[i]){
+            let value = list[i][key];
+            categoryData.push(value);
+            // 문자열 리스트로 바꿔서 저장
+            setShowMainCategory(categoryData)
+        }
+    }
+    // console.log('showMainCategory : ', showMainCategory)
     } catch (e) {
         console.log(e)
       }
@@ -82,19 +100,17 @@ const GameCardPage = (props) => {
 
     try {
     const result = await axios.get(`${base_url}${subcategory_url}`);
-    console.log(result.data.query.categorymembers)
-    setSelectedCategory(result.data.query.categorymembers)
+    console.log('subCategory', result.data.query.categorymembers)
+
+    // subcategory 없는 경우도 있음!!!
+    setShowSubCategory(result.data.query.categorymembers)
     } catch (e) {
         console.log(e)
       }
   }
 
   useEffect(() => {
-    // searchPage('그래프 이론')
-    // searchPage('그래프 알고리즘')
-
-    // 개수의 문제도 아니고 렌더링 순서 문제도 아님. 뭐가 문제일까? 
-    searchSubCategory('사람')
+    // 마운트시 카테고리 불러옴
     searchAllCategory();
   }, [])
 
@@ -103,12 +119,22 @@ const GameCardPage = (props) => {
   const handleOnSwipe = (swipeDirection) => {
     if (swipeDirection === direction.RIGHT) {
       // handle right swipe
-      console.log('right')
+      let list = selectedCategory
+
+      // main 이 아니라 sub일 땐 어쩌지? 변수 써야하나?
+      list.push(showMainCategory[cardIndex])
+      searchSubCategory(showMainCategory[cardIndex])
+      searchPage(showMainCategory[cardIndex])
+
+      setSelectedCategory(list)
+      
+      console.log(list)
+      console.log('flip')
     }
 
     if (swipeDirection === direction.LEFT) {
       // handle left swipe
-      console.log('left')
+      console.log('pass')
     }
 
     // let list = selectedCategory
@@ -137,7 +163,9 @@ const GameCardPage = (props) => {
                     )
                 }) */}
                 <div className="card">
-                    {selectedCategory[cardIndex] !== undefined && selectedCategory[cardIndex].title}
+                    {showMainCategory[cardIndex] !== undefined && 
+                    showMainCategory[cardIndex]
+                    }
                 </div>
             </Swipeable>
 
@@ -146,12 +174,12 @@ const GameCardPage = (props) => {
 
          <div className="floating" style={{justifyContent: 'space-between'}}>
             <div className="styled-btn"
-            onClick={()=>{}}
+            onClick={()=>{handleOnSwipe(direction.LEFT)}}
             style={{height: 32, backgroundColor: colors.green}}>
                 <Text size={12} bold color={'pink'}>Pass</Text>
             </div>
             <div className="styled-btn"
-            onClick={()=>{}}
+            onClick={()=>{handleOnSwipe(direction.RIGHT)}}
             style={{height: 32, backgroundColor: colors.pink}}>
                 <Text size={12} bold color={'green'}>Flip</Text>
             </div>
