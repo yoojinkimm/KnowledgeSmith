@@ -20,6 +20,7 @@ const GameCardPage = (props) => {
 
   const [showMainCategory, setShowMainCategory] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState([])
+  const [showPageCategory, setShowPageCategory] = useState([])
 
   const [cardIndex, setCardIndex] = useState(0);
 
@@ -33,6 +34,9 @@ const GameCardPage = (props) => {
     if(selectedPage === null || selectedPage.length === 0) {
         console.log('data' , data)
         setSelectedPage(data)
+        data.map((item, index) => {
+          searchPageCategory(item.title)
+        })
     }
     else {
       const list = []
@@ -43,6 +47,9 @@ const GameCardPage = (props) => {
       }
       console.log('filtered selected page', list);
       setSelectedPage(list);
+      list.map((item, index) => {
+          searchPageCategory(item)
+        })
     }
   }
 
@@ -113,6 +120,34 @@ const GameCardPage = (props) => {
       }
   }
 
+  // 해당 페이지의 카테고리를 불러오는 함수
+  const searchPageCategory = async (pageQuery) => {
+    const pageCategory_url = `action=query&format=json&origin=*&titles=${pageQuery}&prop=categories`
+
+    try {
+    const result = await axios.get(`${base_url}${pageCategory_url}`);
+    const data = result.data.query.pages
+    let item = []
+    console.log('pageCategory', data)
+    
+    for(let key in data){
+            item = data[key].categories
+            console.log('pageCategory', item)
+        }
+    let list = showPageCategory
+
+    item.map((d, index) => {
+      list.push(d.title)
+    })
+
+    console.log('list: ', list)
+    setShowPageCategory(list)
+    setShowMainCategory(list)
+    } catch (e) {
+        console.log(e)
+      }
+  }
+
   useEffect(() => {
     // 마운트시 카테고리 불러옴
     searchAllCategory();
@@ -127,7 +162,7 @@ const GameCardPage = (props) => {
 
       // main 이 아니라 sub일 땐 어쩌지? 변수 써야하나?
       list.push(showMainCategory[cardIndex])
-      searchSubCategory(showMainCategory[cardIndex])
+      // searchSubCategory(showMainCategory[cardIndex])
       searchPage(showMainCategory[cardIndex])
 
       setSelectedCategory(list)
