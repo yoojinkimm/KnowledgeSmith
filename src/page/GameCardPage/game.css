@@ -85,4 +85,6 @@
   align-items: center;
   border-radius: 12px;
   border: solid 0.5px #e0b0ce;
+  margin-bottom: 16px;
+  box-sizing: border-box;
 }

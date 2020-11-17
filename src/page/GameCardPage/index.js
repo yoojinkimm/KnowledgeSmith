@@ -32,7 +32,7 @@ const GameCardPage = (props) => {
   const filterPage = (data) => {
     // 처음엔 비교 안하고 새로 저장함
     if(selectedPage === null || selectedPage.length === 0) {
-        console.log('data' , data)
+        // console.log('data' , data)
         setSelectedPage(data)
         data.map((item, index) => {
           searchPageCategory(item.title)
@@ -48,7 +48,7 @@ const GameCardPage = (props) => {
       console.log('filtered selected page', list);
       setSelectedPage(list);
       list.map((item, index) => {
-          searchPageCategory(item)
+          searchPageCategory(item.title);
         })
     }
   }
@@ -128,19 +128,19 @@ const GameCardPage = (props) => {
     const result = await axios.get(`${base_url}${pageCategory_url}`);
     const data = result.data.query.pages
     let item = []
-    console.log('pageCategory', data)
+    // console.log('pageCategory data: ', data)
     
     for(let key in data){
             item = data[key].categories
-            console.log('pageCategory', item)
-        }
+            // console.log('pageCategory: title', item)
+    }
     let list = showPageCategory
 
     item.map((d, index) => {
       list.push(d.title)
     })
 
-    console.log('list: ', list)
+    // console.log('list: ', list)
     setShowPageCategory(list)
     setShowMainCategory(list)
     } catch (e) {
@@ -234,7 +234,7 @@ const GameCardPage = (props) => {
                </div>
             </div>
 
-            <div style={{display: 'flex', width: '100%', marginTop: 24}}>
+            <div style={{display: 'flex', width: '100%', marginTop: 24, flexDirection: 'column'}}>
                 {selectedCategory.map((item, index) => {
                     return(
                         <div className="category-box">
