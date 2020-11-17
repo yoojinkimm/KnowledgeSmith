@@ -25,7 +25,7 @@ const LandingPage = ({history}) => {
                 </Text>
             </div>
 
-            <div className="floating" style={{bottom: 84, justifyContent: 'space-between'}}>
+            <div className="landing-floating" style={{bottom: 84, justifyContent: 'space-between'}}>
                 <div className="styled-btn"
                 onClick={()=>setLanguage('ko')}
                 style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green}}>
@@ -38,7 +38,7 @@ const LandingPage = ({history}) => {
                 </div>
             </div>
 
-            <div className="floating">
+            <div className="landing-floating">
                 <div className="styled-btn" onClick={() => {history.push(`/game/${language}`)}}>
                 <Text size={24} bold color={'pink'}>Start Crafting</Text>
                 </div>

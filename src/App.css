@@ -65,4 +65,59 @@ body {
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+
+  background-color: #2e563d;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  align-items: center;
+}
+
+.styled-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2e563d;
+  border: 0.5px solid #e0b0ce;
+  height: 48px;
+  width: 100%;
+}
+
+.styled-btn:hover {
+  opacity: 0.5;
+}
+
+.styled-btn:active {
+  opacity: 0;
+}
+
+/* PC */
+@media (min-width: 414px) {
+  .App {
+    justify-content: center;
+  }
+
+  .frame {
+    width: 414px !important;
+    position: relative;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 414px) {
+  .App {
+    justify-content: center;
+  }
+
+  .frame {
+    flex: 1;
+    display: flex;
+    position: relative;
+  }
 }

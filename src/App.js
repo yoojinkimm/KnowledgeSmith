@@ -12,6 +12,7 @@ import './App.css';
 function App({history}) {
   return (
     <div className="App">
+      <div className="frame">
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path='/' component={LandingPage} />
@@ -22,6 +23,7 @@ function App({history}) {
             )} />
         </Switch>
       </Router>
+      </div>
     </div>
   );
 }

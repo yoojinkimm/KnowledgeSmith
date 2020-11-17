@@ -1,25 +1,5 @@
-.background {
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  background-color: #2e563d;
-}
-
-.styled-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #2e563d;
-  border: 0.5px solid #e0b0ce;
-  height: 48px;
-  width: 100%;
-}
-
-.floating {
-  position: fixed;
+.game-floating {
+  position: absolute;
   bottom: 24px;
   left: 16px;
   right: 16px;
@@ -28,23 +8,29 @@
   justify-content: center;
 }
 
+.card-back {
+  padding: 16px;
+  padding-top: 32px;
+  display: flex;
+  flex: 1;
+  box-sizing: border-box;
+}
+
 .card {
   /* position: absolute; */
   will-change: transform;
   padding: 5px;
   background-color: #e0b0ce;
-  /* background-size: auto 85%;
-  background-repeat: no-repeat;
-  background-position: center center; */
-  width: 300px;
+  display: flex;
+  flex: 1;
+  width: 100%;
   height: 500px;
-  margin-top: 32px;
-  margin-left: 16px;
-  will-change: transform;
   border-radius: 10px;
   box-shadow: 10px 10px 20px -10px rgba(80, 80, 80, 0.6);
+  box-sizing: border-box;
 }
 
 .swipe {
-  height: 600px !important;
+  width: 100%;
+  height: 100%;
 }

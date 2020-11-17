@@ -132,13 +132,13 @@ const GameCardPage = (props) => {
 
       setSelectedCategory(list)
       
-      console.log(list)
-      console.log('flip')
+      console.log('selectd category: ', list)
+      // console.log('flip')
     }
 
     if (swipeDirection === direction.LEFT) {
       // handle left swipe
-      console.log('pass')
+      // console.log('pass')
     }
 
     // let list = selectedCategory
@@ -151,29 +151,31 @@ const GameCardPage = (props) => {
   }
 
   return (
-    <div style={{display: 'flex', flex: 1}}>
+    <div style={{display: 'flex', flex: 1, justifyContent: 'center'}}>
         <div className="background">
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <Text size={40} bold color={'pink'}>
                     Knowledgesmith
                 </Text>
             </div> 
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <div className="swipe">
+              <div className="card-back">
+                  <Swipeable onSwipe={handleOnSwipe}>
+                      <div className="card">
+                          {showMainCategory[cardIndex] !== undefined && 
+                          showMainCategory[cardIndex]
+                          }
+                      </div>
+                  </Swipeable>
+                </div>
+            </div>
+             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text size={24} color={'pink'}>
                     {selectedCategory.length} / 5
                 </Text>
                 <Text size={24} color={'pink'}>
                     results: {selectedPage.length}
                 </Text>
-            </div>
-            <div className="swipe">
-                <Swipeable onSwipe={handleOnSwipe}>
-                    <div className="card">
-                        {showMainCategory[cardIndex] !== undefined && 
-                        showMainCategory[cardIndex]
-                        }
-                    </div>
-                </Swipeable>
             </div>
             <div style={{marginBottom: 100}}>
                 {selectedCategory.map((item, index) => {
@@ -189,7 +191,7 @@ const GameCardPage = (props) => {
             
         </div>
 
-         <div className="floating" style={{justifyContent: 'space-between'}}>
+         <div className="game-floating" style={{justifyContent: 'space-between'}}>
             <div className="styled-btn"
             onClick={()=>{handleOnSwipe(direction.LEFT)}}
             style={{height: 32, backgroundColor: colors.green}}>
