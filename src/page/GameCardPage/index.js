@@ -158,6 +158,7 @@ const GameCardPage = (props) => {
                     Knowledgesmith
                 </Text>
             </div> 
+             <div className="line" />
             <div className="swipe">
               <div className="card-back">
                   <Swipeable onSwipe={handleOnSwipe}>

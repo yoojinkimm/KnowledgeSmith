@@ -8,6 +8,10 @@ import "./Deck.css";
 
 import axios from 'axios';
 
+/* 이거 안씁니다 */
+/* 이거 안씁니다 */
+/* 이거 안씁니다 */
+
 const to = i => ({
   x: 0,
   y: i * 0,

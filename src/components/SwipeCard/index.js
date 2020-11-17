@@ -3,6 +3,10 @@ import { string, number, array } from "prop-types";
 import { animated, interpolate } from "react-spring/hooks";
 import Carousel from "nuka-carousel";
 
+/* 이거 안씁니다 */
+/* 이거 안씁니다 */
+/* 이거 안씁니다 */
+
 const SwipeCard = ({ i, x, y, rot, scale, trans, bind, data }) => {
   // const { name, age, distance, text, pics } = data[i];
   const {title, pageid} = data[i]

@@ -1,9 +1,83 @@
 .landing-floating {
-  position: absolute;
+  position: fixed;
   bottom: 24px;
   left: 16px;
   right: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.language {
+  bottom: 84px;
+}
+
+/* PC */
+@media (min-width: 415px) {
+  .landing-floating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 414px;
+    position: static;
+  }
+  .landing-pc-floating {
+    height: 100px;
+    left: 0;
+    right: 0;
+    position: fixed;
+    bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .language {
+    margin-bottom: 12px;
+  }
+}
+
+.landing-content {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.landing-text {
+  display: flex;
+  flex-direction: row;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.ko {
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+  width: 50%;
+  text-align: left;
+}
+
+.en {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  width: 50%;
+  text-align: left;
+}
+
+.role {
+  display: flex;
+  margin-right: 8px;
+  width: 50%;
+  text-align: right;
+  flex-direction: column;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  width: 50%;
 }

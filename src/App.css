@@ -55,6 +55,7 @@
   height: 100%;
   flex: 1;
   display: flex;
+  justify-content: center;
 }
 
 html,
@@ -97,27 +98,27 @@ body {
   opacity: 0;
 }
 
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #e0b0ce;
+}
+
 /* PC */
 @media (min-width: 414px) {
-  .App {
-    justify-content: center;
-  }
-
   .frame {
     width: 414px !important;
+    height: 100%;
     position: relative;
   }
 }
 
 /* MOBILE */
 @media (max-width: 414px) {
-  .App {
-    justify-content: center;
-  }
-
   .frame {
     flex: 1;
     display: flex;
+    height: 100%;
     position: relative;
   }
 }
