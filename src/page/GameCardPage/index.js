@@ -152,37 +152,58 @@ const GameCardPage = (props) => {
 
   return (
     <div style={{display: 'flex', flex: 1, justifyContent: 'center'}}>
-        <div className="background">
+        <div className="background" style={{marginBottom: 200}}>
+
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <Text size={40} bold color={'pink'}>
                     Knowledgesmith
                 </Text>
             </div> 
-             <div className="line" />
+            <div className="line" style={{marginTop: 7}} />
+
             <div className="swipe">
               <div className="card-back">
                   <Swipeable onSwipe={handleOnSwipe}>
                       <div className="card">
-                          {showMainCategory[cardIndex] !== undefined && 
-                          showMainCategory[cardIndex]
-                          }
+                        <div className="card-content">
+                          <Text size={32} color="green">
+                            {showMainCategory[cardIndex] !== undefined && 
+                            showMainCategory[cardIndex]
+                            }
+                          </Text>
+                        </div>
                       </div>
                   </Swipeable>
                 </div>
             </div>
-             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text size={24} color={'pink'}>
-                    {selectedCategory.length} / 5
-                </Text>
-                <Text size={24} color={'pink'}>
-                    results: {selectedPage.length}
-                </Text>
+
+             <div className="game-result">
+               <div className="result-column">
+                 <Text size={12} color={'pink'}>
+                    cards so far
+                 </Text>
+                 <Text size={24} color={'pink'}>
+                    {selectedCategory.length}/5
+                 </Text>
+               </div>
+
+                <div style={{width: 1, height: 43, backgroundColor: colors.pink}} />
+                
+                <div className="result-column">
+                 <Text size={12} color={'pink'}>
+                    results now
+                 </Text>
+                 <Text size={24} color={'pink'}>
+                    {selectedPage.length}
+                 </Text>
+               </div>
             </div>
-            <div style={{marginBottom: 100}}>
+
+            <div style={{display: 'flex', width: '100%', marginTop: 24}}>
                 {selectedCategory.map((item, index) => {
                     return(
-                        <div>
-                            <Text size={24} color={'pink'}>
+                        <div className="category-box">
+                            <Text size={16} bold color={'pink'}>
                                 {item}
                             </Text>
                         </div>
@@ -192,18 +213,21 @@ const GameCardPage = (props) => {
             
         </div>
 
-         <div className="game-floating" style={{justifyContent: 'space-between'}}>
-            <div className="styled-btn"
-            onClick={()=>{handleOnSwipe(direction.LEFT)}}
-            style={{height: 32, backgroundColor: colors.green}}>
-                <Text size={12} bold color={'pink'}>Pass</Text>
+          <div className="game-pc-floating">
+            <div className="game-floating" style={{justifyContent: 'space-between'}}>
+                <div className="styled-btn"
+                onClick={()=>{handleOnSwipe(direction.LEFT)}}
+                style={{backgroundColor: colors.green, marginRight: 8}}>
+                    <Text size={24} bold color={'pink'}>Pass</Text>
+                </div>
+                <div className="styled-btn"
+                onClick={()=>{handleOnSwipe(direction.RIGHT)}}
+                style={{backgroundColor: colors.pink, marginLeft: 8}}>
+                    <Text size={24} bold color={'green'}>Flip</Text>
+                </div>
             </div>
-            <div className="styled-btn"
-            onClick={()=>{handleOnSwipe(direction.RIGHT)}}
-            style={{height: 32, backgroundColor: colors.pink}}>
-                <Text size={12} bold color={'green'}>Flip</Text>
-            </div>
-        </div>
+          </div>
+
     </div>
     );
 };

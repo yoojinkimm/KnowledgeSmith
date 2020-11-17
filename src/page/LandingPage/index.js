@@ -95,12 +95,12 @@ const LandingPage = ({history}) => {
              <div className="landing-floating language" style={{justifyContent: 'space-between'}}>
                 <div className="styled-btn" 
                 onClick={()=>setLanguage('en')}
-                style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green}}>
+                style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green, marginRight: 8}}>
                 <Text size={12} bold color={language === 'en' ? 'green' : 'pink'}>English</Text>
                 </div>
                 <div className="styled-btn"
                 onClick={()=>setLanguage('ko')}
-                style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green}}>
+                style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green, marginLeft: 8}}>
                 <Text size={12} bold color={language === 'ko' ? 'green' : 'pink'}>한국어</Text>
                 </div>
             </div>
