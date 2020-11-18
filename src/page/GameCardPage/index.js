@@ -29,24 +29,32 @@ const GameCardPage = (props) => {
 
 
   // 이전에 선택한 카테고리와 겹치는 페이지만 새로 저장하는 함수
-  const filterPage = (data) => {
+  const filterPage = (pages) => {
+    
+
     // 처음엔 비교 안하고 새로 저장함
     if(selectedPage === null || selectedPage.length === 0) {
-        // console.log('data' , data)
-        setSelectedPage(data)
-        data.map((item, index) => {
+        // console.log('if pages' , pages)
+        setSelectedPage(pages)
+
+        // 속한 페이지들 각각의 카테고리들을 구함
+        pages.map((item, index) => {
           searchPageCategory(item.title)
         })
     }
     else {
+      // console.log('else pages' , pages)
       const list = []
-      for(let i=0; i<data.length; i++){
+      for(let i=0; i<pages.length; i++){
         for(let j=0; j<selectedPage.length; j++){
-          if (data[i].pageid === selectedPage[j].pageid) list.push(data[i])
+          // console.log(selectedPage[j].pageid)
+          if (pages[i].pageid === selectedPage[j].pageid) list.push(pages[i])
         }
       }
       console.log('filtered selected page', list);
       setSelectedPage(list);
+
+      // 속한 페이지들 각각의 카테고리들을 구함
       list.map((item, index) => {
           searchPageCategory(item.title);
         })
@@ -59,10 +67,13 @@ const GameCardPage = (props) => {
 
       const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmlimit=1000`
 
+      // console.log('categoryQuery', categoryQuery)
       try {
-        const result = await axios.get(`${base_url}${categoryPage_url}`);
-        filterPage(result.data.query.categorymembers)
-        // console.log(result.data.query.categorymembers);
+        // 두번째엔 이거 데이터가 안 옴 -> "분류 :" 글자 때문
+        const { data } = await axios.get(`${base_url}${categoryPage_url}`);
+        let pages = data.query.categorymembers
+        filterPage(pages)
+        // console.log('search page result', pages);
       } catch (e) {
         console.log(e)
       }
@@ -96,7 +107,10 @@ const GameCardPage = (props) => {
         var random = Math.floor(Math.random() * (max-min)) + min;
         i += random;
     }
-    console.log('showMainCategory : ', showMainCategory)
+    // console.log('showMainCategory : ', showMainCategory)
+
+    // 첫 카드가 안 나와서 강제로 하나 넘김
+    handleOnSwipe(direction.LEFT);
     } catch (e) {
         console.log(e)
       }
@@ -137,7 +151,10 @@ const GameCardPage = (props) => {
     let list = showPageCategory
 
     item.map((d, index) => {
-      list.push(d.title)
+      // 카테고리 앞에 "분류 :" 라는 글자가 붙으면 페이지 검색이 안됨!!!! 
+      // 한국어일 경우만 적용됨
+      if (d.title[2] === ':') list.push(d.title.slice(3))
+      else list.push(d.title)
     })
 
     // console.log('list: ', list)
@@ -159,21 +176,24 @@ const GameCardPage = (props) => {
     if (swipeDirection === direction.RIGHT) {
       // handle right swipe
       let list = selectedCategory
+      // 이거 나중엔 showMainCategory 통째로 바꿔버리는데 인덱스가 잘 작동할까????
+      const item = showMainCategory[cardIndex]
 
       // main 이 아니라 sub일 땐 어쩌지? 변수 써야하나?
-      list.push(showMainCategory[cardIndex])
+      list.push(item)
       // searchSubCategory(showMainCategory[cardIndex])
-      searchPage(showMainCategory[cardIndex])
+      
+      searchPage(item)
 
       setSelectedCategory(list)
       
-      console.log('selectd category: ', list)
+      console.log('selected category: ', list)
       // console.log('flip')
     }
 
     if (swipeDirection === direction.LEFT) {
       // handle left swipe
-      // console.log('pass')
+      console.log('pass')
     }
 
     // let list = selectedCategory

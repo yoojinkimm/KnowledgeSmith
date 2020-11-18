@@ -18,7 +18,7 @@
     position: static;
   }
   .game-pc-floating {
-    height: 100px;
+    height: auto;
     left: 0;
     right: 0;
     position: fixed;
