@@ -62,7 +62,9 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "SF Pro KR", "SF Pro Display", "SF Pro Icons", -apple-system,
+    BlinkMacSystemFont, "Noto Sans KR", "Noto Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
 
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

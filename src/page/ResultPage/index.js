@@ -66,7 +66,7 @@ const ResultPage = ({history}) => {
                 <div className="styled-btn" 
                 style={{height: 32}}
                 onClick={() => {}}>
-                <Text size={12} bold color={'pink'}>더보기</Text>
+                <Text size={12} color={'pink'}>더보기</Text>
                 </div>
             </div>
 
@@ -74,12 +74,12 @@ const ResultPage = ({history}) => {
                 <div className="styled-btn" 
                 onClick={()=>{history.push('/')}}
                 style={{backgroundColor: colors.green, marginRight: 8}}>
-                <Text size={24} bold color={'pink'}>Home</Text>
+                <Text size={24} color={'pink'}>Home</Text>
                 </div>
                 <div className="styled-btn"
                 onClick={()=>{history.push(`game/${language}`)}}
                 style={{backgroundColor: colors.pink, marginLeft: 8}}>
-                <Text size={24} bold color={'green'}>Start Crafting</Text>
+                <Text size={24} color={'green'}>Start Crafting</Text>
                 </div>
             </div>
         </div>

@@ -299,12 +299,12 @@ const GameCardPage = (props) => {
                 <div className="styled-btn"
                 onClick={()=>{handleOnSwipe(direction.LEFT)}}
                 style={{backgroundColor: colors.green, marginRight: 8}}>
-                    <Text size={24} bold color={'pink'}>Pass</Text>
+                    <Text size={24} color={'pink'}>Pass</Text>
                 </div>
                 <div className="styled-btn"
                 onClick={()=>{handleOnSwipe(direction.RIGHT)}}
                 style={{backgroundColor: colors.pink, marginLeft: 8}}>
-                    <Text size={24} bold color={'green'}>Flip</Text>
+                    <Text size={24} color={'green'}>Flip</Text>
                 </div>
             </div>
           </div>
