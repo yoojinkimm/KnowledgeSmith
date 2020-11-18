@@ -9,6 +9,8 @@ import axios from 'axios';
 
 import cardData from '../../data/cardData';
 
+import { Name } from '../../data/images/index';
+
 import './game.css';
 
 import { Swipeable, direction } from 'react-deck-swiper';
@@ -177,20 +179,20 @@ const GameCardPage = (props) => {
   const handleOnSwipe = (swipeDirection) => {
     if (swipeDirection === direction.RIGHT) {
       // handle right swipe
+
+      // 일시적으로 비워서 빈 카드로 보이게 하기 위함
+      setShowMainCategory([])
+
+
       let list = selectedCategory
+      
       // 이거 나중엔 showMainCategory 통째로 바꿔버리는데 인덱스가 잘 작동할까????
       const item = showMainCategory[cardIndex]
-
-      // main 이 아니라 sub일 땐 어쩌지? 변수 써야하나?
       list.push(item)
-      // searchSubCategory(showMainCategory[cardIndex])
-      
       searchPage(item)
-
       setSelectedCategory(list)
       
       console.log('selected category: ', list)
-      // console.log('flip')
     }
 
     if (swipeDirection === direction.LEFT) {
@@ -217,9 +219,9 @@ const GameCardPage = (props) => {
   }, [selectedCategory, handleFinish])
 
   useEffect(() => {
-    // result가 0이면 자동 종료
+    // result가 0이면 자동 종료 -> 현재 동작하지 않음
     if (selectedCategory >= 1 && selectedPage.length === 0) handleFinish()
-  }, [selectedPage, handleFinish])
+  })
 
 
   return (
@@ -227,17 +229,18 @@ const GameCardPage = (props) => {
         <div className="background" style={{marginBottom: 200}}>
 
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                <Text size={40} bold color={'pink'}>
+                {/* <Text size={40} bold color={'pink'}>
                     Knowledgesmith
-                </Text>
+                </Text> */}
+                <Name />
             </div> 
             <div className="line" style={{marginTop: 7}} />
 
-              <div className="styled-btn"
+              {/* <div className="styled-btn"
                   onClick={()=>{handleFinish()}}
                   style={{backgroundColor: colors.green, marginTop: 16}}>
                       <Text size={24} bold color={'pink'}>Finish</Text>
-              </div>
+              </div> */}
 
             <div className="swipe">
               <div className="card-back">

@@ -7,6 +7,8 @@ import * as colors from '../../data/constants';
 
 import './result.css';
 
+import { Name } from '../../data/images/index';
+
 const ResultPage = ({history}) => {
   const location = useLocation();
   const [result, setResult] = useState([]);
@@ -28,9 +30,10 @@ const ResultPage = ({history}) => {
   return (
     <div style={{display: 'flex', flex: 1}}>
         <div className="background" style={{marginBottom: 200}}>
-            <Text size={40} bold color={'pink'}>
+            {/* <Text size={40} bold color={'pink'}>
                 Knowledgesmith
-            </Text>
+            </Text> */}
+            <Name />
             <div className="line" style={{marginTop: 12}} />
 
             <div className="result-card-back">
