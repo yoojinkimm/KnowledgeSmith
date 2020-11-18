@@ -1,4 +1,5 @@
 import LandingPage from "./LandingPage";
 import GameCardPage from './GameCardPage';
+import ResultPage from './ResultPage';
 
-export { LandingPage, GameCardPage };
+export { LandingPage, GameCardPage, ResultPage };

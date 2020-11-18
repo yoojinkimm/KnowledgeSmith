@@ -4,7 +4,7 @@ import {
   Switch,
   BrowserRouter as Router,
 } from "react-router-dom";
-import { LandingPage, GameCardPage} from './page';
+import { LandingPage, GameCardPage, ResultPage } from './page';
 import React from 'react';
 
 import './App.css';
@@ -21,6 +21,7 @@ function App({history}) {
             component={({ match }) => (
               <GameCardPage history={history} language={match.params.language} />
             )} />
+          <Route exact path='/result' component={ResultPage} />
         </Switch>
       </Router>
       </div>

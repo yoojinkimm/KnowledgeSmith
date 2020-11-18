@@ -1,0 +1,77 @@
+.result-floating {
+  position: fixed;
+  bottom: 24px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.up {
+  bottom: 84px;
+}
+
+/* PC */
+@media (min-width: 415px) {
+  .result-floating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 414px;
+    position: static;
+  }
+  .result-pc-floating {
+    height: auto;
+    left: 0;
+    right: 0;
+    position: fixed;
+    bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .up {
+    margin-bottom: 12px;
+  }
+}
+
+.result-card-back {
+  padding: 16px;
+  padding-top: 32px;
+  display: flex;
+  flex: 1;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.result-card {
+  will-change: transform;
+  padding: 16px;
+  background-color: #e0b0ce;
+  display: flex;
+  flex: 1;
+  width: 100%; /* 화면 가로 픽셀 작은 애들은 어차피 깨지네... 어떡하지? */
+  height: 160px;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.result-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.result-category-box {
+  width: 100%;
+  height: auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  border: solid 0.5px #e0b0ce;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}

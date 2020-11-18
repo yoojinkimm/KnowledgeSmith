@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../App.css";
 import {Text, CardDeck} from '../../components';
+import {useHistory } from "react-router-dom";
 
 import * as colors from '../../data/constants';
 
@@ -14,7 +15,8 @@ import { Swipeable, direction } from 'react-deck-swiper';
 
 
 const GameCardPage = (props) => {
-  const {language, history} = props;
+  const { language } = props;
+  const history = useHistory();
   const [selectedCategory, setSelectedCategory] = useState([])
   const [selectedPage, setSelectedPage] = useState([]);
 
@@ -33,7 +35,7 @@ const GameCardPage = (props) => {
     
 
     // 처음엔 비교 안하고 새로 저장함
-    if(selectedPage === null || selectedPage.length === 0) {
+    if(selectedCategory.length <= 1 && selectedPage.length === 0) {
         // console.log('if pages' , pages)
         setSelectedPage(pages)
 
@@ -205,6 +207,20 @@ const GameCardPage = (props) => {
     setCardIndex(index);
   }
 
+  const handleFinish = () => {
+    history.push({pathname: '/result', state: {result: selectedPage, language: language}})
+  }
+
+  useEffect(() => {
+    // 5개 고르면 자동 종료
+    if (selectedCategory.length === 5) handleFinish()
+  }, [selectedCategory, handleFinish])
+
+  useEffect(() => {
+    // result가 0이면 자동 종료
+    if (selectedCategory >= 2 && selectedPage.length === 0) handleFinish()
+  }, [selectedPage, handleFinish])
+
   return (
     <div style={{display: 'flex', flex: 1, justifyContent: 'center'}}>
         <div className="background" style={{marginBottom: 200}}>
@@ -215,6 +231,12 @@ const GameCardPage = (props) => {
                 </Text>
             </div> 
             <div className="line" style={{marginTop: 7}} />
+
+              <div className="styled-btn"
+                  onClick={()=>{handleFinish()}}
+                  style={{backgroundColor: colors.green, marginTop: 16}}>
+                      <Text size={24} bold color={'pink'}>종료</Text>
+              </div>
 
             <div className="swipe">
               <div className="card-back">
