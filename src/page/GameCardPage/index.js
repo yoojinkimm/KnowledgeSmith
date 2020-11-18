@@ -218,9 +218,9 @@ const GameCardPage = (props) => {
 
   useEffect(() => {
     // result가 0이면 자동 종료
-    if (selectedCategory >= 2 && selectedPage.length === 0) handleFinish()
+    if (selectedCategory >= 1 && selectedPage.length === 0) handleFinish()
   }, [selectedPage, handleFinish])
-  
+
 
   return (
     <div style={{display: 'flex', flex: 1, justifyContent: 'center'}}>
@@ -236,7 +236,7 @@ const GameCardPage = (props) => {
               <div className="styled-btn"
                   onClick={()=>{handleFinish()}}
                   style={{backgroundColor: colors.green, marginTop: 16}}>
-                      <Text size={24} bold color={'pink'}>종료</Text>
+                      <Text size={24} bold color={'pink'}>Finish</Text>
               </div>
 
             <div className="swipe">
