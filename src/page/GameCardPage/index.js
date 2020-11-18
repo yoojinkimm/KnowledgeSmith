@@ -220,6 +220,7 @@ const GameCardPage = (props) => {
     // result가 0이면 자동 종료
     if (selectedCategory >= 2 && selectedPage.length === 0) handleFinish()
   }, [selectedPage, handleFinish])
+  
 
   return (
     <div style={{display: 'flex', flex: 1, justifyContent: 'center'}}>
