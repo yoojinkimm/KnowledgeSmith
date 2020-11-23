@@ -92,14 +92,6 @@ body {
   width: 100%;
 }
 
-.styled-btn:hover {
-  opacity: 0.5;
-}
-
-.styled-btn:active {
-  opacity: 0;
-}
-
 .line {
   height: 1px;
   width: 100%;
@@ -113,6 +105,13 @@ body {
     height: 100%;
     position: relative;
   }
+  .styled-btn:hover {
+    opacity: 0.5;
+  }
+
+  .styled-btn:active {
+    opacity: 0;
+  }
 }
 
 /* MOBILE */
@@ -122,5 +121,9 @@ body {
     display: flex;
     height: 100%;
     position: relative;
+  }
+
+  .styled-btn:active {
+    opacity: 0.5;
   }
 }

@@ -90,7 +90,7 @@ const GameCardPage = (props) => {
 
     // 200페이지 정도면 괜찮다
     // 500개까지만 옴
-    const category_url = `action=query&format=json&list=allcategories&origin=*&acmin=500&aclimit=500`
+    const category_url = `action=query&format=json&list=allcategories&origin=*&acmin=150&aclimit=500&acmin=70`
 
     try {
     const { data } = await axios.get(`${base_url}${category_url}`);
@@ -111,7 +111,7 @@ const GameCardPage = (props) => {
         var random = Math.floor(Math.random() * (max-min)) + min;
         i += random;
     }
-    // console.log('showMainCategory : ', showMainCategory)
+    console.log('showMainCategory : ', showMainCategory)
 
     // 첫 카드가 안 나와서 강제로 하나 넘김
     handleOnSwipe(direction.LEFT);

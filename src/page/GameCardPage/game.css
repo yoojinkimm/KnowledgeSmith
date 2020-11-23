@@ -44,7 +44,7 @@
   display: flex;
   flex: 1;
   width: 100%; /* 화면 가로 픽셀 작은 애들은 어차피 깨지네... 어떡하지? */
-  height: 520px;
+  height: 260px;
   border-radius: 16px;
   box-sizing: border-box;
 }
