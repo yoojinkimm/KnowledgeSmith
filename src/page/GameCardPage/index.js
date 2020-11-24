@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "../../App.css";
-import {Text, CardDeck} from '../../components';
+import {Text, PullCard} from '../../components';
 import {useHistory } from "react-router-dom";
 
 import * as colors from '../../data/constants';
 
 import axios from 'axios';
 
-import cardData from '../../data/cardData';
-
+// import cardData from '../../data/cardData';
 import { Name } from '../../data/images/index';
-
 import './game.css';
 
 import { Swipeable, direction } from 'react-deck-swiper';
+
 
 
 const GameCardPage = (props) => {
@@ -23,10 +22,11 @@ const GameCardPage = (props) => {
   const [selectedPage, setSelectedPage] = useState([]);
 
   const [showMainCategory, setShowMainCategory] = useState([]);
-  const [showSubCategory, setShowSubCategory] = useState([])
-  const [showPageCategory, setShowPageCategory] = useState([])
+  const [showSubCategory, setShowSubCategory] = useState([]);
+  const [showPageCategory, setShowPageCategory] = useState([]);
 
   const [cardIndex, setCardIndex] = useState(0);
+  const [tempCategory, setTempCategory] = useState(null);
 
   // wiki api 요청하는 기본 url
   const base_url = `https://${language}.wikipedia.org/w/api.php?`;
@@ -90,7 +90,7 @@ const GameCardPage = (props) => {
 
     // 200페이지 정도면 괜찮다
     // 500개까지만 옴
-    const category_url = `action=query&format=json&list=allcategories&origin=*&acmin=150&aclimit=500&acmin=70`
+    const category_url = `action=query&format=json&list=allcategories&origin=*&acmax=500&aclimit=500&acmin=70`
 
     try {
     const { data } = await axios.get(`${base_url}${category_url}`);
@@ -209,6 +209,23 @@ const GameCardPage = (props) => {
     setCardIndex(index);
   }
 
+  const handlePick = () => {
+    setShowMainCategory([])
+
+    let list = selectedCategory
+      
+    // 이거 나중엔 showMainCategory 통째로 바꿔버리는데 인덱스가 잘 작동할까????
+    const item = showMainCategory[cardIndex]
+    list.push(item)
+    searchPage(item)
+    setSelectedCategory(list)
+      
+    console.log('selected category: ', list)
+
+    let index = cardIndex + 1;
+    setCardIndex(index);
+  }
+
   const handleFinish = () => {
     history.push({pathname: '/result', state: {result: selectedPage, language: language}})
   }
@@ -224,14 +241,13 @@ const GameCardPage = (props) => {
   })
 
 
+  
+
   return (
     <div style={{display: 'flex', flex: 1, justifyContent: 'center'}}>
         <div className="background" style={{marginBottom: 200}}>
 
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                {/* <Text size={40} bold color={'pink'}>
-                    Knowledgesmith
-                </Text> */}
                 <Name />
             </div> 
             <div className="line" style={{marginTop: 7}} />
@@ -244,7 +260,7 @@ const GameCardPage = (props) => {
 
             <div className="swipe">
               <div className="card-back">
-                  <Swipeable onSwipe={handleOnSwipe}>
+                  {/* <Swipeable onSwipe={handleOnSwipe}>
                       <div className="card">
                         <div className="card-content">
                           <Text size={32} color="green">
@@ -254,7 +270,14 @@ const GameCardPage = (props) => {
                           </Text>
                         </div>
                       </div>
-                  </Swipeable>
+                  </Swipeable> */}
+                  <div>
+                    <PullCard 
+                      category={showMainCategory[cardIndex]} 
+                      handlePick={handlePick} 
+                      setTempCategory={setTempCategory}
+                    />
+                  </div>
                 </div>
             </div>
 
@@ -290,6 +313,11 @@ const GameCardPage = (props) => {
                         </div>
                     )
                 })}
+                {tempCategory !== null && 
+                      <Text size={16} bold color={'pink'}>
+                          {tempCategory}
+                      </Text>
+                }
             </div>
             
         </div>
