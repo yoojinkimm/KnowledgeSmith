@@ -227,7 +227,8 @@ const GameCardPage = (props) => {
   
 
   return (
-    <div style={{display: 'flex', width: '100%', height: '100%', justifyContent: 'center', overflow: 'hidden'}}>
+    <div style={{display: 'flex', justifyContent: 'center', overflow: 'hidden',
+        position: 'fixed', bottom: 0, right: 0, left: 0}}>
        {/* 스크롤 불가능하게 막았다 */}
         <div className="background">
             <div style={{display: 'flex', justifyContent: 'center'}}>
