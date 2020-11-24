@@ -10,33 +10,42 @@ import './card.css'
 
 const PullCard = ({ category, index, handlePick, setTempCategory, width }) => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
-  var touchControl = 0;
+  const [touchControl, setTouchControl] = React.useState(0)
   
   const [yPos, setYPos] = React.useState(0)
+  const [touch, setTouch] = React.useState(false)
 
   const bind = useGesture(({ down, delta, velocity, previous }) => {
     velocity = clamp(velocity, 1, 8)
-    setYPos(down ? previous[1] : 0)
+    setYPos(previous[1])
+    if (down) setTouch(true)
+    if (!down) setTouch(false)
     set({ xy: down ? delta : [0, 0], config: { mass: velocity, tension: 500 * velocity, friction: 50 } })
   })
 
   const handleDrag = () => {
-    if (yPos > 300) {
-         // 드래그해서 그냥 움직이면 예비 보여줌
-        setTempCategory(category)
-        touchControl = 1;
-    } else if (touchControl === 1) {
+    if (yPos > 300 && touch) {
+      // 드래그해서 그냥 움직이면 예비 보여줌
+      setTempCategory(category)
+      setTouchControl(1)
+
+    } if ( !touch && touchControl === 1) {
+      // 드롭하면 pick
+      console.log('drop')
       handlePick();
-      touchControl = 0;
-    } else {
+      setTouchControl(0)
       setTempCategory(null)
-    }
-       
+
+    } else if ( yPos <= 300 ) {
+      // 다시 리셋
+      setTempCategory(null)
+      setTouchControl(0)
+    }    
   }
 
   useEffect(() => {
     handleDrag()
-  }, [yPos])
+  }, [yPos, touch])
 
 
   return (

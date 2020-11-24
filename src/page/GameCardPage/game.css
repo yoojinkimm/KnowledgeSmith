@@ -61,6 +61,19 @@
   flex-direction: column;
 }
 
+.semi-box {
+  width: 100%;
+  height: auto;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  border: solid 0.5px #e0b0ce;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  opacity: 0.3;
+}
+
 .category-box {
   width: 100%;
   height: auto;

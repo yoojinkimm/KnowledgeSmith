@@ -90,7 +90,7 @@ const GameCardPage = (props) => {
 
     // 200페이지 정도면 괜찮다
     // 500개까지만 옴
-    const category_url = `action=query&format=json&list=allcategories&origin=*&acmax=500&aclimit=500&acmin=70`
+    const category_url = `action=query&format=json&list=allcategories&origin=*&acmax=400&aclimit=500&acmin=200`
 
     try {
     const { data } = await axios.get(`${base_url}${category_url}`);
@@ -209,23 +209,6 @@ const GameCardPage = (props) => {
     setCardIndex(index);
   }
 
-  const handlePick = () => {
-    setShowMainCategory([])
-
-    let list = selectedCategory
-      
-    // 이거 나중엔 showMainCategory 통째로 바꿔버리는데 인덱스가 잘 작동할까????
-    const item = showMainCategory[cardIndex]
-    list.push(item)
-    searchPage(item)
-    setSelectedCategory(list)
-      
-    console.log('selected category: ', list)
-
-    let index = cardIndex + 1;
-    setCardIndex(index);
-  }
-
   const handleFinish = () => {
     history.push({pathname: '/result', state: {result: selectedPage, language: language}})
   }
@@ -272,7 +255,7 @@ const GameCardPage = (props) => {
                   </Swipeable> */}
                     <PullCard 
                       category={showMainCategory[cardIndex]} 
-                      handlePick={handlePick} 
+                      handlePick={() => handleOnSwipe(direction.RIGHT)} 
                       setTempCategory={setTempCategory}
                     />
                 </div>
@@ -301,9 +284,11 @@ const GameCardPage = (props) => {
 
             <div style={{display: 'flex', width: '100%', marginTop: 24, flexDirection: 'column'}}>
               {tempCategory !== null && 
-                      <Text size={16} bold color={'pink'}>
-                          {tempCategory}
-                      </Text>
+                      <div className="semi-box">
+                            <Text size={16} bold color={'pink'}>
+                                {tempCategory}
+                            </Text>
+                        </div>
                 }
                 {selectedCategory.map((item, index) => {
                     return(
