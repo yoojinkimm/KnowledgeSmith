@@ -304,20 +304,20 @@ const GameCardPage = (props) => {
             </div>
 
             <div style={{display: 'flex', width: '100%', marginTop: 24, flexDirection: 'column'}}>
-                {selectedCategory.map((item, index) => {
-                    return(
-                        <div className="category-box">
-                            <Text size={16} bold color={'pink'}>
-                                {item}
-                            </Text>
-                        </div>
-                    )
-                })}
-                {tempCategory !== null && 
+              {tempCategory !== null && 
                       <Text size={16} bold color={'pink'}>
                           {tempCategory}
                       </Text>
                 }
+                {selectedCategory.map((item, index) => {
+                    return(
+                        <div className="category-box">
+                            <Text size={16} bold color={'pink'}>
+                                {selectedCategory[selectedCategory.length - 1 - index]}
+                            </Text>
+                        </div>
+                    )
+                })}
             </div>
             
         </div>
