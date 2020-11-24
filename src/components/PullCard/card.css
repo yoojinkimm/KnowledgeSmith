@@ -6,6 +6,7 @@
   height: 100%;
   border-radius: 16px;
   box-sizing: border-box;
+  padding: 16px;
 }
 
 .card-content {

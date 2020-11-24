@@ -10,69 +10,38 @@ import './card.css'
 
 const PullCard = ({ category, index, handlePick, setTempCategory, width }) => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
-  var isMouseDown = false;
-  var isMouseUp = false;
-  var mouseControl = 0;
-  var yPos = 0;
+  var touchControl = 0;
+  
+  const [yPos, setYPos] = React.useState(0)
 
   const bind = useGesture(({ down, delta, velocity, previous }) => {
     velocity = clamp(velocity, 1, 8)
-    if (down) {
-      yPos = previous[1];
-
-      if (yPos > 300) {
-        console.log('big')
-         // 드래그해서 그냥 움직이면 예비 보여줌
-        setTempCategory(category)
-      }
-    } else {
-      setTempCategory(null)
-    }
+    setYPos(down ? previous[1] : 0)
     set({ xy: down ? delta : [0, 0], config: { mass: velocity, tension: 500 * velocity, friction: 50 } })
   })
 
-  // const drag = useDrag(({xy , down}) => console.log( down ? 'down' : xy))
-
-  const coordinate = (event) => {
-    yPos = event.clientY;
-
-    // document.onmousedown = () => { 
-    //     isMouseDown = true;
-    //     isMouseUp = false; 
-    // }
-    // document.onmouseup = () => {
-    //     isMouseDown = false;
-    //     isMouseUp = true;
-    // }
-
+  const handleDrag = () => {
     if (yPos > 300) {
-        if (isMouseDown) {
-            // 드래그해서 그냥 움직이면 예비 보여줌
-            setTempCategory(category)
-            console.log('isMouseDown && mouseControl === 0', 'mouseDown: ', isMouseDown, 'mouseUp: ', isMouseUp)
-        }
-        if (isMouseUp) {
-            // 픽은 마우스 놓으면
-            setTempCategory(null)
-            console.log('pick')
-            handlePick()
-            isMouseUp = false;
-        } 
-    } else if (!isMouseUp && !isMouseDown) {
-        // setTempCategory(null)
-        // console.log('!isMouseUp && !isMouseDown', 'mouseDown: ', isMouseDown, 'mouseUp: ', isMouseUp)
+         // 드래그해서 그냥 움직이면 예비 보여줌
+        setTempCategory(category)
+        touchControl = 1;
+    } else if (touchControl === 1) {
+      handlePick();
+      touchControl = 0;
     } else {
-        // setTempCategory(null)
-        // mouseControl = 0
-        // console.log('else', 'mouseDown: ', isMouseDown, 'mouseUp: ', isMouseUp)
-    } 
+      setTempCategory(null)
+    }
+       
   }
+
+  useEffect(() => {
+    handleDrag()
+  }, [yPos])
 
 
   return (
     <animated.div {...bind()}
       className="card"
-      onMouseMove={e => coordinate(e)}
       style={{ transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`) }}>
             <div className="card-content">
                 <Text size={32} color="green">{category}</Text>
