@@ -8,8 +8,29 @@
   justify-content: center;
 }
 
+/* Mobile */
+@media (max-width: 414px) {
+  .game-background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    align-items: center;
+    position: "fixed";
+  }
+}
+
 /* PC */
 @media (min-width: 415px) {
+  .game-background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    align-items: center;
+  }
   .game-floating {
     display: flex;
     align-items: center;
