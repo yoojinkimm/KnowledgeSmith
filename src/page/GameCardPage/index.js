@@ -244,9 +244,9 @@ const GameCardPage = (props) => {
   
 
   return (
-    <div style={{display: 'flex', flex: 1, justifyContent: 'center'}}>
-        <div className="background" style={{marginBottom: 200}}>
-
+    <div style={{display: 'flex', width: '100%', height: '100%', justifyContent: 'center', overflow: 'hidden'}}>
+       {/* 스크롤 불가능하게 막았다 */}
+        <div className="background">
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <Name />
             </div> 
@@ -258,7 +258,6 @@ const GameCardPage = (props) => {
                       <Text size={24} bold color={'pink'}>Finish</Text>
               </div> */}
 
-            <div className="swipe">
               <div className="card-back">
                   {/* <Swipeable onSwipe={handleOnSwipe}>
                       <div className="card">
@@ -271,15 +270,12 @@ const GameCardPage = (props) => {
                         </div>
                       </div>
                   </Swipeable> */}
-                  <div>
                     <PullCard 
                       category={showMainCategory[cardIndex]} 
                       handlePick={handlePick} 
                       setTempCategory={setTempCategory}
                     />
-                  </div>
                 </div>
-            </div>
 
              <div className="game-result">
                <div className="result-column">
