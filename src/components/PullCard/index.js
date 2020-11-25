@@ -44,7 +44,8 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width }) => {
   }
 
   useEffect(() => {
-    handleDrag()
+    // category 안 들어오면 작동 안함
+    if (category !== undefined) handleDrag()
   }, [yPos, touch])
 
 
