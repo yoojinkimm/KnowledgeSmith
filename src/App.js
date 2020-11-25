@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { LandingPage, GameCardPage, ResultPage } from './page';
 import React from 'react';
+import { firestore } from "./firebase";
 
 import './App.css';
 
