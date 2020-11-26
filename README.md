@@ -4,8 +4,6 @@
 
 ## WebSite
 
-https://segong.work/
+http://segong.work/
 
 ## Preview
-
-

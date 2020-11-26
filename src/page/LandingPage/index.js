@@ -109,7 +109,10 @@ const LandingPage = ({history}) => {
             </div>
 
             <div className="landing-floating">
-                <div className="styled-btn" onClick={() => {history.push(`/game/${language}`)}}>
+                <div className="styled-btn" onClick={() => {
+                    // history.push(`/game/${language}`)
+                    history.push(`/login`)
+                }}>
                 <Text size={24} color={'pink'}>Start Crafting</Text>
                 </div>
             </div>
