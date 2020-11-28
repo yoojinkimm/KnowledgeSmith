@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../App.css";
 import Text from "../../components/Text";
 
@@ -8,24 +8,15 @@ import './landing.css';
 
 import { Logo } from '../../data/images/index';
 
+import { UserContext } from "../../providers/UserProvider";
+
 const LandingPage = ({history}) => {
-  const [language, setLanguage] = useState('ko');
+  const { language, setLanguage } = useContext(UserContext)
 
 
   return (
     <div style={{display: 'flex', flex: 1}}>
         <div className="background" style={{marginBottom: 200}}>
-            {/* <Text size={40} bold color={'pink'}>
-                Knowledgesmith
-            </Text>
-            <div style={{display: "flex", width: '100%', justifyContent: 'space-between'}} >
-                <Text size={12} color={'pink'}>
-                지식 세공사:
-                </Text>
-                <Text size={12} color={'pink'}>
-                분류의 기술
-                </Text>
-            </div> */}
             <Logo />
             <div className="line" style={{marginTop: 12}} />
 
@@ -110,7 +101,6 @@ const LandingPage = ({history}) => {
 
             <div className="landing-floating">
                 <div className="styled-btn" onClick={() => {
-                    // history.push(`/game/${language}`)
                     history.push(`/login`)
                 }}>
                 <Text size={24} color={'pink'}>Start Crafting</Text>

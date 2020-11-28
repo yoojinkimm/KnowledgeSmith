@@ -1,4 +1,4 @@
-import { firestore, auth, signInWithGoogle } from '../../firebase';
+import { firestore, auth } from '../../firebase';
 
 import React, { useContext, useEffect, useState } from "react";
 import "../../App.css";
@@ -9,17 +9,8 @@ import * as colors from '../../data/constants';
 
 import { Name } from '../../data/images/index';
 
-const LoginPage = ({history}) => {
-  const {user, language} = useContext(UserContext);
-
-  
-  const googleLogin = async () => {
-    try {
-        signInWithGoogle()
-    } catch (e) {
-        console.log(e)
-    }
-  }
+const MyPage = ({history}) => {
+  const { user, setUser, language, setLanguage } = useContext(UserContext);
 
   useEffect(() => {
     auth.onAuthStateChanged(function(userData){
@@ -27,12 +18,17 @@ const LoginPage = ({history}) => {
       console.log('userData :' , userData);
       console.log('user: ', user);
       console.log('local: ', localStorage.getItem('uid'))
-      history.push(`/game/${language}`)
+      
     }else{
-      // alert('로그인이 필요합니다.')
+      alert('로그인이 필요합니다.')
+      history.push('/login')
     }
   });
   }, [])
+
+  const logOut = () => {
+    auth.signOut();
+  }
 
   return (
     <div style={{display: 'flex', flex: 1}}>
@@ -46,8 +42,8 @@ const LoginPage = ({history}) => {
             <div className="result-card-back">
                 <div className="styled-btn" 
                 style={{height: 40, marginTop: 150}}
-                onClick={() => googleLogin()}>
-                    <Text size={20} color={'pink'}>Login with Google</Text>
+                onClick={() => logOut()}>
+                    <Text size={20} color={'pink'}>Logout</Text>
                 </div>
             </div>
             
@@ -56,4 +52,4 @@ const LoginPage = ({history}) => {
   )
 }
 
-export default LoginPage;
+export default MyPage;

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { firestore, auth } from '../../firebase';
 import "../../App.css";
 import {Text, PullCard} from '../../components';
 import {useHistory } from "react-router-dom";
@@ -13,10 +14,13 @@ import './game.css';
 
 import { Swipeable, direction } from 'react-deck-swiper';
 
+import { UserContext } from "../../providers/UserProvider";
 
 
-const GameCardPage = (props) => {
-  const { language } = props;
+
+const GameCardPage = () => {
+  const { user, setUser, language, setLanguage } = useContext(UserContext);
+
   const history = useHistory();
   const [selectedCategory, setSelectedCategory] = useState([])
   const [selectedPage, setSelectedPage] = useState([]);
@@ -224,6 +228,17 @@ const GameCardPage = (props) => {
   })
 
 
+  useEffect(() => {
+    auth.onAuthStateChanged(function(userData){
+    if(userData){
+    } else {
+      alert('로그인이 필요합니다.')
+      history.push('/login')
+    }
+  });
+  }, [])
+
+
   
 
   return (
@@ -232,28 +247,11 @@ const GameCardPage = (props) => {
        {/* 스크롤 불가능하게 막았다 */}
         <div className="game-background">
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                <Name />
+                <Name onClick={() => history.push('/')} />
             </div> 
             <div className="line" style={{marginTop: 7}} />
 
-              {/* <div className="styled-btn"
-                  onClick={()=>{handleFinish()}}
-                  style={{backgroundColor: colors.green, marginTop: 16}}>
-                      <Text size={24} bold color={'pink'}>Finish</Text>
-              </div> */}
-
               <div className="card-back">
-                  {/* <Swipeable onSwipe={handleOnSwipe}>
-                      <div className="card">
-                        <div className="card-content">
-                          <Text size={32} color="green">
-                            {showMainCategory[cardIndex] !== undefined && 
-                            showMainCategory[cardIndex]
-                            }
-                          </Text>
-                        </div>
-                      </div>
-                  </Swipeable> */}
                     <PullCard 
                       category={showMainCategory[cardIndex]} 
                       handlePick={() => handleOnSwipe(direction.RIGHT)} 

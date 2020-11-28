@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { firestore, auth } from '../../firebase';
 import "../../App.css";
 import Text from "../../components/Text";
 import { useLocation } from "react-router-dom";
@@ -9,31 +10,39 @@ import './result.css';
 
 import { Name } from '../../data/images/index';
 
+import { UserContext } from "../../providers/UserProvider";
+
 const ResultPage = ({history}) => {
   const location = useLocation();
   const [result, setResult] = useState([]);
-  const [language, setLanguage] = useState([]);
+
+  const { user, setUser, language, setLanguage } = useContext(UserContext);
 
   React.useEffect(() => {
       if (location.state !== undefined){
         let data = location.state.result;
-        let lan = location.state.language;
         console.log('result', data);
-        console.log('lan', lan);
         setResult(data);
-        setLanguage(lan);
       }
        
     }, [location]);
 
 
+  React.useEffect(() => {
+    auth.onAuthStateChanged(function(userData){
+    if(userData){
+    } else {
+      alert('로그인이 필요합니다.')
+      history.push('/login')
+    }
+  });
+  }, [])
+
+
   return (
     <div style={{display: 'flex', flex: 1}}>
         <div className="background" style={{marginBottom: 200}}>
-            {/* <Text size={40} bold color={'pink'}>
-                Knowledgesmith
-            </Text> */}
-            <Name />
+            <Name onClick={() => history.push('/')} />
             <div className="line" style={{marginTop: 12}} />
 
             <div className="result-card-back">
@@ -72,9 +81,9 @@ const ResultPage = ({history}) => {
 
              <div className="result-floating" style={{justifyContent: 'space-between'}}>
                 <div className="styled-btn" 
-                onClick={()=>{history.push('/')}}
+                onClick={()=>{history.push('/mypage')}}
                 style={{backgroundColor: colors.green, marginRight: 8}}>
-                <Text size={24} color={'pink'}>Home</Text>
+                <Text size={24} color={'pink'}>MyPage</Text>
                 </div>
                 <div className="styled-btn"
                 onClick={()=>{history.push(`game/${language}`)}}
