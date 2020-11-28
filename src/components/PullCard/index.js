@@ -13,7 +13,7 @@ var TOUCH_STYLE = {}
 const PULL_LINE = 400
 
 
-const PullCard = ({ category, index, handlePick, setTempCategory, width }) => {
+const PullCard = ({ category, index, handlePick, setTempCategory, width, handlePass }) => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
   const [touchControl, setTouchControl] = React.useState(0)
   
@@ -22,9 +22,18 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width }) => {
 
   const [cardOpacity, setCardOpacity] = React.useState(1)
 
+  const [pass, setPass] = React.useState(false);
+
   const bind = useGesture(({ down, delta, velocity, previous }) => {
+    console.log(delta)
+    if (velocity >= 0.4 && delta[1] < -50 && delta[1] < 0) {
+      setPass(true)
+    }
+    else setPass(false)
+
     velocity = clamp(velocity, 1, 8)
     setYPos(previous[1])
+
     if (down) setTouch(true)
     if (!down) setTouch(false)
     set({ xy: down ? delta : [0, 0], config: { mass: velocity, tension: 500 * velocity, friction: 50 } })
@@ -72,6 +81,10 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width }) => {
       else setCardOpacity(1);
     }
   }, [yPos, touch, category])
+
+  useEffect(() => {
+    if (pass) handlePass();
+  }, [pass])
 
 
   return (

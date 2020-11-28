@@ -12,7 +12,7 @@ import axios from 'axios';
 import { Name } from '../../data/images/index';
 import './game.css';
 
-import { Swipeable, direction } from 'react-deck-swiper';
+import { direction } from 'react-deck-swiper';
 
 import { UserContext } from "../../providers/UserProvider";
 
@@ -255,6 +255,7 @@ const GameCardPage = () => {
                     <PullCard 
                       category={showMainCategory[cardIndex]} 
                       handlePick={() => handleOnSwipe(direction.RIGHT)} 
+                      handlePass={() => handleOnSwipe(direction.LEFT)}
                       setTempCategory={setTempCategory}
                     />
                 </div>
