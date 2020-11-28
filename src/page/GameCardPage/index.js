@@ -214,7 +214,7 @@ const GameCardPage = () => {
   }
 
   const handleFinish = () => {
-    history.push({pathname: '/result', state: {result: selectedPage, language: language}})
+    history.push({pathname: '/result', state: { result: selectedPage }})
   }
 
   useEffect(() => {
@@ -223,9 +223,9 @@ const GameCardPage = () => {
   }, [selectedCategory, handleFinish])
 
   useEffect(() => {
-    // result가 0이면 자동 종료 -> 현재 동작하지 않음
-    if (selectedCategory >= 1 && selectedPage.length === 0) handleFinish()
-  })
+    // result가 0이면 자동 종료
+    if (selectedCategory.length > 1 && selectedPage.length === 0) handleFinish()
+  }, [selectedPage, handleFinish])
 
 
   useEffect(() => {
