@@ -242,8 +242,7 @@ const GameCardPage = () => {
   
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', overflow: 'hidden',
-        width: '100%', height: '100%'}}>
+    <div className='game-back'>
        {/* 스크롤 불가능하게 막았다 */}
         <div className="game-background">
             <div style={{display: 'flex', justifyContent: 'center'}}>

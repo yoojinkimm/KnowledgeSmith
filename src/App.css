@@ -70,6 +70,7 @@ body {
   scrollbar-width: none; /* Firefox */
 
   background-color: #2e563d;
+  overscroll-behavior: auto none;
 }
 
 .background {
