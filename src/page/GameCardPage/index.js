@@ -62,6 +62,10 @@ const GameCardPage = () => {
       console.log('filtered selected page', list);
       setSelectedPage(list);
 
+      // 5개 고르면 자동 종료
+      // 마지막 선택까지 selectedPage에 반영되게
+      if (selectedCategory.length === 5) handleFinish()
+
       // 속한 페이지들 각각의 카테고리들을 구함
       list.map((item, index) => {
           searchPageCategory(item.title);
@@ -217,10 +221,10 @@ const GameCardPage = () => {
     history.push({pathname: '/result', state: { result: selectedPage }})
   }
 
-  useEffect(() => {
-    // 5개 고르면 자동 종료
-    if (selectedCategory.length === 5) handleFinish()
-  }, [selectedCategory, handleFinish])
+  // useEffect(() => {
+  //   // 5개 고르면 자동 종료
+  //   if (selectedCategory.length === 5) handleFinish()
+  // }, [selectedCategory, handleFinish])
 
   useEffect(() => {
     // result가 0이면 자동 종료
