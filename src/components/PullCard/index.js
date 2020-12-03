@@ -25,7 +25,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
   const [pass, setPass] = React.useState(false);
 
   const bind = useGesture(({ down, delta, velocity, previous }) => {
-    console.log(delta)
+    // console.log(delta)
     if (velocity >= 0.4 && delta[1] < -50 && delta[1] < 0) {
       setPass(true)
     }

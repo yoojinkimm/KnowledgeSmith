@@ -16,7 +16,7 @@ import { direction } from 'react-deck-swiper';
 
 import { UserContext } from "../../providers/UserProvider";
 
-
+const CATEGORY_NUM = 5;
 
 const GameCardPage = () => {
   const { user, setUser, language, setLanguage } = useContext(UserContext);
@@ -64,7 +64,7 @@ const GameCardPage = () => {
 
       // 5개 고르면 자동 종료
       // 마지막 선택까지 selectedPage에 반영되게
-      if (selectedCategory.length === 5) handleFinish()
+      if (selectedCategory.length === CATEGORY_NUM) handleFinish()
 
       // 속한 페이지들 각각의 카테고리들을 구함
       list.map((item, index) => {
@@ -185,16 +185,25 @@ const GameCardPage = () => {
   
 
   const handleOnSwipe = (swipeDirection) => {
+    // for card index reset
+    let cI = cardIndex;
+    // console.log('card', cardIndex);
+    
     if (swipeDirection === direction.RIGHT) {
       // handle right swipe
 
       // 일시적으로 비워서 빈 카드로 보이게 하기 위함
       setShowMainCategory([])
 
+      // card index reset
+      setCardIndex(0);
+      cI = 0;
+
 
       let list = selectedCategory
       
-      // 이거 나중엔 showMainCategory 통째로 바꿔버리는데 인덱스가 잘 작동할까????
+      
+      // 인덱스 테스트 더 필요함
       const item = showMainCategory[cardIndex]
       list.push(item)
       searchPage(item)
@@ -213,7 +222,7 @@ const GameCardPage = () => {
     // console.log(list);
     // setSelectedCategory(list);
 
-    let index = cardIndex + 1;
+    let index = cI + 1;
     setCardIndex(index);
   }
 
@@ -269,7 +278,7 @@ const GameCardPage = () => {
                     cards so far
                  </Text>
                  <Text size={24} color={'pink'}>
-                    {selectedCategory.length}/5
+                    {selectedCategory.length}/{CATEGORY_NUM}
                  </Text>
                </div>
 
