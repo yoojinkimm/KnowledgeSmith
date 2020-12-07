@@ -11,6 +11,13 @@
   bottom: 84px;
 }
 
+.landing-menu {
+  display: flex;
+  height: auto;
+  width: 100%;
+  justify-content: space-between;
+}
+
 /* PC */
 @media (min-width: 415px) {
   .landing-floating {

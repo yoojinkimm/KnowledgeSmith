@@ -7,6 +7,7 @@ import * as colors from '../../data/constants';
 import './landing.css';
 
 import { Logo } from '../../data/images/index';
+import { Row, Col } from 'react-bootstrap';
 
 import { UserContext } from "../../providers/UserProvider";
 
@@ -19,6 +20,18 @@ const LandingPage = ({history}) => {
         <div className="background" style={{marginBottom: 200}}>
             <Logo />
             <div className="line" style={{marginTop: 12}} />
+            <Row style={{width: '100%', textAlign: 'center'}}>
+                <Col xs={3} xl={3}>
+                    <Text size={12} color={'pink'}>Mypage</Text>
+                </Col>
+                <Col xs={6} xl={6}>
+                    <Text size={12} color={'pink'}>Leaderboard</Text>
+                </Col>
+                <Col xs={3} xl={3}>
+                    <Text size={12} color={'pink'}>Tutorial</Text>
+                </Col>
+            </Row>
+            <div className="line" />
 
             <div className="landing-content">
                 <Text size={24} color={'pink'}>
@@ -58,11 +71,11 @@ const LandingPage = ({history}) => {
                 </Text>
                 <div className="landing-text">
                     <div className="role">
-                        <Text size={12} color={'pink'}>기획</Text>
+                        <Text size={12} color={'pink'}>게임 디자인</Text>
                         <Text size={12} color={'pink'}>Game Design</Text>
 
-                        <Text size={12} color={'pink'} style={{marginTop: 20}}>디자인</Text>
-                        <Text size={12} color={'pink'}>UI Design</Text>
+                        <Text size={12} color={'pink'} style={{marginTop: 20}}>비주얼 커뮤니케이션</Text>
+                        <Text size={12} color={'pink'}>Visual Communication</Text>
 
                         <Text size={12} color={'pink'} style={{marginTop: 20}}>개발</Text>
                         <Text size={12} color={'pink'}>Web Dev</Text>
@@ -90,12 +103,12 @@ const LandingPage = ({history}) => {
                 <div className="styled-btn" 
                 onClick={()=>setLanguage('en')}
                 style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green, marginRight: 8}}>
-                <Text size={12} color={language === 'en' ? 'green' : 'pink'}>English</Text>
+                <Text size={12} color={language === 'en' ? 'green' : 'pink'}>ENGLISH WIKI</Text>
                 </div>
                 <div className="styled-btn"
                 onClick={()=>setLanguage('ko')}
                 style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green, marginLeft: 8}}>
-                <Text size={12} color={language === 'ko' ? 'green' : 'pink'}>한국어</Text>
+                <Text size={12} color={language === 'ko' ? 'green' : 'pink'}>한글 위키</Text>
                 </div>
             </div>
 
