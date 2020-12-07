@@ -7,7 +7,9 @@ import { UserContext } from "../../providers/UserProvider";
 
 import * as colors from '../../data/constants';
 
-import { Name } from '../../data/images/index';
+import { Name, GoogleIcon } from '../../data/images/index';
+
+import './login.css';
 
 const LoginPage = ({history}) => {
   const {user, language} = useContext(UserContext);
@@ -37,17 +39,17 @@ const LoginPage = ({history}) => {
   return (
     <div style={{display: 'flex', flex: 1}}>
         <div className="background" style={{marginBottom: 200}}>
-            {/* <Text size={40} bold color={'pink'}>
-                Knowledgesmith
-            </Text> */}
             <Name onClick={() => history.push('/')} />
+           <div className="line" style={{marginTop: 12, marginBottom: 8}} />
+              <Text size={24} color={"pink"}>Sign Up</Text>
             <div className="line" style={{marginTop: 12}} />
 
-            <div className="result-card-back">
-                <div className="styled-btn" 
+            <div className="login-back">
+                <div className="google-btn" 
                 style={{height: 40, marginTop: 150}}
                 onClick={() => googleLogin()}>
-                    <Text size={20} color={'pink'}>Login with Google</Text>
+                    <GoogleIcon />
+                    <Text size={16} color={'green'} style={{marginLeft: 24}}>Sign in with Google</Text>
                 </div>
             </div>
             

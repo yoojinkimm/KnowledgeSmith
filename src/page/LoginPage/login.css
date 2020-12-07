@@ -1,0 +1,21 @@
+.login-back {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-btn {
+  background-color: #ffffff;
+  width: 100%;
+  height: auto;
+  min-height: 48px;
+  border-radius: 8px;
+  border: solid 0.5px #e0b0ce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}

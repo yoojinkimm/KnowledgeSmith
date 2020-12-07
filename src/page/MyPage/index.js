@@ -7,7 +7,9 @@ import { UserContext } from "../../providers/UserProvider";
 
 import * as colors from '../../data/constants';
 
-import { Name } from '../../data/images/index';
+import { Name, GoogleIcon } from '../../data/images/index';
+
+import "./mypage.css";
 
 const MyPage = ({history}) => {
   const { user, setUser, language, setLanguage } = useContext(UserContext);
@@ -33,13 +35,10 @@ const MyPage = ({history}) => {
   return (
     <div style={{display: 'flex', flex: 1}}>
         <div className="background" style={{marginBottom: 200}}>
-            {/* <Text size={40} bold color={'pink'}>
-                Knowledgesmith
-            </Text> */}
             <Name onClick={() => history.push('/')} />
             <div className="line" style={{marginTop: 12}} />
 
-            <div className="result-card-back">
+            <div className="mypage-back">
                 <div className="styled-btn" 
                 style={{height: 40, marginTop: 150}}
                 onClick={() => logOut()}>

@@ -20,8 +20,8 @@ const LandingPage = ({history}) => {
         <div className="background" style={{marginBottom: 200}}>
             <Logo />
             <div className="line" style={{marginTop: 12}} />
-            <Row style={{width: '100%', textAlign: 'center'}}>
-                <Col xs={3} xl={3}>
+            <Row style={{width: '100%', textAlign: 'center', paddingTop: 4, paddingBottom: 4}}>
+                <Col xs={3} xl={3} onClick={() => history.push('/mypage')}>
                     <Text size={12} color={'pink'}>Mypage</Text>
                 </Col>
                 <Col xs={6} xl={6}>
