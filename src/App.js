@@ -4,7 +4,7 @@ import {
   Switch,
   BrowserRouter as Router,
 } from "react-router-dom";
-import { LandingPage, GameCardPage, ResultPage, LoginPage, MyPage } from './page';
+import { LandingPage, GameCardPage, ResultPage, LoginPage, MyPage, LeaderBoardPage } from './page';
 import React from 'react';
 import { firestore } from "./firebase";
 import UserProvider from './providers/UserProvider';
@@ -29,6 +29,7 @@ function App({history}) {
             <Route exact path='/result' component={ResultPage} />
             <Route exact path='/login' component={LoginPage} />
             <Route exact path='/mypage' component={MyPage} />
+            <Route exact path='/board' component={LeaderBoardPage} />
           </Switch>
         </Router>
         </div>

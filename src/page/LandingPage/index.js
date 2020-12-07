@@ -7,7 +7,7 @@ import * as colors from '../../data/constants';
 import './landing.css';
 
 import { Logo } from '../../data/images/index';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 
 import { UserContext } from "../../providers/UserProvider";
 
@@ -16,7 +16,7 @@ const LandingPage = ({history}) => {
 
 
   return (
-    <div style={{display: 'flex', flex: 1}}>
+    <Container fluid>
         <div className="background" style={{marginBottom: 200}}>
             <Logo />
             <div className="line" style={{marginTop: 12}} />
@@ -24,7 +24,7 @@ const LandingPage = ({history}) => {
                 <Col xs={3} xl={3} onClick={() => history.push('/mypage')}>
                     <Text size={12} color={'pink'}>Mypage</Text>
                 </Col>
-                <Col xs={6} xl={6}>
+                <Col xs={6} xl={6} onClick={() => history.push('/board')}>
                     <Text size={12} color={'pink'}>Leaderboard</Text>
                 </Col>
                 <Col xs={3} xl={3}>
@@ -122,7 +122,7 @@ const LandingPage = ({history}) => {
         </div>
 
 
-    </div>
+    </Container>
   )
 }
 

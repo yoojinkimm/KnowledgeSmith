@@ -1,0 +1,10 @@
+.rank-category-box {
+  height: auto;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  border-radius: 12px;
+  border: solid 0.5px #e0b0ce;
+  box-sizing: border-box;
+  flex-direction: column;
+}
