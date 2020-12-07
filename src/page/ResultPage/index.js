@@ -60,7 +60,7 @@ const ResultPage = ({history}) => {
             <div style={{display: 'flex', width: '100%', marginTop: 24, flexDirection: 'column'}}>
                 {result.map((item, index) => {
                     return(
-                        <div className="result-category-box">
+                        <div className="result-category-box" onClick={() => window.location.href = `http://${language}.wikipedia.org/wiki/${item.title}`}>
                             <Text size={16} bold color={'pink'}>
                                 {item.title}
                             </Text>
