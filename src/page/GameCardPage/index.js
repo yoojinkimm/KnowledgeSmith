@@ -246,7 +246,7 @@ const GameCardPage = () => {
     if(userData){
     } else {
       alert('로그인이 필요합니다.')
-      history.push('/login')
+      history.push({pathname: '/login', state: { go: `game/${language}` }})
     }
   });
   }, [])

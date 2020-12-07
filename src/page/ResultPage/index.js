@@ -31,9 +31,10 @@ const ResultPage = ({history}) => {
   React.useEffect(() => {
     auth.onAuthStateChanged(function(userData){
     if(userData){
+      if(location.state === undefined) history.push('/')
     } else {
       alert('로그인이 필요합니다.')
-      history.push('/login')
+      history.push({pathname: '/login', state: { go: `/` }})
     }
   });
   }, [])

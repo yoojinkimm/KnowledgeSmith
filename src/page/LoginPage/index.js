@@ -11,7 +11,10 @@ import { Name, GoogleIcon } from '../../data/images/index';
 
 import './login.css';
 
+import { useLocation } from "react-router-dom";
+
 const LoginPage = ({history}) => {
+  const location = useLocation();
   const {user, language} = useContext(UserContext);
 
   
@@ -29,12 +32,16 @@ const LoginPage = ({history}) => {
       console.log('userData :' , userData);
       console.log('user: ', user);
       console.log('local: ', localStorage.getItem('uid'))
-      history.push(`/game/${language}`)
+
+      if(location.state !== undefined) {
+        history.push(`/${location.state.go}`)
+      }
+      else history.push('/')
     }else{
       // alert('로그인이 필요합니다.')
     }
   });
-  }, [])
+  })
 
   return (
     <div style={{display: 'flex', flex: 1}}>
