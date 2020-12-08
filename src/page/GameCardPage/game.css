@@ -94,20 +94,20 @@
 
 .semi-box {
   width: 100%;
-  height: auto;
+  height: 40px;
   padding: 16px;
   display: flex;
   align-items: center;
   border-radius: 12px;
-  border: solid 0.5px #e0b0ce;
+  border: dashed 1px #e0b0ce;
   margin-bottom: 16px;
   box-sizing: border-box;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .category-box {
   width: 100%;
-  height: auto;
+  max-height: 40px;
   padding: 16px;
   display: flex;
   align-items: center;
