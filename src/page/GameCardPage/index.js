@@ -16,6 +16,8 @@ import { direction } from 'react-deck-swiper';
 
 import { UserContext } from "../../providers/UserProvider";
 
+import { Row, Col, Container } from 'react-bootstrap';
+
 const CATEGORY_NUM = 5;
 
 const GameCardPage = () => {
@@ -261,7 +263,36 @@ const GameCardPage = () => {
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <Name onClick={() => history.push('/')} />
             </div> 
-            <div className="line" style={{marginTop: 7}} />
+            <div className="line" style={{marginTop: 8}} />
+
+            <div className="game-result">
+               <div className="result-column">
+                 <div className="LeftSDPink f12" 
+                  style={{
+                    width: '30%', display: 'flex', justifyContent: 'center', textAlign: 'center'
+                  }}>
+                    Flipped Cards
+                 </div>
+                 <div className="VPink f32" style={{width: '50%', textAlign: 'left', marginLeft: 17}}>
+                    {selectedCategory.length}/{CATEGORY_NUM}
+                 </div>
+               </div>
+
+                <div style={{width: 1, height: '100%', backgroundColor: colors.pink, marginLeft: 8, marginRight: 8}} />
+                
+                <div className="result-column">
+                 <div className="LeftSDPink f12"
+                 style={{
+                    width: '30%', display: 'flex', justifyContent: 'center', textAlign: 'center'
+                  }}>
+                    Results Now
+                 </div>
+                 <div className="VPink f32" style={{width: '50%', textAlign: 'left', marginLeft: 17}}>
+                    {selectedPage.length}
+                 </div>
+               </div>
+            </div>
+            <div className="line" />
 
               <div className="card-back">
                     <PullCard 
@@ -272,50 +303,35 @@ const GameCardPage = () => {
                     />
                 </div>
 
-             <div className="game-result">
-               <div className="result-column">
-                 <Text size={12} color={'pink'}>
-                    cards so far
-                 </Text>
-                 <Text size={24} color={'pink'}>
-                    {selectedCategory.length}/{CATEGORY_NUM}
-                 </Text>
-               </div>
-
-                <div style={{width: 1, height: 43, backgroundColor: colors.pink}} />
-                
-                <div className="result-column">
-                 <Text size={12} color={'pink'}>
-                    results now
-                 </Text>
-                 <Text size={24} color={'pink'}>
-                    {selectedPage.length}
-                 </Text>
-               </div>
-            </div>
 
             <div style={{display: 'flex', width: '100%', marginTop: 24, flexDirection: 'column'}}>
+              <Row>
               {tempCategory !== null && 
+                    <Col xs={6} xl={6}>
                       <div className="semi-box">
                             <Text size={16} bold color={'pink'}>
-                                {tempCategory}
+                                {/* tempCategory */}
                             </Text>
-                        </div>
+                      </div>
+                    </Col>
                 }
                 {selectedCategory.map((item, index) => {
                     return(
+                      <Col xs={6} xl={6}>
                         <div className="category-box">
                             <Text size={16} bold color={'pink'}>
                                 {selectedCategory[selectedCategory.length - 1 - index]}
                             </Text>
                         </div>
+                      </Col>
                     )
                 })}
+                </Row>
             </div>
             
         </div>
 
-          <div className="game-pc-floating">
+          {/* <div className="game-pc-floating">
             <div className="game-floating" style={{justifyContent: 'space-between'}}>
                 <div className="styled-btn"
                 onClick={()=>{handleOnSwipe(direction.LEFT)}}
@@ -328,7 +344,7 @@ const GameCardPage = () => {
                     <Text size={24} color={'green'}>Flip</Text>
                 </div>
             </div>
-          </div>
+          </div> */}
 
     </div>
     );

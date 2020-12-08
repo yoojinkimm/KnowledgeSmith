@@ -56,6 +56,7 @@
   flex-direction: row;
   margin-top: 12px;
   width: 100%;
+  height: auto;
 }
 
 .ko {
@@ -80,6 +81,7 @@
   width: 50%;
   text-align: right;
   flex-direction: column;
+  align-items: flex-end;
 }
 
 .name {
@@ -87,4 +89,5 @@
   flex-direction: column;
   margin-left: 8px;
   width: 50%;
+  align-items: flex-start;
 }

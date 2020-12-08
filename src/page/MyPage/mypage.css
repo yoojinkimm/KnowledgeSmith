@@ -1,5 +1,5 @@
 .mypage-profile-card {
-  background-color: #e0b0ce;
+  background-color: #b6b6b6;
   display: flex;
   width: 100%;
   height: auto;
@@ -16,6 +16,9 @@
   flex: 1;
   flex-direction: column;
   padding: 16px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  background-color: #e0b0ce;
 }
 
 .logout-btn {
@@ -24,6 +27,8 @@
   align-items: center;
   padding: 8px;
   height: auto;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
   background-color: rgba(252, 101, 196, 0.3);
 }
 

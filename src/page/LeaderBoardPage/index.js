@@ -66,7 +66,7 @@ const LeaderBoardPage = ({history}) => {
         <div className="background" style={{marginBottom: 200}}>
             <Logo onClick={() => history.push('/')} />
             <div className="line" style={{marginTop: 12, marginBottom: 8}} />
-              <Text size={24} color={"pink"}>Leaderboard</Text>
+              <div className="VPink f24">Leaderboard</div>
             <div className="line" style={{marginTop: 12, marginBottom: 24}} />
 
 
@@ -75,17 +75,17 @@ const LeaderBoardPage = ({history}) => {
                 <Row style={{width: '100%', display: 'flex', alignItems: 'center', marginBottom: 16}}>
                     <Col xs={2} xl={2}>
                         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                            <Text size={24} color={"pink"}>{index + 1}</Text>
-                            <Text size={12} color={"pink"}>{item.score}</Text>
+                            <div className="VPink f24">{index + 1}</div>
+                            <div className="LeftSDPink f12 fbold">{item.score}</div>
                         </div>
                     </Col>
                     <Col xs={10} xl={10} className="rank-category-box">
-                            <Text size={16} bold color={'pink'}>
+                            <div className="SDPink-lh24 f16 fbold">
                                 {`${item.results} Results | ${item.category_list[0]}`}
-                            </Text>
-                            <Text size={12} color={'pink'}>
+                            </div>
+                            <div className="LeftSDPink f12">
                                 {item.user_name}
-                            </Text>
+                            </div>
                     </Col>
                 </Row>
               )

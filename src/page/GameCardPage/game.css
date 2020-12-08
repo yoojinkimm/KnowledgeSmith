@@ -77,11 +77,11 @@
 } */
 
 .game-result {
-  margin-top: 36px;
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+  padding: 8px;
 }
 
 .result-column {
@@ -89,7 +89,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .semi-box {

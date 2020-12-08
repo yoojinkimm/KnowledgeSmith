@@ -1,52 +1,165 @@
-.fbold {
-  font-weight: bold;
+@font-face {
+  font-family: AppleSDGothicNeo;
+  src: local(AppleSDGothicNeo-Bold),
+    url(/path/to/AppleSDGothicNeo-Bold.woff2) format("woff2"),
+    url(/path/to/AppleSDGothicNeo-Bold.woff) format("woff"),
+    url(/path/to/AppleSDGothicNeo-Bold.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: SFPro;
+  src: local(SFPro-Regular), url(/path/to/SFPro-Regular.woff2) format("woff2"),
+    url(/path/to/SFPro-Regular.woff) format("woff"),
+    url(/path/to/SFPro-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: SpoqaHanSansNeo;
+  src: local(SpoqaHanSansNeo-Bold),
+    url(/path/to/SpoqaHanSansNeo-Bold.woff2) format("woff2"),
+    url(/path/to/SpoqaHanSansNeo-Bold.woff) format("woff"),
+    url(/path/to/SpoqaHanSansNeo-Bold.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Voyage;
+  src: local(Voyage-Regular), url(/path/to/Voyage-Regular.woff2) format("woff2"),
+    url(/path/to/Voyage-Regular.woff) format("woff"),
+    url(/path/to/Voyage-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
 }
 
 /* Font style */
-.fs40 {
-  font-size: 40px;
+.VGreen {
+  font-family: Voyage;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2e563d;
 }
-.fs36 {
-  font-size: 36px;
+.VPink {
+  font-family: Voyage;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e0b0ce;
 }
-.fs32 {
-  font-size: 32px;
+.SHPink {
+  font-family: SpoqaHanSansNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e0b0ce;
 }
-.fs28 {
-  font-size: 28px;
+.SHGreen {
+  font-family: SpoqaHanSansNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2e563d;
 }
-.fs26 {
-  font-size: 26px;
+.LeftSDPink {
+  font-family: AppleSDGothicNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: normal;
+  color: #e0b0ce;
 }
-.fs24 {
-  font-size: 24px;
+.LeftSDGreen {
+  font-family: AppleSDGothicNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: normal;
+  color: #2e563d;
 }
-.fs22 {
-  font-size: 22px;
+.SDPink-lh24 {
+  font-family: AppleSDGothicNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: #e0b0ce;
 }
-.fs21 {
-  font-size: 21px;
+.SDGreen-lh24 {
+  font-family: AppleSDGothicNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: #2e563d;
 }
-.fs20 {
-  font-size: 20px;
+.SDGreen {
+  font-family: AppleSDGothicNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2e563d;
 }
-.fs17 {
-  font-size: 17px;
+.SDPink {
+  font-family: AppleSDGothicNeo;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e0b0ce;
 }
-.fs15 {
-  font-size: 15px;
+.SFPink {
+  font-family: SFPro;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: normal;
+  color: #e0b0ce;
 }
-.fs14 {
-  font-size: 14px;
+.fbold {
+  font-weight: bold !important;
 }
-.fs13 {
-  font-size: 13px;
-}
-.fs12 {
+.f12 {
   font-size: 12px;
 }
-.fs10 {
-  font-size: 10px;
+.f14 {
+  font-size: 14px;
+}
+.f16 {
+  font-size: 16px;
+}
+.f24 {
+  font-size: 24px;
+}
+.f32 {
+  font-size: 32px;
 }
 
 /* App style */
@@ -62,7 +175,7 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: "SF Pro KR", "SF Pro Display", "SF Pro Icons", -apple-system,
+  font-family: "SF Pro", "SF Pro Display", "SF Pro Icons", -apple-system,
     BlinkMacSystemFont, "Noto Sans KR", "Noto Sans", "Helvetica Neue", Helvetica,
     Arial, sans-serif;
 
@@ -77,6 +190,7 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
+  flex: 1;
   flex-direction: column;
   padding: 16px;
   align-items: center;

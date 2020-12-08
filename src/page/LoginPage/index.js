@@ -44,19 +44,18 @@ const LoginPage = ({history}) => {
   })
 
   return (
-    <div style={{display: 'flex', flex: 1}}>
+    <div style={{display: 'flex', flex: 1, height: '100%'}}>
         <div className="background" style={{marginBottom: 200}}>
             <Name onClick={() => history.push('/')} />
            <div className="line" style={{marginTop: 12, marginBottom: 8}} />
-              <Text size={24} color={"pink"}>Sign Up</Text>
+              <div className="VPink f24">Sign Up</div>
             <div className="line" style={{marginTop: 12}} />
 
             <div className="login-back">
                 <div className="google-btn" 
-                style={{height: 40, marginTop: 150}}
                 onClick={() => googleLogin()}>
                     <GoogleIcon />
-                    <Text size={16} color={'green'} style={{marginLeft: 24}}>Sign in with Google</Text>
+                    <div className="SDGreen f16" style={{marginLeft: 24}}>Sign in with Google</div>
                 </div>
             </div>
             

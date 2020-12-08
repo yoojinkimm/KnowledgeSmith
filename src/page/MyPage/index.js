@@ -63,39 +63,41 @@ const MyPage = ({history}) => {
         <div className="background" style={{marginBottom: 200}}>
             <Logo onClick={() => history.push('/')} />
             <div className="line" style={{marginTop: 12, marginBottom: 8}} />
-              <Text size={24} color={"pink"}>MyPage</Text>
+              <div className="VPink f24">MyPage</div>
             <div className="line" style={{marginTop: 12}} />
 
             <div className="mypage-profile-card">
                 <div className="mypage-profile-content">
                   <div style={{flexDirection: 'row', display: 'flex'}}>
-                    <Text size={16} color="green">Hello, {` `}</Text>
-                    <Text size={16} color="green" bold>{user !== null ? user.displayName : 'Stranger'}</Text>
+                    <div className="LeftSDGreen f16">Hello, {` `}</div>
+                    <div className="LeftSDGreen f16 fbold">
+                      {user !== null ? user.displayName : 'Stranger'}
+                    </div>
                   </div>
-                    <Text size={16} color="green">
+                    <div className="LeftSDGreen f14">
                         You are currently logged in with
-                    </Text>
-                    <Text size={16} color="green" bold>
+                    </div>
+                    <div className="LeftSDGreen f14 fbold" style={{fontWeight: "bold"}}>
                         {user !== null ? user.email : 'no current email'}
-                    </Text>
+                    </div>
                 </div>
                 <div className="logout-btn" onClick={() => logOut()}>
-                  <Text size={12} color="green">logout</Text>
+                  <div className="LeftSDGreen f12">logout</div>
                 </div>
             </div>
 
-            <Text size={24} color={"pink"} style={{marginTop: 24, marginBottom: 16}}>My Game</Text>
+            <div className="VPink f24" style={{marginTop: 24, marginBottom: 16}}>My Game</div>
 
 
             {GAME_DATA.map((item, index) => {
               return(
                 <div className="mypage-category-box">
-                    <Text size={16} bold color={'pink'}>
+                    <div className="SDPink-lh24 f16 fbold">
                         {item.results} Results | {item.score!==null && `${item.score} | `}{item.category_list[0]}
-                    </Text>
-                    <Text size={12} color={'pink'}>
+                    </div>
+                    <div className="LeftSDPink f12">
                         {item.date.slice(5,7)} {item.date.slice(8,10)}. {item.date.slice(0,4)}
-                    </Text>
+                    </div>
                 </div>
               )
             })}
