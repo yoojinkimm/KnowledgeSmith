@@ -6,7 +6,6 @@
   height: 100%;
   border-radius: 16px;
   box-sizing: border-box;
-  padding: 16px;
 }
 
 .card-content {
@@ -14,4 +13,12 @@
   justify-content: center;
   align-items: center;
   flex: 1;
+  margin: 16px;
+}
+
+.card-info {
+  background-color: rgba(75, 56, 68, 0.3);
+  padding: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 }

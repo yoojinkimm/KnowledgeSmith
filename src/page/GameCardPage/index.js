@@ -300,6 +300,7 @@ const GameCardPage = () => {
                       handlePick={() => handleOnSwipe(direction.RIGHT)} 
                       handlePass={() => handleOnSwipe(direction.LEFT)}
                       setTempCategory={setTempCategory}
+                      language={language}
                     />
                 </div>
 
@@ -319,9 +320,9 @@ const GameCardPage = () => {
                     return(
                       <Col xs={6} xl={6}>
                         <div className="category-box">
-                            <Text size={16} bold color={'pink'}>
+                            <div className="SDGreen f12">
                                 {selectedCategory[selectedCategory.length - 1 - index]}
-                            </Text>
+                            </div>
                         </div>
                       </Col>
                     )

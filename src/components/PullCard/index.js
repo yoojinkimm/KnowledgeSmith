@@ -7,13 +7,17 @@ import { Text } from '../index'
 import '../../App.css'
 import './card.css'
 
+import { Row, Col, Container } from 'react-bootstrap';
+
+import axios from 'axios';
+
 
 var TOUCH_STYLE = {}
 
 const PULL_LINE = 400
 
 
-const PullCard = ({ category, index, handlePick, setTempCategory, width, handlePass }) => {
+const PullCard = ({ category, index, handlePick, setTempCategory, width, handlePass, language }) => {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
   const [touchControl, setTouchControl] = React.useState(0)
   
@@ -87,6 +91,54 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
   }, [pass])
 
 
+
+
+  const [categoryNum, setCategoryNum] = React.useState();
+  const [pageNum, setPageNum] = React.useState();
+
+
+  // wiki api 요청하는 기본 url
+  const base_url = `https://${language}.wikipedia.org/w/api.php?`;
+
+  // 해당 카테고리의 페이지 정보를 불러오는 함수
+  const searchPage = async (categoryQuery) => {
+
+      const categoryPage_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmlimit=1000`
+      try {
+        const { data } = await axios.get(`${base_url}${categoryPage_url}`);
+        let pages = data.query.categorymembers
+        setPageNum(pages.length)
+
+        console.log(pages);
+
+      } catch (e) {
+        console.log(e)
+      }
+  }
+
+  // 해당 카테고리의 하위 카테고리를 불러오는 함수
+  const searchSubCategory = async (categoryQuery) => {
+    const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
+
+    try {
+    const result = await axios.get(`${base_url}${subcategory_url}`);
+    console.log('subCategory', result.data.query.categorymembers)
+
+    // subcategory 없는 경우도 있음!!!
+    setCategoryNum(result.data.query.categorymembers.length)
+
+    } catch (e) {
+        console.log(e)
+      }
+  }
+
+  useEffect(() => {
+    searchPage(category);
+    searchSubCategory(category);
+    console.log('why')
+  }, [category])
+
+
   return (
     <animated.div {...bind()}
       className="card"
@@ -96,8 +148,26 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
         opacity: cardOpacity
       }}>
             <div className="card-content">
-                <Text size={touch ? 12 : 32} color="green">{category}</Text>
+                <div className="fbold SDGreen" 
+                style={{fontSize : touch ? 12 : 32}}
+                >
+                  {category}
+                </div>
             </div>
+      {!touch &&
+        <div class="card-info">
+          <Row>
+            <Col>
+              <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 카테고리 숫자</div>
+              <div className="SDGreen f24">{categoryNum}</div>
+            </Col>
+            <Col>
+              <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 문서 숫자</div>
+              <div className="SDGreen f24">{pageNum}</div>
+            </Col>
+          </Row>
+        </div>
+      }
     </animated.div>
   );
 };
