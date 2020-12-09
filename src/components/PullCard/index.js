@@ -149,7 +149,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
       }}>
             <div className="card-content">
                 <div className="fbold SDGreen" 
-                style={{fontSize : touch ? 12 : 32}}
+                style={{fontSize : touch ? 16 : 32}}
                 >
                   {category}
                 </div>
