@@ -1,9 +1,9 @@
 @font-face {
   font-family: AppleSDGothicNeo;
-  src: local(AppleSDGothicNeo-Bold),
+  src: local(AppleSDGothicNeo),
     url(/path/to/AppleSDGothicNeo-Bold.woff2) format("woff2"),
     url(/path/to/AppleSDGothicNeo-Bold.woff) format("woff"),
-    url(/path/to/AppleSDGothicNeo-Bold.ttf) format("truetype");
+    url(./data/fonts/AppleSDGothicNeoM.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -29,9 +29,9 @@
 }
 @font-face {
   font-family: Voyage;
-  src: local(Voyage-Regular), url(/path/to/Voyage-Regular.woff2) format("woff2"),
-    url(/path/to/Voyage-Regular.woff) format("woff"),
-    url(/path/to/Voyage-Regular.ttf) format("truetype");
+  src: url(./data/fonts/Voyage-Regular.woff2) format("woff2"),
+    url(./data/fonts/Voyage-Regular.woff) format("woff"),
+    url(./data/fonts/Voyage-Regular.eot) format("eot");
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
