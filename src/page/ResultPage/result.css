@@ -57,9 +57,10 @@
 
 .result-card-content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex: 1;
+  flex-direction: row;
 }
 
 .result-category-box {

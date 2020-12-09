@@ -49,9 +49,11 @@ const ResultPage = ({history}) => {
             <div className="result-card-back">
                 <div className="result-card">
                     <div className="result-card-content">
-                        <Text size={32} color="green">
-                            {result.length} Results
-                        </Text>
+                      <div className="VGreen f24">total of</div>
+                        <div className="VGreen f48">
+                          {result.length}
+                        </div>
+                        <div className="VGreen f24">results</div>
                     </div>
                  </div>
             </div>
@@ -72,24 +74,24 @@ const ResultPage = ({history}) => {
         </div>
 
         <div className="result-pc-floating">
-            <div className="result-floating up">
+            {/* <div className="result-floating up">
                 <div className="styled-btn" 
                 style={{height: 32}}
                 onClick={() => {}}>
                 <Text size={12} color={'pink'}>더보기</Text>
                 </div>
-            </div>
+            </div> */}
 
              <div className="result-floating" style={{justifyContent: 'space-between'}}>
+               <div className="styled-btn"
+                onClick={()=>{history.push(`game/${language}`)}}
+                style={{backgroundColor: colors.green, marginRight: 8}}>
+                  <div className="VPink f24">Replay</div>
+                </div>
                 <div className="styled-btn" 
                 onClick={()=>{history.push('/mypage')}}
-                style={{backgroundColor: colors.green, marginRight: 8}}>
-                <Text size={24} color={'pink'}>MyPage</Text>
-                </div>
-                <div className="styled-btn"
-                onClick={()=>{history.push(`game/${language}`)}}
                 style={{backgroundColor: colors.pink, marginLeft: 8}}>
-                <Text size={24} color={'green'}>Start Crafting</Text>
+                  <div className="VGreen f24">MyPage</div>
                 </div>
             </div>
         </div>

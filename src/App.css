@@ -161,6 +161,9 @@
 .f32 {
   font-size: 32px;
 }
+.f48 {
+  font-size: 48px;
+}
 
 /* App style */
 .App {
