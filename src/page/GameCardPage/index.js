@@ -260,9 +260,11 @@ const GameCardPage = () => {
   useEffect(() => {
     auth.onAuthStateChanged(function(userData){
     if(userData){
+      if(localStorage.getItem('tutorial') === null) history.push('/tutorial');
+      else console.log('tutorial', localStorage.getItem('tutorial'))
     } else {
-      alert('로그인이 필요합니다.')
-      history.push({pathname: '/login', state: { go: `game/${language}` }})
+      alert('로그인이 필요합니다.');
+      history.push({pathname: '/login', state: { go: `game/${language}` }});
     }
   });
   }, [])

@@ -66,6 +66,10 @@ const TutorialPage = ({history}) => {
     if (start) history.push(`game/${language}`)
   }, [start, touch])
 
+  useEffect(() => {
+      localStorage.setItem('tutorial', true);
+  })
+
 
   return (
     <div className="tutorial-back">
