@@ -7,7 +7,7 @@ import "../../App.css";
 import * as colors from '../../data/constants';
 import './result.css';
 import { Name, IconStar } from '../../data/images/index';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
 import { set } from "lodash-es";
 
 
@@ -21,7 +21,7 @@ const ResultPage = ({history}) => {
   const [score, setScore] = useState([])
   const [categoryList, setCategoryList] = useState([]);
 
-  const [rank, setRank] = useState(101);
+  const [rank, setRank] = useState(null);
   const [loading, setLoading] = useState(true)
 
   var ref = database.ref('results/');
@@ -108,10 +108,22 @@ const ResultPage = ({history}) => {
   });
   }, [])
 
+  React.useEffect(() => {
+    if (rank !== null) setLoading(false)
+  }, [rank])
+
 
   return (
-    <div style={{display: 'flex', flex: 1, height: 'auto'}}>
+    <div style={{display: 'flex', flex: 1, height: '100%', width: '100%'}}>
         <div className="background" style={{paddingBottom: 100, boxSizing: 'content-box'}}>
+
+          {loading 
+          ?
+          <div style={{display: 'flex', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+            <Spinner animation="border" variant="light" />
+          </div>
+          :
+          <>
             <div className="VPink f32">
               {rank <= 100
               ?
@@ -237,7 +249,8 @@ const ResultPage = ({history}) => {
                     )
                 })}
              </div>
-            
+             </>
+            }
         </div>
 
         <div className="result-pc-floating">

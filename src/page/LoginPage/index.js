@@ -15,7 +15,7 @@ import { useLocation } from "react-router-dom";
 
 const LoginPage = ({history}) => {
   const location = useLocation();
-  const {user, language} = useContext(UserContext);
+  const {user, setUser, language} = useContext(UserContext);
 
   
   const googleLogin = async () => {
@@ -29,6 +29,8 @@ const LoginPage = ({history}) => {
   useEffect(() => {
     auth.onAuthStateChanged(function(userData){
     if(userData){
+      setUser(userData)
+      
       console.log('userData :' , userData);
       console.log('user: ', user);
       console.log('local: ', localStorage.getItem('uid'))

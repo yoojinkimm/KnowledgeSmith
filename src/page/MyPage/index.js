@@ -1,4 +1,4 @@
-import { firestore, auth } from '../../firebase';
+import { auth, database } from '../../firebase';
 
 import React, { useContext, useEffect, useState } from "react";
 import "../../App.css";
@@ -8,37 +8,17 @@ import { UserContext } from "../../providers/UserProvider";
 import * as colors from '../../data/constants';
 
 import { Logo } from '../../data/images/index';
+import { Spinner } from 'react-bootstrap'
 
 import "./mypage.css";
 
 
-// dummy data
-const GAME_DATA = [
-  {
-    game_id: '1234',
-    results: 54,
-    score: 132,
-    category_list: ['1900년 태어남', '대한민국의 사람'],
-    date: '2020-11-23'
-  },
-  {
-    game_id: '1234',
-    results: 2,
-    score: null,
-    category_list: ['대한민국의 사람', '대한민국의 사람'],
-    date: '2020-11-23'
-  },
-  {
-    game_id: '1234',
-    results: 101,
-    score: 67,
-    category_list: ['1800년 설치', '대한민국의 사람'],
-    date: '2020-11-23'
-  },
-]
-
 const MyPage = ({history}) => {
   const { user, setUser, language, setLanguage } = useContext(UserContext);
+
+  const [myData, setMyData] = useState(null);
+  var ref = database.ref('results/');
+
 
   useEffect(() => {
     auth.onAuthStateChanged(function(userData){
@@ -52,7 +32,36 @@ const MyPage = ({history}) => {
       history.push({pathname: '/login', state: { go: `mypage` }})
     }
   });
+
   }, [])
+
+  useEffect(() => {
+    ref.once('value').then((snapshot) => {
+          let newState = [];
+           let keys = Object.keys(snapshot.val())
+          let results = snapshot.val()
+
+          for (var i = 0; i<keys.length; i++) {
+            var k = keys[i];
+
+            if (user !== null && results[k].displayName === user.displayName){
+              var scoreData = {
+                key: k,
+                score : results[k].score,
+                name : results[k].displayName,
+                category : results[k].cats,
+                wikiresults: results[k].wikiresults === undefined ? [] : results[k].wikiresults,
+              }
+              newState.push(scoreData);
+              console.log(results[k].wikiresults)
+            }
+          }
+          
+          setMyData(newState);
+          console.log(newState);
+        })
+        .catch((e) => console.log(e))
+  }, [user])
 
   const logOut = () => {
     auth.signOut();
@@ -89,18 +98,25 @@ const MyPage = ({history}) => {
             <div className="VPink f24" style={{marginTop: 24, marginBottom: 16}}>My Game</div>
 
 
-            {GAME_DATA.map((item, index) => {
-              return(
-                <div className="mypage-category-box">
-                    <div className="SDPink-lh24 f16 fbold">
-                        {item.results} Results | {item.score!==null && `${item.score} | `}{item.category_list[0]}
-                    </div>
-                    <div className="LeftSDPink f12">
-                        {item.date.slice(5,7)} {item.date.slice(8,10)}. {item.date.slice(0,4)}
-                    </div>
-                </div>
-              )
-            })}
+            { myData === null
+            ?
+            <Spinner animation="border" variant="light" />
+            :
+            <>
+              { myData !== null && myData.map((item, index) => {
+                return(
+                  <div className="mypage-category-box">
+                      <div className="SDPink-lh24 f16 fbold">
+                          {item.wikiresults.length} Results | {item.score!==null && `${item.score} | `}{item.category[0]}
+                      </div>
+                      <div className="LeftSDPink f12">
+                          {/* {item.date.slice(5,7)} {item.date.slice(8,10)}. {item.date.slice(0,4)} */}
+                      </div>
+                  </div>
+                )
+              })}
+            </>
+            }
         </div>
     </div>
   )
