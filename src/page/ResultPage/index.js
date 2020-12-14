@@ -8,21 +8,25 @@ import * as colors from '../../data/constants';
 import './result.css';
 import { Name, IconStar } from '../../data/images/index';
 import { Row, Col } from 'react-bootstrap';
+import { set } from "lodash-es";
 
 
 
 
 const ResultPage = ({history}) => {
   const location = useLocation();
+  const { user, setUser, language, setLanguage } = useContext(UserContext);
+
   const [result, setResult] = useState([]);
   const [score, setScore] = useState([])
   const [categoryList, setCategoryList] = useState([]);
+
   const [rank, setRank] = useState(101);
+  const [loading, setLoading] = useState(true)
 
   var ref = database.ref('results/');
 
-  const { user, setUser, language, setLanguage } = useContext(UserContext);
-
+ 
   React.useEffect(() => {
       if (location.state !== undefined){
         let data = location.state;
@@ -31,6 +35,7 @@ const ResultPage = ({history}) => {
         setScore(data.score);
         setCategoryList(data.category);
 
+        // 게임페이지에서 받아온 게임 데이터 저장
         var res = ref.push({
           cats: data.category,
           score: data.score,
@@ -38,9 +43,55 @@ const ResultPage = ({history}) => {
           displayName: user !== null ? user.displayName : 'Stranger'
         })
 
-        ref.once('value').then((snapshot) => {
-          console.log(snapshot.val())
+        // 현재 게임의 키값
+        let nowKey = res.key
+
+        // 저장한 이후의 전체 게임 데이터 정렬해서 가져오기
+        var sort = ref.orderByChild('score');
+        sort.once('value').then((snapshot) => {
+          let newState = [];
+          let keys = Object.keys(snapshot.val())
+          let results = snapshot.val()
+
+          // console.log(results[nowKey])
+          
+          // snapshot.forEach(function(childSnapshot) {
+          //     newState.push({
+          //         key: '',
+          //         cats: childSnapshot.val().cats,
+          //         score: childSnapshot.val().score,
+          //         wikiresults: childSnapshot.val().wikiresults,
+          //         displayName: childSnapshot.val().displayName,
+          //     });
+          // });
+
+          for (var i = 0; i<keys.length; i++) {
+            var k = keys[i];
+            var scoreData = {
+              key: k,
+              score : results[k].score,
+              name : results[k].displayName,
+              category : results[k].cats,
+              wikiresults: results[k].wikiresults,
+            }
+            newState.push(scoreData);
+          }
+          
+          //여기서 정렬
+          newState.sort(function(a,b){
+            return a.score > b.score ? -1 : a.score < b.score ? 1 : 0;
+          });
+          // newState = newState.reverse();
+          // console.log(newState);
+
+          for (var i = 0; i<newState.length; i++) {
+            if (nowKey === newState[i].key) {
+              setRank(i + 1);
+              console.log('rank: ', i + 1)
+            }
+          }
         })
+        .catch((e) => console.log(e))
       }
        
     }, [location]);
@@ -79,12 +130,12 @@ const ResultPage = ({history}) => {
                       <div style={{width: '100%', flexDirection: 'row', display: 'flex', flex: 1}}>
                         <Col xs={6} lg={6}>
                           <div className="VGreen f16">score</div>
-                          <div className="VGreen f32">score</div>
+                          <div className="VGreen f32">{score}</div>
                         </Col>
                         <div style={{width: 1, height: '100%', backgroundColor: colors.green}} />
                         <Col xs={6} lg={6}>
                           <div className="VGreen f16">ranking</div>
-                          <div className="VGreen f32">ranking</div>
+                          <div className="VGreen f32">{rank}</div>
                         </Col>
                       </div>
 
