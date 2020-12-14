@@ -16,13 +16,13 @@ function UserProvider ({ render }) {
             } else {
                 localStorage.setItem('token', '');
                 localStorage.setItem('uid', '');
-                console.log('no user')
+                // console.log('no user')
             }
         })
     }, [])
 
     useEffect(() => {
-        console.log('language :', language)
+        // console.log('language :', language)
     }, [language])
 
     return(

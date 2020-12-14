@@ -33,12 +33,13 @@
 /* PC */
 @media (min-width: 415px) {
   .game-background {
-    width: 100%;
+    width: 414px;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 16px;
     align-items: center;
+    position: fixed;
     overscroll-behavior: contain;
   }
   .game-floating {

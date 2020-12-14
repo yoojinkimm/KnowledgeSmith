@@ -23,9 +23,9 @@ const MyPage = ({history}) => {
   useEffect(() => {
     auth.onAuthStateChanged(function(userData){
     if(userData){
-      console.log('userData :' , userData);
-      console.log('user: ', user);
-      console.log('local: ', localStorage.getItem('uid'))
+      // console.log('userData :' , userData);
+      // console.log('user: ', user);
+      // console.log('local: ', localStorage.getItem('uid'))
       
     }else{
       alert('로그인이 필요합니다.')
@@ -53,14 +53,16 @@ const MyPage = ({history}) => {
                 wikiresults: results[k].wikiresults === undefined ? [] : results[k].wikiresults,
               }
               newState.push(scoreData);
-              console.log(results[k].wikiresults)
+              // console.log(results[k].wikiresults)
             }
           }
           
           setMyData(newState);
-          console.log(newState);
+          // console.log(newState);
         })
-        .catch((e) => console.log(e))
+        .catch((e) => {
+          // console.log(e)
+        })
   }, [user])
 
   const logOut = () => {

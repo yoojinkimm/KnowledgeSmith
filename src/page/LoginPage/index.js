@@ -22,7 +22,7 @@ const LoginPage = ({history}) => {
     try {
         signInWithGoogle()
     } catch (e) {
-        console.log(e)
+        // console.log(e)
     }
   }
 
@@ -31,9 +31,9 @@ const LoginPage = ({history}) => {
     if(userData){
       setUser(userData)
       
-      console.log('userData :' , userData);
-      console.log('user: ', user);
-      console.log('local: ', localStorage.getItem('uid'))
+      // console.log('userData :' , userData);
+      // console.log('user: ', user);
+      // console.log('local: ', localStorage.getItem('uid'))
 
       if(location.state !== undefined) {
         history.push(`/${location.state.go}`)

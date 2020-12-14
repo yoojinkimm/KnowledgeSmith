@@ -30,7 +30,7 @@ const ResultPage = ({history}) => {
   React.useEffect(() => {
       if (location.state !== undefined){
         let data = location.state;
-        console.log('result', data);
+        // console.log('result', data);
         setResult(data.result);
         setScore(data.score);
         setCategoryList(data.category);
@@ -87,11 +87,13 @@ const ResultPage = ({history}) => {
           for (var i = 0; i<newState.length; i++) {
             if (nowKey === newState[i].key) {
               setRank(i + 1);
-              console.log('rank: ', i + 1)
+              // console.log('rank: ', i + 1)
             }
           }
         })
-        .catch((e) => console.log(e))
+        .catch((e) => {
+          // console.log(e)
+        })
       }
        
     }, [location]);
@@ -152,7 +154,10 @@ const ResultPage = ({history}) => {
                       </div>
 
                       <div className="SDGreen-lh24 s14" style={{marginTop: 24}}>
-                          이번 게임의 결과로 TOP100에 들어가게 됐다, 두번째 줄 여기는 선택한 위키 언어로 나오면 되겠다. 
+                          이번 게임의 결과로 TOP100에 들어가게 됐다.
+                      </div>
+                      <div className="SDGreen-lh24 s14" style={{marginTop: 24}}>
+                          The way you treat the categories are thrilling. Let the people know that you are the knowledgesmith!
                       </div>
                     </div>
 
@@ -230,7 +235,8 @@ const ResultPage = ({history}) => {
             {result.length === 0 &&
               <div className="result-page-box" style={{marginTop: 24, justifyContent: 'center', flexDirection: 'column'}}>
                 <div className="SDPink-lh24 f16" style={{marginBottom: 8}}>안타깝네요!</div>
-                <div className="SDPink-lh24 f14">이번 게임의 결과로 TOP100에 들어가게 됐다, 어쩌구 저쩌구 두번째 줄 여기는 선택한 위키 언어로 나오면 되겠다. </div>
+                <div className="SDPink-lh24 f14">단 하나의 결과도 남기지 못했습니다. 조심스럽게 다시 시작해보는 것은 어떨까요?</div>
+                <div className="SDPink-lh24 f14">Your play has left 0 results. Please try again a bit more carefully.</div>
               </div>
             }  
 
@@ -264,7 +270,7 @@ const ResultPage = ({history}) => {
 
              <div className="result-floating" style={{justifyContent: 'space-between'}}>
                <div className="styled-btn"
-                onClick={()=>{history.push(`game/${language}`)}}
+                onClick={()=>{history.push(`/game/${language}`)}}
                 style={{backgroundColor: colors.green, marginRight: 8}}>
                   <div className="VPink f24">Replay</div>
                 </div>

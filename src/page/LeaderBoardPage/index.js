@@ -51,9 +51,9 @@ const LeaderBoardPage = ({history}) => {
   useEffect(() => {
     auth.onAuthStateChanged(function(userData){
     if(userData){
-      console.log('userData :' , userData);
-      console.log('user: ', user);
-      console.log('local: ', localStorage.getItem('uid'))
+      // console.log('userData :' , userData);
+      // console.log('user: ', user);
+      // console.log('local: ', localStorage.getItem('uid'))
       
     }else{
     // 여기도 로그인이 필요할까?
@@ -80,7 +80,9 @@ const LeaderBoardPage = ({history}) => {
           // 점수 높은 순서대로 100위까지만 보여줌
           setRankData(newState.reverse().slice(0,101))
         })
-        .catch((e) => console.log(e))
+        .catch((e) => {
+          // console.log(e)
+        })
   });
   }, [])
 

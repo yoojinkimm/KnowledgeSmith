@@ -67,7 +67,7 @@ const GameCardPage = () => {
           if (pages[i].pageid === selectedPage[j].pageid) list.push(pages[i])
         }
       }
-      console.log('filtered selected page', list);
+      // console.log('filtered selected page', list);
       setSelectedPage(list);
 
       var tempScore = score;
@@ -76,7 +76,7 @@ const GameCardPage = () => {
       tempScore += offset * 10 * (tempPageNum - list.length);
       setScore(tempScore);
       setTempPageNum(list.length)
-      console.log('score: ', tempScore);
+      // console.log('score: ', tempScore);
 
       // 속한 페이지들 각각의 카테고리들을 구함
       list.map((item, index) => {
@@ -103,7 +103,7 @@ const GameCardPage = () => {
         filterPage(pages)
         // console.log('search page result', pages);
       } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
   }
 
@@ -135,12 +135,12 @@ const GameCardPage = () => {
         var random = Math.floor(Math.random() * (max-min)) + min;
         i += random;
     }
-    console.log('showMainCategory : ', showMainCategory)
+    // console.log('showMainCategory : ', showMainCategory)
 
     // 첫 카드가 안 나와서 강제로 하나 넘김
     handleOnSwipe(direction.LEFT);
     } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
 
     // ... 랜덤으로 카테고리 선택하는 로직 필요
@@ -153,12 +153,12 @@ const GameCardPage = () => {
 
     try {
     const result = await axios.get(`${base_url}${subcategory_url}`);
-    console.log('subCategory', result.data.query.categorymembers)
+    // console.log('subCategory', result.data.query.categorymembers)
 
     // subcategory 없는 경우도 있음!!!
     setShowSubCategory(result.data.query.categorymembers)
     } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
   }
 
@@ -189,7 +189,7 @@ const GameCardPage = () => {
     setShowPageCategory(list)
     setShowMainCategory(list)
     } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
   }
 
@@ -225,12 +225,12 @@ const GameCardPage = () => {
       searchPage(item)
       setSelectedCategory(list)
       
-      console.log('selected category: ', list)
+      // console.log('selected category: ', list)
     }
 
     if (swipeDirection === direction.LEFT) {
       // handle left swipe
-      console.log('pass')
+      // console.log('pass')
     }
 
     // let list = selectedCategory
@@ -264,7 +264,7 @@ const GameCardPage = () => {
     auth.onAuthStateChanged(function(userData){
     if(userData){
       if(localStorage.getItem('tutorial') === null) history.push('/tutorial');
-      else console.log('tutorial', localStorage.getItem('tutorial'))
+     //  else console.log('tutorial', localStorage.getItem('tutorial'))
     } else {
       alert('로그인이 필요합니다.');
       history.push({pathname: '/login', state: { go: `game/${language}` }});

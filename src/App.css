@@ -188,6 +188,14 @@ body {
 
   background-color: #2e563d;
   overscroll-behavior: auto none;
+
+  box-sizing: border-box;
+}
+
+.container-fluid {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0 0;
 }
 
 .background {
@@ -199,6 +207,7 @@ body {
   flex-direction: column;
   padding: 16px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .styled-btn {
@@ -221,6 +230,7 @@ body {
 @media (min-width: 414px) {
   .frame {
     width: 414px !important;
+    height: 100%;
     height: 100%;
     position: relative;
   }
