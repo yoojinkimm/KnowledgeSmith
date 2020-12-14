@@ -45,7 +45,6 @@
 }
 
 .result-card {
-  will-change: transform;
   padding: 16px;
   background-color: #e0b0ce;
   display: flex;
@@ -63,7 +62,7 @@
   flex-direction: row;
 }
 
-.result-category-box {
+.result-page-box {
   width: 100%;
   height: auto;
   padding: 16px;
@@ -73,4 +72,45 @@
   border: solid 0.5px #e0b0ce;
   margin-bottom: 16px;
   box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.result-category-box {
+  padding: 8px;
+  margin-right: 8px;
+  border-radius: 8px;
+  background-color: rgba(224, 176, 206, 0.2);
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.go-leader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: auto;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  background-color: rgba(75, 56, 68, 0.3);
+}
+
+.result-rank {
+  background-color: #e0b0ce;
+  display: flex;
+  width: 100%; /* 화면 가로 픽셀 작은 애들은 어차피 깨지네... 어떡하지? */
+  height: auto;
+  border-radius: 16px;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.result-rank-content {
+  display: flex;
+  padding: 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
 }

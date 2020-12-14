@@ -198,8 +198,8 @@ const GameCardPage = () => {
       setShowMainCategory([])
 
       // card index reset
-      setCardIndex(0);
-      cI = 0;
+      // setCardIndex(0);
+      // cI = 0;
 
 
       let list = selectedCategory
@@ -224,12 +224,12 @@ const GameCardPage = () => {
     // console.log(list);
     // setSelectedCategory(list);
 
-    let index = cI + 1;
+    let index = cardIndex + 1;
     setCardIndex(index);
   }
 
   const handleFinish = () => {
-    history.push({pathname: '/result', state: { result: selectedPage }})
+    history.push({pathname: '/result', state: { result: selectedPage, category: selectedCategory, score: 0 }})
   }
 
   // useEffect(() => {
@@ -321,7 +321,12 @@ const GameCardPage = () => {
                       <Col xs={6} xl={6}>
                         <div className="category-box">
                             <div className="SDGreen f12">
-                                {selectedCategory[selectedCategory.length - 1 - index]}
+                                {selectedCategory[selectedCategory.length - 1 - index].length > 13
+                                ?
+                                  `${selectedCategory[selectedCategory.length - 1 - index].slice(0, 14)} …`
+                                : 
+                                  selectedCategory[selectedCategory.length - 1 - index]
+                                }
                             </div>
                         </div>
                       </Col>

@@ -1,11 +1,14 @@
-.card {
+.pull-card {
   will-change: transform;
   background-color: #e0b0ce;
   display: flex;
   width: 100%; /* 화면 가로 픽셀 작은 애들은 어차피 깨지네... 어떡하지? */
   height: 100%;
+  max-height: 400px;
   border-radius: 16px;
   box-sizing: border-box;
+  box-shadow: 0 4px 10px 0 rgba(75, 56, 68, 0.3);
+  flex-direction: column;
 }
 
 .card-content {

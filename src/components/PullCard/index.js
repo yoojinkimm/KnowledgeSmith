@@ -109,7 +109,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
         let pages = data.query.categorymembers
         setPageNum(pages.length)
 
-        console.log(pages);
+        // console.log(pages);
 
       } catch (e) {
         console.log(e)
@@ -122,7 +122,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
 
     try {
     const result = await axios.get(`${base_url}${subcategory_url}`);
-    console.log('subCategory', result.data.query.categorymembers)
+    // console.log('subCategory', result.data.query.categorymembers)
 
     // subcategory 없는 경우도 있음!!!
     setCategoryNum(result.data.query.categorymembers.length)
@@ -135,13 +135,13 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
   useEffect(() => {
     searchPage(category);
     searchSubCategory(category);
-    console.log('why')
+    // console.log('why')
   }, [category])
 
 
   return (
     <animated.div {...bind()}
-      className="card"
+      className="pull-card"
       style={{ 
         transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
         ...TOUCH_STYLE,
