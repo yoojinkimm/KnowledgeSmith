@@ -1,5 +1,6 @@
 .tutorial-back {
   overscroll-behavior: contain;
+  overflow: hidden;
   display: flex;
   flex: 1;
   height: 100%;
