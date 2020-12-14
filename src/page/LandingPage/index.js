@@ -27,7 +27,7 @@ const LandingPage = ({history}) => {
                 <Col xs={6} xl={6} onClick={() => history.push('/board')}>
                     <div className="LeftSDPink f12">Leaderboard</div>
                 </Col>
-                <Col xs={3} xl={3}>
+                <Col xs={3} xl={3} onClick={() => history.push('/tutorial')}>
                     <div className="LeftSDPink f12">Tutorial</div>
                 </Col>
             </Row>

@@ -4,5 +4,6 @@ import ResultPage from './ResultPage';
 import LoginPage from './LoginPage';
 import MyPage from './MyPage';
 import LeaderBoardPage from './LeaderBoardPage';
+import TutorialPage from './TutorialPage';
 
-export { LandingPage, GameCardPage, ResultPage, LoginPage, MyPage, LeaderBoardPage };
+export { LandingPage, GameCardPage, ResultPage, LoginPage, MyPage, LeaderBoardPage, TutorialPage };
