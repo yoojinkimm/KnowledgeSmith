@@ -34,6 +34,10 @@ const GameCardPage = () => {
   const [cardIndex, setCardIndex] = useState(0);
   const [tempCategory, setTempCategory] = useState(null);
 
+
+  const [tempPageNum, setTempPageNum] = useState()
+  const [score, setScore] = useState(0)
+
   // wiki api 요청하는 기본 url
   const base_url = `https://${language}.wikipedia.org/w/api.php?`;
 
@@ -45,7 +49,9 @@ const GameCardPage = () => {
     // 처음엔 비교 안하고 새로 저장함
     if(selectedCategory.length <= 1 && selectedPage.length === 0) {
         // console.log('if pages' , pages)
-        setSelectedPage(pages)
+        setSelectedPage(pages);
+
+        setTempPageNum(pages.length);
 
         // 속한 페이지들 각각의 카테고리들을 구함
         pages.map((item, index) => {
@@ -64,14 +70,22 @@ const GameCardPage = () => {
       console.log('filtered selected page', list);
       setSelectedPage(list);
 
-      // 5개 고르면 자동 종료
-      // 마지막 선택까지 selectedPage에 반영되게
-      if (selectedCategory.length === CATEGORY_NUM) handleFinish()
+      var tempScore = score;
+      var offset = selectedCategory.length;
+
+      tempScore += offset * 10 * (tempPageNum - list.length);
+      setScore(tempScore);
+      setTempPageNum(list.length)
+      console.log('score: ', tempScore);
 
       // 속한 페이지들 각각의 카테고리들을 구함
       list.map((item, index) => {
           searchPageCategory(item.title);
-        })
+      })
+      
+      // 5개 고르면 자동 종료
+      // 마지막 선택까지 selectedPage에 반영되게
+      if (selectedCategory.length === CATEGORY_NUM) handleFinish()
     }
   }
 
@@ -229,7 +243,7 @@ const GameCardPage = () => {
   }
 
   const handleFinish = () => {
-    history.push({pathname: '/result', state: { result: selectedPage, category: selectedCategory, score: 0 }})
+    history.push({pathname: '/result', state: { result: selectedPage, category: selectedCategory, score: score }})
   }
 
   // useEffect(() => {
