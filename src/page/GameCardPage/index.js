@@ -29,7 +29,7 @@ const GameCardPage = () => {
 
   const [showMainCategory, setShowMainCategory] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState([]);
-  const [showPageCategory, setShowPageCategory] = useState([]);
+  const [showPageCategory, setShowPageCategory] = useState(null);
 
   const [cardIndex, setCardIndex] = useState(0);
   const [tempCategory, setTempCategory] = useState(null);
@@ -128,8 +128,9 @@ const GameCardPage = () => {
             let value = list[i][key];
             categoryData.push(value);
             // 문자열 리스트로 바꿔서 저장
-            setShowMainCategory(categoryData)
+            
         }
+        setShowMainCategory(categoryData)
         var min = Math.ceil(0);
         var max = Math.floor(30);
         var random = Math.floor(Math.random() * (max-min)) + min;
@@ -187,13 +188,29 @@ const GameCardPage = () => {
       else list.push(d.title)
     })
 
-    // console.log('list: ', list)
     setShowPageCategory(list)
     setShowMainCategory(list)
     } catch (e) {
         // console.log(e)
       }
   }
+
+  useEffect(() => {
+    if (selectedCategory.length > 0 && cardIndex >= (showPageCategory.length -1)) {
+      console.log('re')
+      searchAllCategory();
+      setCardIndex(0);
+      setShowMainCategory([]);
+      setShowPageCategory([]);
+    } else if (selectedCategory.length === 0 && cardIndex >= (showMainCategory.length - 1) && showPageCategory === null) {
+      console.log('re')
+      searchAllCategory();
+      setCardIndex(0);
+      setShowMainCategory([]);
+      setShowPageCategory([]);
+    }
+  })
+
 
   useEffect(() => {
     // 마운트시 카테고리 불러옴
@@ -210,6 +227,9 @@ const GameCardPage = () => {
     if (swipeDirection === direction.RIGHT) {
       // handle right swipe
 
+      // 인덱스 테스트 더 필요함
+      const item = showMainCategory[cardIndex]
+
       // 일시적으로 비워서 빈 카드로 보이게 하기 위함
       setShowMainCategory([])
 
@@ -220,9 +240,6 @@ const GameCardPage = () => {
 
       let list = selectedCategory
       
-      
-      // 인덱스 테스트 더 필요함
-      const item = showMainCategory[cardIndex]
       list.push(item)
       searchPage(item)
       setSelectedCategory(list)

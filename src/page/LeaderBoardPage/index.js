@@ -110,11 +110,12 @@ const LeaderBoardPage = ({history}) => {
                         </div>
                     </Col>
                     <Col xs={10} xl={10} className="rank-category-box">
-                            <div className="SDPink-lh24 f16 fbold">
-                                {`${item.wikiresults.length} Results | ${item.cats[0]}`}
-                            </div>
+                            
                             <div className="LeftSDPink f12">
                                 {item.displayName}
+                            </div>
+                            <div className="SDPink-lh24 f16 fbold">
+                                {`${item.wikiresults.length} Results | ${item.cats[0]}`}
                             </div>
                     </Col>
                 </Row>
