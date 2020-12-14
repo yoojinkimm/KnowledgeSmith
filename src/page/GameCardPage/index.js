@@ -29,7 +29,7 @@ const GameCardPage = () => {
 
   const [showMainCategory, setShowMainCategory] = useState([]);
   const [showSubCategory, setShowSubCategory] = useState([]);
-  const [showPageCategory, setShowPageCategory] = useState(null);
+  const [showPageCategory, setShowPageCategory] = useState([]);
 
   const [cardIndex, setCardIndex] = useState(0);
   const [tempCategory, setTempCategory] = useState(null);
@@ -196,20 +196,20 @@ const GameCardPage = () => {
   }
 
   useEffect(() => {
-    if (selectedCategory.length > 0 && cardIndex >= (showPageCategory.length -1)) {
-      console.log('re')
+    if (selectedCategory.length > 1 && cardIndex >= (showPageCategory.length -1)) {
+      // console.log('re')
       searchAllCategory();
       setCardIndex(0);
       setShowMainCategory([]);
       setShowPageCategory([]);
-    } else if (selectedCategory.length === 0 && cardIndex >= (showMainCategory.length - 1) && showPageCategory === null) {
-      console.log('re')
+    } else if ( cardIndex !== 0 && selectedCategory.length === 0 && cardIndex >= (showMainCategory.length - 1)) {
+      // console.log('new')
       searchAllCategory();
       setCardIndex(0);
       setShowMainCategory([]);
       setShowPageCategory([]);
     }
-  })
+  }, [showPageCategory, cardIndex])
 
 
   useEffect(() => {
@@ -230,9 +230,6 @@ const GameCardPage = () => {
       // 인덱스 테스트 더 필요함
       const item = showMainCategory[cardIndex]
 
-      // 일시적으로 비워서 빈 카드로 보이게 하기 위함
-      setShowMainCategory([])
-
       // card index reset
       // setCardIndex(0);
       // cI = 0;
@@ -243,6 +240,9 @@ const GameCardPage = () => {
       list.push(item)
       searchPage(item)
       setSelectedCategory(list)
+
+      // 일시적으로 비워서 빈 카드로 보이게 하기 위함
+      setShowMainCategory([])
       
       // console.log('selected category: ', list)
     }

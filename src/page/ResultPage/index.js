@@ -136,7 +136,7 @@ const ResultPage = ({history}) => {
             </div>
             <div className="line" style={{marginTop: 12}} />
             
-            {rank <= 100 &&
+            {rank <= 100 && score > 0 &&
             <>
             <div className="result-card-back">
                 <div className="result-rank">
@@ -182,7 +182,7 @@ const ResultPage = ({history}) => {
                     </div>
                  </div>
             </div>
-            <div style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
+            <div style={{width: '100%', display: 'flex', flexDirection: 'row', marginTop: 12}}>
               {categoryList.map((item, index) => {
                 return(
                   <>

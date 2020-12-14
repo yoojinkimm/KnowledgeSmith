@@ -37,7 +37,7 @@
 }
 
 .result-card-back {
-  padding: 16px;
+  /* padding: 16px; */
   padding-top: 32px;
   display: flex;
   box-sizing: border-box;
