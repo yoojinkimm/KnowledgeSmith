@@ -242,8 +242,8 @@ const GameCardPage = () => {
     setCardIndex(index);
   }
 
-  const handleFinish = () => {
-    history.push({pathname: '/result', state: { result: selectedPage, category: selectedCategory, score: score }})
+  const handleFinish = (finishScore) => {
+    history.push({pathname: '/result', state: { result: selectedPage, category: selectedCategory, score: finishScore !== undefined ? finishScore : score }})
   }
 
   // useEffect(() => {
@@ -253,7 +253,10 @@ const GameCardPage = () => {
 
   useEffect(() => {
     // result가 0이면 자동 종료
-    if (selectedCategory.length > 1 && selectedPage.length === 0) handleFinish()
+    if (selectedCategory.length > 1 && selectedPage.length === 0) {
+      setScore(0);
+      handleFinish(0);
+    } 
   }, [selectedPage, handleFinish])
 
 

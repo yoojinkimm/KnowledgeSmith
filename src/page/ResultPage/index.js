@@ -192,7 +192,7 @@ const ResultPage = ({history}) => {
                         ?
                           `${item.slice(0, 6)} …`
                         :
-                          {item}
+                          `${item}`
                         }
                       </div>
                   </div>
@@ -218,7 +218,7 @@ const ResultPage = ({history}) => {
             {rank > 100 &&
               <Row style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 0, padding: 0}}>
                 <Col xs={3} lg={3} style={{padding: 0}}><div className="line"/></Col>
-                <Col xs={6} lg={6} style={{padding: 0}}><div className="VPink f24">score of score</div></Col>
+                <Col xs={6} lg={6} style={{padding: 0}}><div className="VPink f24">score of {score}</div></Col>
                 <Col xs={3} lg={3} style={{padding: 0}}><div className="line"/></Col>
               </Row>
             }
