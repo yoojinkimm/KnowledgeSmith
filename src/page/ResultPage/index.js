@@ -246,7 +246,7 @@ const ResultPage = ({history}) => {
                         <div 
                           className="result-page-box" 
                           style={{height: result.length === 1 ? 80 : 'auto'}}
-                          onClick={() => window.location.href = `http://${language}.wikipedia.org/wiki/${item.title}`}>
+                          onClick={() => window.open(`http://${language}.wikipedia.org/wiki/${item.title}`)}>
                             <div className="SDPink f16">
                                 {item.title}
                             </div>

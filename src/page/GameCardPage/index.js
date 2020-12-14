@@ -180,8 +180,10 @@ const GameCardPage = () => {
 
     item.map((d, index) => {
       // 카테고리 앞에 "분류 :" 라는 글자가 붙으면 페이지 검색이 안됨!!!! 
-      // 한국어일 경우만 적용됨
+      // 한국어일 경우
       if (d.title[2] === ':') list.push(d.title.slice(3))
+      // 영어일 경우
+      else if (d.title[8] === ':') list.push(d.title.slice(9))
       else list.push(d.title)
     })
 
