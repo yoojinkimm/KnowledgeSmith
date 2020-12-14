@@ -154,7 +154,7 @@ const ResultPage = ({history}) => {
                       </div>
 
                       <div className="SDGreen-lh24 s14" style={{marginTop: 24}}>
-                          이번 게임의 결과로 TOP100에 들어가게 됐다.
+                          당신의 지식세공 기술은 정말 놀랍습니다. 위대한 지식세공사가 세상에 나타난 것이에요!
                       </div>
                       <div className="SDGreen-lh24 s14" style={{marginTop: 24}}>
                           The way you treat the categories are thrilling. Let the people know that you are the knowledgesmith!

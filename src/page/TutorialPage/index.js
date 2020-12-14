@@ -130,7 +130,7 @@ const TutorialPage = ({history}) => {
                 </Carousel>
 
                 <div className="car-indi">
-                {carouselIndex !== 3
+                {carouselIndex !== 4
                 ?
                 <>
                     <div className="car-icons" style={{backgroundColor: carouselIndex === 0 && colors.pink}} />

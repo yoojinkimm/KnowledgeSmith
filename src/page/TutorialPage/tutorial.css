@@ -1,10 +1,26 @@
-.tutorial-back {
-  overscroll-behavior: contain;
-  overflow: hidden;
-  display: flex;
-  flex: 1;
-  height: 100%;
-  width: 100%;
+/* PC */
+@media (min-width: 415px) {
+  .tutorial-back {
+    overscroll-behavior: contain;
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 414px;
+    position: fixed;
+  }
+}
+
+@media (max-width: 414px) {
+  .tutorial-back {
+    overscroll-behavior: contain;
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+  }
 }
 
 .tutorial-card {

@@ -98,7 +98,7 @@ function CardDeck({data, language}) {
           if (data[i].pageid === selectedPage[j].pageid) list.push(data[i])
         }
       }
-      console.log(list);
+      // console.log(list);
       setSelectedPage(list);
     }
   }
@@ -118,7 +118,7 @@ function CardDeck({data, language}) {
         filterPage(result.data.query.categorymembers)
         // console.log(result.data.query.categorymembers);
       } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
   }
 
@@ -131,7 +131,7 @@ function CardDeck({data, language}) {
     try {
     const result = await axios.get(`${base_url}${category_url}`);
     } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
 
     // ... 랜덤으로 카테고리 선택하는 로직 필요
@@ -144,10 +144,10 @@ function CardDeck({data, language}) {
 
     try {
     const result = await axios.get(`${base_url}${subcategory_url}`);
-    console.log(result.data.query.categorymembers)
+    // console.log(result.data.query.categorymembers)
     setSelectedCategory(result.data.query.categorymembers)
     } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
   }
 
@@ -157,11 +157,11 @@ function CardDeck({data, language}) {
 
     // 개수의 문제도 아니고 렌더링 순서 문제도 아님. 뭐가 문제일까? 
     searchSubCategory('그래프 이론')
-    console.log(props)
+    // console.log(props)
   }, [])
 
 useEffect(() => {
-  console.log(props)
+  // console.log(props)
 }, [selectedCategory, props])
 
   return (

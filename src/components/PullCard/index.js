@@ -51,7 +51,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
 
     } if ( !touch && touchControl === 1) {
       // 드롭하면 pick
-      console.log('drop')
+      // console.log('drop')
       handlePick();
       setTouchControl(0)
       setTempCategory(null)
@@ -112,7 +112,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
         // console.log(pages);
 
       } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
   }
 
@@ -128,7 +128,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
     setCategoryNum(result.data.query.categorymembers.length)
 
     } catch (e) {
-        console.log(e)
+        // console.log(e)
       }
   }
 
