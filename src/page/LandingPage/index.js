@@ -11,6 +11,8 @@ import { Row, Col, Container } from 'react-bootstrap';
 
 import { UserContext } from "../../providers/UserProvider";
 
+import Tappable from 'react-tappable';
+
 const LandingPage = ({history}) => {
   const { language, setLanguage } = useContext(UserContext)
 
@@ -103,16 +105,20 @@ const LandingPage = ({history}) => {
                 <div className="styled-btn" 
                 onClick={()=>setLanguage('en')}
                 style={{height: 32, backgroundColor: language === 'en' ? colors.pink : colors.green, marginRight: 8}}>
-                <div className="SDPink f12" style={{
-                    color: language === 'en' ? colors.green : colors.pink
-                }}>ENGLISH WIKI</div>
+                    <Tappable onTap={() => {setLanguage('en')}}>
+                    <div className="SDPink f12" style={{
+                        color: language === 'en' ? colors.green : colors.pink
+                    }}>ENGLISH WIKI</div>
+                    </Tappable>
                 </div>
                 <div className="styled-btn"
                 onClick={()=>setLanguage('ko')}
                 style={{height: 32, backgroundColor: language === 'ko' ? colors.pink : colors.green, marginLeft: 8}}>
-                <div className="SDPink f12" style={{
-                    color: language === 'ko' ? colors.green : colors.pink
-                }}>한글 위키</div>
+                    <Tappable onTap={() => {setLanguage('ko')}}>
+                    <div className="SDPink f12" style={{
+                        color: language === 'ko' ? colors.green : colors.pink
+                    }}>한글 위키</div>
+                    </Tappable>
                 </div>
             </div>
 
@@ -120,7 +126,9 @@ const LandingPage = ({history}) => {
                 <div className="styled-btn" onClick={() => {
                     history.push(`/game/${language}`)
                 }}>
+                    <Tappable onTap={() => {history.push(`/game/${language}`)}}>
                     <div className="VPink f24">Start Crafting</div>
+                    </Tappable>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import { Text } from '../index'
 import '../../App.css'
 import './card.css'
 
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
 
 import axios from 'axios';
 
@@ -28,8 +28,8 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
 
   const [pass, setPass] = React.useState(false);
 
+
   const bind = useGesture(({ down, delta, velocity, previous }) => {
-    // console.log(delta)
     if (velocity >= 0.4 && delta[1] < -50 && delta[1] < 0) {
       setPass(true)
     }
@@ -38,8 +38,8 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
     velocity = clamp(velocity, 1, 8)
     setYPos(previous[1])
 
-    if (down) setTouch(true)
-    if (!down) setTouch(false)
+    if (down) setTouch(true);
+    if (!down) setTouch(false);
     set({ xy: down ? delta : [0, 0], config: { mass: velocity, tension: 500 * velocity, friction: 50 } })
   })
 
@@ -65,9 +65,9 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
 
   useEffect(() => {
     // category 안 들어오면 작동 안함
-    if (category !== undefined) {
+    // if (category !== undefined) {
       handleDrag();
-    }
+    // }
     if (touch) {
       // 잡으면 작아지고 불투명해짐
       TOUCH_STYLE = {
@@ -89,6 +89,20 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
   useEffect(() => {
     if (pass) handlePass();
   }, [pass])
+
+  useEffect(() => {
+    if (category === undefined) {
+      setPass(true);
+      // console.log('category undefined')
+    }
+    set({ xy: [0, 0] })
+    // console.log('category changed')
+  }, [category])
+
+  useEffect(() => {
+    if (touch) {
+    }
+  }, [touch])
 
 
 
@@ -140,35 +154,42 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
 
 
   return (
-    <animated.div {...bind()}
-      className="pull-card"
-      style={{ 
-        transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
-        ...TOUCH_STYLE,
-        opacity: cardOpacity
-      }}>
-            <div className="card-content">
-                <div className="fbold SDGreen" 
-                style={{fontSize : touch ? 16 : 32}}
-                >
-                  {category}
-                </div>
-            </div>
-      {!touch &&
-        <div class="card-info">
-          <Row>
-            <Col>
-              <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 카테고리 숫자</div>
-              <div className="SDGreen f24">{categoryNum}</div>
-            </Col>
-            <Col>
-              <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 문서 숫자</div>
-              <div className="SDGreen f24">{pageNum}</div>
-            </Col>
-          </Row>
-        </div>
-      }
-    </animated.div>
+    <>
+    {category === undefined
+    ?
+      <Spinner animation="border" variant="light" />
+    :
+      <animated.div {...bind()}
+        className="pull-card"
+        style={{ 
+          transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
+          ...TOUCH_STYLE,
+          opacity: cardOpacity
+        }}>
+              <div className="card-content">
+                  <div className="fbold SDGreen" 
+                  style={{fontSize : touch ? 16 : 32}}
+                  >
+                    {category}
+                  </div>
+              </div>
+        {!touch &&
+          <div class="card-info">
+            <Row>
+              <Col>
+                <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 카테고리 숫자</div>
+                <div className="SDGreen f24">{categoryNum}</div>
+              </Col>
+              <Col>
+                <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 문서 숫자</div>
+                <div className="SDGreen f24">{pageNum}</div>
+              </Col>
+            </Row>
+          </div>
+        }
+      </animated.div>
+    }
+    </>
   );
 };
 

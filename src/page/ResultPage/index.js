@@ -10,7 +10,7 @@ import { Name, IconStar } from '../../data/images/index';
 import { Row, Col, Spinner } from 'react-bootstrap';
 import { set } from "lodash-es";
 
-
+import Tappable from 'react-tappable';
 
 
 const ResultPage = ({history}) => {
@@ -272,12 +272,16 @@ const ResultPage = ({history}) => {
                <div className="styled-btn"
                 onClick={()=>{history.push(`/game/${language}`)}}
                 style={{backgroundColor: colors.green, marginRight: 8}}>
+                   <Tappable onTap={() => {history.push(`/game/${language}`)}}>
                   <div className="VPink f24">Replay</div>
+                  </Tappable>
                 </div>
                 <div className="styled-btn" 
                 onClick={()=>{history.push('/mypage')}}
                 style={{backgroundColor: colors.pink, marginLeft: 8}}>
+                  <Tappable onTap={() => {history.push(`/game/${language}`)}}>
                   <div className="VGreen f24">MyPage</div>
+                  </Tappable>
                 </div>
             </div>
         </div>

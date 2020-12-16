@@ -238,16 +238,18 @@ body {
     opacity: 0.5;
   } */
 
+  .styled-btn:active {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 1180px) {
   .styled-btn {
     cursor: pointer;
   }
 
   .click {
     cursor: pointer;
-  }
-
-  .styled-btn:active {
-    opacity: 0;
   }
 }
 
@@ -261,6 +263,6 @@ body {
   }
 
   .styled-btn:active {
-    /* opacity: 0.5; */
+    opacity: 0.5;
   }
 }
