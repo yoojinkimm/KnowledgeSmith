@@ -279,7 +279,7 @@ const ResultPage = ({history}) => {
                 <div className="styled-btn" 
                 onClick={()=>{history.push('/mypage')}}
                 style={{backgroundColor: colors.pink, marginLeft: 8}}>
-                  <Tappable onTap={() => {history.push(`/game/${language}`)}}>
+                  <Tappable onTap={() => {history.push(`/mypage`)}}>
                   <div className="VGreen f24">MyPage</div>
                   </Tappable>
                 </div>
