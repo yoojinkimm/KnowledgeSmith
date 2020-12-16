@@ -48,13 +48,13 @@ const LoginPage = ({history}) => {
   return (
     <div style={{display: 'flex', flex: 1}}>
         <div className="login-background">
-            <Name onClick={() => history.push('/')} />
+            <Name className="click" onClick={() => history.push('/')} />
            <div className="line" style={{marginTop: 12, marginBottom: 8}} />
               <div className="VPink f24">Sign In</div>
             <div className="line" style={{marginTop: 12}} />
 
             <div className="login-back">
-                <div className="google-btn" 
+                <div className="google-btn click" 
                 onClick={() => googleLogin()}>
                     <GoogleIcon />
                     <div className="SDGreen f16" style={{marginLeft: 24}}>Sign in with Google</div>

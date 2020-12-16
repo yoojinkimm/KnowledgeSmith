@@ -92,7 +92,7 @@ const MyPage = ({history}) => {
                         {user !== null ? user.email : 'no current email'}
                     </div>
                 </div>
-                <div className="logout-btn" onClick={() => logOut()}>
+                <div className="logout-btn click" onClick={() => logOut()}>
                   <div className="LeftSDGreen f12">logout</div>
                 </div>
             </div>

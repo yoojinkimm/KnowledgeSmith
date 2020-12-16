@@ -21,13 +21,13 @@ const LandingPage = ({history}) => {
             <Logo />
             <div className="line" style={{marginTop: 12}} />
             <Row style={{width: '100%', textAlign: 'center', paddingTop: 4, paddingBottom: 4}}>
-                <Col xs={3} xl={3} onClick={() => history.push('/mypage')}>
+                <Col xs={3} xl={3} className="click" onClick={() => history.push('/mypage')}>
                     <div className="LeftSDPink f12">Mypage</div>
                 </Col>
-                <Col xs={6} xl={6} onClick={() => history.push('/board')}>
+                <Col xs={6} xl={6} className="click" onClick={() => history.push('/board')}>
                     <div className="LeftSDPink f12">Leaderboard</div>
                 </Col>
-                <Col xs={3} xl={3} onClick={() => history.push('/tutorial')}>
+                <Col xs={3} xl={3} className="click" onClick={() => history.push('/tutorial')}>
                     <div className="LeftSDPink f12">Tutorial</div>
                 </Col>
             </Row>

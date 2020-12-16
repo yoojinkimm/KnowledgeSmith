@@ -299,7 +299,7 @@ const GameCardPage = () => {
        {/* 스크롤 불가능하게 막았다 */}
         <div className="game-background">
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                <Name onClick={() => history.push('/')} />
+                <Name className="click" onClick={() => history.push('/')} />
             </div> 
             <div className="line" style={{marginTop: 8}} />
 

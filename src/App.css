@@ -234,8 +234,16 @@ body {
     height: 100%;
     position: relative;
   }
-  .styled-btn:hover {
+  /* .styled-btn:hover {
     opacity: 0.5;
+  } */
+
+  .styled-btn {
+    cursor: pointer;
+  }
+
+  .click {
+    cursor: pointer;
   }
 
   .styled-btn:active {

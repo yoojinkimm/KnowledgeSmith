@@ -127,7 +127,7 @@ const ResultPage = ({history}) => {
           :
           <>
             <div className="VPink f32">
-              {rank <= 100
+              {rank <= 100 && score > 0
               ?
                 'CONGRATULATIONS!'
               :
@@ -161,7 +161,7 @@ const ResultPage = ({history}) => {
                       </div>
                     </div>
 
-                    <div className="go-leader" onClick={() => history.push('/board')}>
+                    <div className="go-leader click" onClick={() => history.push('/board')}>
                       <div className="LeftSDGreen f12">리더보드 확인하기</div>
                     </div>
                  </div>
@@ -244,7 +244,7 @@ const ResultPage = ({history}) => {
                 {result.map((item, index) => {
                     return(
                         <div 
-                          className="result-page-box" 
+                          className="result-page-box click" 
                           style={{height: result.length === 1 ? 80 : 'auto'}}
                           onClick={() => window.open(`https://${language}.wikipedia.org/wiki/${item.title}`)}>
                             <div className="SDPink f16">
