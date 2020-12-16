@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3baa94e373ab29f0137952733744b580",
+    "revision": "0c8606632be7889a0dca0928c3c9b7c1",
     "url": "/index.html"
   },
   {
-    "revision": "754a36cd54926cc344ee",
+    "revision": "7117edbd8a9c5ec54042",
     "url": "/static/css/main.15822a4a.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.d87b785b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "754a36cd54926cc344ee",
-    "url": "/static/js/main.10b52fdf.chunk.js"
+    "revision": "7117edbd8a9c5ec54042",
+    "url": "/static/js/main.722466ea.chunk.js"
   },
   {
     "revision": "1d97c3728d88a96ff61f",
@@ -40,19 +40,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/Voyage-Regular.b7bed5c7.woff"
   },
   {
-    "revision": "0517d94eabe7f879ab26f6f350876de9",
-    "url": "/static/media/combined-shape.0517d94e.svg"
+    "revision": "bdc9230c1645c97f31227ebba77381e2",
+    "url": "/static/media/combined-shape.bdc9230c.svg"
   },
   {
-    "revision": "177da5718cebcebc74fb425daaf9e1bd",
-    "url": "/static/media/knowledgesmih.177da571.svg"
+    "revision": "58aea2dadb14dfa38c3417d8b63c2d76",
+    "url": "/static/media/knowledgesmih.58aea2da.svg"
   },
   {
-    "revision": "63c13a5250403078566500f60d42982a",
-    "url": "/static/media/logo_google.63c13a52.svg"
+    "revision": "dd8ebc1cd6efed7c03343a4fa0d2118b",
+    "url": "/static/media/logo_google.dd8ebc1c.svg"
   },
   {
-    "revision": "c411084887dbbdf3212d2d87ac7d81e9",
-    "url": "/static/media/star_icon.c4110848.svg"
+    "revision": "8282bc61cb18f7c1ac71ed6f103bb586",
+    "url": "/static/media/star_icon.8282bc61.svg"
   }
 ]);
