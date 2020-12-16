@@ -46,8 +46,8 @@ const LoginPage = ({history}) => {
   })
 
   return (
-    <div style={{display: 'flex', flex: 1, height: '100%'}}>
-        <div className="background" style={{marginBottom: 200}}>
+    <div style={{display: 'flex', flex: 1}}>
+        <div className="login-background">
             <Name onClick={() => history.push('/')} />
            <div className="line" style={{marginTop: 12, marginBottom: 8}} />
               <div className="VPink f24">Sign In</div>

@@ -1,3 +1,29 @@
+/* PC */
+@media (min-width: 415px) {
+  .login-background {
+    position: fixed;
+    height: 100%;
+    width: 414px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    align-items: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 414px) {
+  .login-background {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    align-items: center;
+  }
+}
+
 .login-back {
   display: flex;
   width: 100%;
