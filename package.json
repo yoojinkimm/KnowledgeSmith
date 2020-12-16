@@ -2,7 +2,7 @@
   "name": "knowledgesmith",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://segong.work/",
+  "homepage": "http://segong.work/",
   "dependencies": {
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
