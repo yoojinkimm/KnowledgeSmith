@@ -168,7 +168,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
         }}>
               <div className="card-content">
                   <div className="fbold SDGreen" 
-                  style={{fontSize : touch ? 16 : 32}}
+                  style={{fontSize : touch ? 16 : 32, userSelect: 'none'}}
                   >
                     {category}
                   </div>
@@ -177,12 +177,12 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
           <div class="card-info">
             <Row>
               <Col>
-                <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 카테고리 숫자</div>
-                <div className="SDGreen f24">{categoryNum}</div>
+                <div className="LeftSDGreen f12" style={{textAlign: 'center', userSelect: 'none'}}>하위 카테고리 숫자</div>
+                <div className="SDGreen f24" style={{userSelect: 'none'}}>{categoryNum}</div>
               </Col>
               <Col>
-                <div className="LeftSDGreen f12" style={{textAlign: 'center'}}>하위 문서 숫자</div>
-                <div className="SDGreen f24">{pageNum}</div>
+                <div className="LeftSDGreen f12" style={{textAlign: 'center', userSelect: 'none'}}>하위 문서 숫자</div>
+                <div className="SDGreen f24" style={{userSelect: 'none'}}>{pageNum}</div>
               </Col>
             </Row>
           </div>
