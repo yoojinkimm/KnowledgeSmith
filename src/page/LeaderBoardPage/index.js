@@ -36,16 +36,18 @@ const LeaderBoardPage = ({history}) => {
           // console.log(results[nowKey])
           
           snapshot.forEach(function(childSnapshot) {
+            if (childSnapshot.val().score !== 0) {
               newState.push({
                   cats: childSnapshot.val().cats,
                   score: childSnapshot.val().score,
                   wikiresults: childSnapshot.val().wikiresults === undefined ? [] : childSnapshot.val().wikiresults,
                   displayName: childSnapshot.val().displayName,
               });
+            }
           });
 
           // 점수 높은 순서대로 100위까지만 보여줌
-          setRankData(newState.reverse().slice(0,101))
+          setRankData(newState.reverse().slice(0,100))
         })
         .catch((e) => {
           // console.log(e)
