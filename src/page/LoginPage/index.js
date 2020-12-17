@@ -1,11 +1,9 @@
-import { firestore, auth, signInWithGoogle } from '../../firebase';
+import { auth, signInWithGoogle } from '../../firebase';
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "../../App.css";
-import Text from "../../components/Text";
 import { UserContext } from "../../providers/UserProvider";
 
-import * as colors from '../../data/constants';
 
 import { Name, GoogleIcon } from '../../data/images/index';
 
@@ -15,7 +13,7 @@ import { useLocation } from "react-router-dom";
 
 const LoginPage = ({history}) => {
   const location = useLocation();
-  const {user, setUser, language} = useContext(UserContext);
+  const {setUser} = useContext(UserContext);
 
   
   const googleLogin = async () => {

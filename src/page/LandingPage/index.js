@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "../../App.css";
-import Text from "../../components/Text";
 
 import * as colors from '../../data/constants';
 

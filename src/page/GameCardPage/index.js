@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
-import { firestore, auth } from '../../firebase';
+import { auth } from '../../firebase';
 import "../../App.css";
-import {Text, PullCard} from '../../components';
+import {PullCard} from '../../components';
 import {useHistory } from "react-router-dom";
 
 import * as colors from '../../data/constants';
@@ -16,19 +16,18 @@ import { direction } from 'react-deck-swiper';
 
 import { UserContext } from "../../providers/UserProvider";
 
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 const CATEGORY_NUM = 5;
 
 const GameCardPage = () => {
-  const { user, setUser, language, setLanguage } = useContext(UserContext);
+  const { language } = useContext(UserContext);
 
   const history = useHistory();
   const [selectedCategory, setSelectedCategory] = useState([])
   const [selectedPage, setSelectedPage] = useState([]);
 
   const [showMainCategory, setShowMainCategory] = useState([]);
-  const [showSubCategory, setShowSubCategory] = useState([]);
   const [showPageCategory, setShowPageCategory] = useState([]);
 
   const [cardIndex, setCardIndex] = useState(0);
@@ -148,21 +147,6 @@ const GameCardPage = () => {
   }
 
 
-  // 해당 카테고리의 하위 카테고리를 불러오는 함수
-  const searchSubCategory = async (categoryQuery) => {
-    const subcategory_url = `action=query&format=json&list=categorymembers&origin=*&cmtitle=Category:${categoryQuery}&cmtype=subcat`
-
-    try {
-    const result = await axios.get(`${base_url}${subcategory_url}`);
-    // console.log('subCategory', result.data.query.categorymembers)
-
-    // subcategory 없는 경우도 있음!!!
-    setShowSubCategory(result.data.query.categorymembers)
-    } catch (e) {
-        // console.log(e)
-      }
-  }
-
   // 해당 페이지의 카테고리를 불러오는 함수
   const searchPageCategory = async (pageQuery) => {
     const pageCategory_url = `action=query&format=json&origin=*&titles=${pageQuery}&prop=categories`
@@ -221,7 +205,7 @@ const GameCardPage = () => {
 
   const handleOnSwipe = (swipeDirection) => {
     // for card index reset
-    let cI = cardIndex;
+    // let cI = cardIndex;
     // console.log('card', cardIndex);
     
     if (swipeDirection === direction.RIGHT) {
@@ -288,6 +272,10 @@ const GameCardPage = () => {
       alert('로그인이 필요합니다.');
       history.push({pathname: '/login', state: { go: `game/${language}` }});
     }
+
+    return () => {
+      setSelectedCategory([]);
+    }
   });
   }, [])
 
@@ -348,9 +336,7 @@ const GameCardPage = () => {
               {tempCategory !== null && 
                     <Col xs={6} xl={6}>
                       <div className="semi-box">
-                            <Text size={16} bold color={'pink'}>
                                 {/* tempCategory */}
-                            </Text>
                       </div>
                     </Col>
                 }

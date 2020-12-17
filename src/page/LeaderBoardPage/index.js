@@ -1,11 +1,7 @@
-import { firestore, auth, database } from '../../firebase';
+import { auth, database } from '../../firebase';
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
-import Text from "../../components/Text";
-import { UserContext } from "../../providers/UserProvider";
-
-import * as colors from '../../data/constants';
 
 import { Logo } from '../../data/images/index';
 
@@ -14,36 +10,7 @@ import { Row, Col, Spinner } from 'react-bootstrap';
 import "./board.css";
 
 
-// dummy data
-const RANK_DATA = [
-  {
-    game_id: '1234',
-    user_id: '1234',
-    user_name: '김유진',
-    results: 54,
-    score: 132,
-    category_list: ['1900년 태어남', '대한민국의 사람'],
-  },
-  {
-    game_id: '1234',
-    user_id: '1234',
-    user_name: '김유진',
-    results: 54,
-    score: 132,
-    category_list: ['1900년 태어남', '대한민국의 사람'],
-  },
-  {
-    game_id: '1234',
-    user_id: '1234',
-    user_name: '김유진',
-    results: 54,
-    score: 132,
-    category_list: ['1900년 태어남', '대한민국의 사람'],
-  },
-]
-
 const LeaderBoardPage = ({history}) => {
-  const { user, setUser, language, setLanguage } = useContext(UserContext);
   const [rankData, setRankData] = useState(null)
 
   var ref = database.ref('results/');

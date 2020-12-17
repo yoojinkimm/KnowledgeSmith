@@ -1,6 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth, database } from '../../firebase';
-import { useLocation } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
 
 import clamp from 'lodash-es/clamp'
@@ -10,9 +8,8 @@ import { useGesture } from 'react-with-gesture'
 import "../../App.css";
 import * as colors from '../../data/constants';
 import './tutorial.css';
-import { Name, IconStar } from '../../data/images/index';
-import { Row, Col, Carousel } from 'react-bootstrap';
-import { set } from "lodash-es";
+import { Carousel } from 'react-bootstrap';
+
 
 
 var TOUCH_STYLE = {}
@@ -21,8 +18,7 @@ const PULL_LINE = 450
 
 
 const TutorialPage = ({history}) => {
-  const location = useLocation();
-  const { user, setUser, language, setLanguage } = useContext(UserContext);
+  const { language } = useContext(UserContext);
 
   const [carouselIndex, setCarouselIndex] = useState(0);
   
@@ -32,9 +28,7 @@ const TutorialPage = ({history}) => {
   };
 
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }));
-  const [touchControl, setTouchControl] = useState(0);
   
-  const [yPos, setYPos] = useState(0);
   const [touch, setTouch] = useState(false);
 
   const [cardOpacity, setCardOpacity] = useState(1);

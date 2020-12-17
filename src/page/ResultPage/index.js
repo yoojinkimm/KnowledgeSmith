@@ -127,7 +127,7 @@ const ResultPage = ({history}) => {
           :
           <>
             <div className="VPink f32">
-              {rank <= 100 && score > 0
+              {rank <= 99 && score > 0
               ?
                 'CONGRATULATIONS!'
               :
@@ -136,7 +136,7 @@ const ResultPage = ({history}) => {
             </div>
             <div className="line" style={{marginTop: 12}} />
             
-            {rank <= 100 && score > 0 &&
+            {rank <= 99 && score > 0 &&
             <>
             <div className="result-card-back">
                 <div className="result-rank">
@@ -183,7 +183,8 @@ const ResultPage = ({history}) => {
                  </div>
             </div>
             <div style={{width: '100%', display: 'flex', flexDirection: 'row', marginTop: 12}}>
-              {categoryList.map((item, index) => {
+              {categoryList.map((value, index) => {
+                var item = JSON.stringify(value);
                 return(
                   <>
                   {index + 1 === categoryList.length
@@ -193,11 +194,11 @@ const ResultPage = ({history}) => {
                       style={{marginRight: 0}}
                     >
                       <div className="LeftSDPink f12">
-                        {item.length > 5
+                        {item.length > 8
                         ?
-                          `${item.slice(0, 6)} …`
+                          `${item.slice(1, 8)} …`
                         :
-                          `${item}`
+                          `${item.slice(1, item.length - 1)}`
                         }
                       </div>
                   </div>
@@ -206,11 +207,11 @@ const ResultPage = ({history}) => {
                       className="result-category-box"
                     >
                       <div className="LeftSDPink f12">
-                        {item.length > 5
+                        {item.length > 8
                         ?
-                          `${item.slice(0, 6)} …`
+                          `${item.slice(1, 8)} …`
                         :
-                          {item}
+                          `${item.slice(1, item.length - 1)}`
                         }
                       </div>
                   </div>

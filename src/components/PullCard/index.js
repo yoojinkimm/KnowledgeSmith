@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import clamp from 'lodash-es/clamp'
 import { useSpring, animated } from 'react-spring/hooks'
 import { useGesture } from 'react-with-gesture'
-import { Text } from '../index'
 
 import '../../App.css'
 import './card.css'
@@ -78,31 +77,30 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
     } else {
       // 놓으면 카드 원래 사이즈로
       TOUCH_STYLE = {};
-
-      // 카테고리 로드되기 전에는 안 보임 (원래 자리로 돌아가는 모션)
-      if (category === undefined) setCardOpacity(0);
-      // 카테고리 로드되고 나면 나타남
-      else setCardOpacity(1);
+      setCardOpacity(1);
     }
-  }, [yPos, touch, category])
+  }, [yPos, touch])
+
 
   useEffect(() => {
-    if (pass) handlePass();
+    if (pass) {
+      handlePass();
+      setPass(false);
+      // console.log('pass');
+      
+    }
   }, [pass])
 
-  useEffect(() => {
-    if (category === undefined) {
-      setPass(true);
-      // console.log('category undefined')
-    }
-    set({ xy: [0, 0] })
-    // console.log('category changed')
-  }, [category])
 
   useEffect(() => {
-    if (touch) {
-    }
-  }, [touch])
+    return () => {
+        clearTimeout();
+        setCardOpacity(0);
+        setPass(false);
+        setTouchControl(0);
+        setTempCategory(null);
+      }
+  }, [])
 
 
 
@@ -147,10 +145,37 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
   }
 
   useEffect(() => {
-    searchPage(category);
-    searchSubCategory(category);
-    // console.log('why')
+    // console.log('category changed')
+    set({ xy: [0, 0] })
+    
+    if (category === undefined) {
+      // console.log('category undefined')
+      // 카테고리 로드되기 전에는 안 보임 (원래 자리로 돌아가는 모션)
+      setCardOpacity(0);
+
+      setPass(true);
+
+    } // 카테고리 로드되고 나면 나타남
+    else {
+      setCardOpacity(1);
+
+      searchPage(category);
+      searchSubCategory(category);
+    }
   }, [category])
+
+  useEffect(() => {
+    setTimeout(() => {
+        if (pass && category === undefined) {
+          handlePass();
+          // console.log('timeout')
+        }
+      }, 7000)
+
+      return () => {
+        clearTimeout();
+      }
+  })
 
 
   return (
@@ -174,7 +199,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
                   </div>
               </div>
         {!touch &&
-          <div class="card-info">
+          <div className="card-info">
             <Row>
               <Col>
                 <div className="LeftSDGreen f12" style={{textAlign: 'center', userSelect: 'none'}}>하위 카테고리 숫자</div>

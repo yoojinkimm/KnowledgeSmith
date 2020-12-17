@@ -2,10 +2,8 @@ import { auth, database } from '../../firebase';
 
 import React, { useContext, useEffect, useState } from "react";
 import "../../App.css";
-import Text from "../../components/Text";
 import { UserContext } from "../../providers/UserProvider";
 
-import * as colors from '../../data/constants';
 
 import { Logo } from '../../data/images/index';
 import { Spinner } from 'react-bootstrap'
@@ -14,7 +12,7 @@ import "./mypage.css";
 
 
 const MyPage = ({history}) => {
-  const { user, setUser, language, setLanguage } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const [myData, setMyData] = useState(null);
   var ref = database.ref('results/');
