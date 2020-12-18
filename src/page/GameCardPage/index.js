@@ -286,6 +286,7 @@ const GameCardPage = () => {
     <div className='game-back'>
        {/* 스크롤 불가능하게 막았다 */}
         <div className="game-background">
+          <div className="game-top-gradation" />
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <Name className="click" onClick={() => history.push('/')} />
             </div> 

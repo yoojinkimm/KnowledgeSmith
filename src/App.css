@@ -208,6 +208,7 @@ body {
   padding: 16px;
   align-items: center;
   box-sizing: border-box;
+  z-index: 0;
 }
 
 .styled-btn {

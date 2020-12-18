@@ -68,6 +68,7 @@ const TutorialPage = ({history}) => {
   return (
     <div className="tutorial-back">
         <div className="background">
+            <div className="tutorial-top-gradation" />
             <div className="VPink f32">
               'HOW TO PLAY'
             </div>

@@ -118,6 +118,7 @@ const ResultPage = ({history}) => {
   return (
     <div style={{display: 'flex', flex: 1, height: '100%', width: '100%'}}>
         <div className="background" style={{paddingBottom: 100, boxSizing: 'border-box'}}>
+          <div className="result-top-gradation" />
 
           {loading 
           ?
@@ -262,19 +263,21 @@ const ResultPage = ({history}) => {
              <div className="result-floating" style={{justifyContent: 'space-between'}}>
                <div className="styled-btn"
                 onClick={()=>{history.push(`/game/${language}`)}}
-                style={{backgroundColor: colors.green, marginRight: 8}}>
+                style={{backgroundColor: colors.green, marginRight: 8, zIndex: 2}}>
                    <Tappable onTap={() => {history.push(`/game/${language}`)}}>
                   <div className="VPink f24">Replay</div>
                   </Tappable>
                 </div>
                 <div className="styled-btn" 
                 onClick={()=>{history.push('/mypage')}}
-                style={{backgroundColor: colors.pink, marginLeft: 8}}>
+                style={{backgroundColor: colors.pink, marginLeft: 8, zIndex: 2}}>
                   <Tappable onTap={() => {history.push(`/mypage`)}}>
                   <div className="VGreen f24">MyPage</div>
                   </Tappable>
                 </div>
             </div>
+
+            <div className="result-bottom-gradation" />
         </div>
 
 

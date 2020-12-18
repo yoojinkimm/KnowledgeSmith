@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   overscroll-behavior: contain;
+  z-index: 1;
 }
 .game-floating {
   position: fixed;
@@ -14,6 +15,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.game-top-gradation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  opacity: 0.3;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+  z-index: -1;
 }
 
 /* Mobile */

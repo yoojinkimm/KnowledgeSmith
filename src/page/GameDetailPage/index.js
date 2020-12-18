@@ -94,8 +94,9 @@ const GameDetailPage = ({history}) => {
 
   return (
     <div style={{display: 'flex', flex: 1, height: '100%', width: '100%'}}>
+        <div className="result-top-gradation" />
         <div className="background" style={{paddingBottom: 100, boxSizing: 'border-box'}}>
-
+        
           {loading 
           ?
           <div style={{display: 'flex', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
@@ -229,9 +230,11 @@ const GameDetailPage = ({history}) => {
                   </Tappable>
                 </div>
             </div>
+
+             
         </div>
 
-
+        <div className="result-bottom-gradation" />
     </div>
   )
 }

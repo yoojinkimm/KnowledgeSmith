@@ -23,9 +23,24 @@
   }
 }
 
+.tutorial-top-gradation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  opacity: 0.3;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+  z-index: -1;
+}
+
 .tutorial-card {
   width: 100%;
-  height: auto;
+  height: 60%;
   min-height: 300px;
   max-height: 600px;
   padding: 16px;
@@ -41,6 +56,7 @@
 .carousel-inner {
   height: 100% !important;
   box-sizing: border-box;
+  padding-top: 20%;
 }
 
 .carousel-item {

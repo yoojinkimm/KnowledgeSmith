@@ -6,9 +6,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 .up {
   bottom: 84px;
+}
+
+.result-bottom-gradation {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.3;
+  height: 10%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1)
+  );
+}
+
+.result-top-gradation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  opacity: 0.3;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+  z-index: 0;
 }
 
 /* PC */
@@ -30,6 +61,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    z-index: 2;
   }
   .up {
     margin-bottom: 12px;
