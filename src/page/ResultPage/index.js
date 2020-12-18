@@ -28,7 +28,9 @@ const ResultPage = ({history}) => {
 
  
   React.useEffect(() => {
+    console.log(location.state)
       if (location.state !== undefined){
+        console.log(location.state)
         let data = location.state;
         // console.log('result', data);
         setResult(data.result);
@@ -122,7 +124,7 @@ const ResultPage = ({history}) => {
 
           {loading 
           ?
-          <div style={{display: 'flex', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+          <div style={{display: 'flex', flex: 1, paddingTop: '70%', justifyContent: 'center', alignItems: 'center'}}>
             <Spinner animation="border" variant="light" />
           </div>
           :

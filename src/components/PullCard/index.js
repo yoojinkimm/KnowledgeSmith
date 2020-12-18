@@ -32,7 +32,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
     if (velocity >= 0.4 && delta[1] < -50 && delta[1] < 0) {
       setPass(true)
     }
-    else setPass(false)
+    // else setPass(false)
 
     velocity = clamp(velocity, 1, 8)
     setYPos(previous[1])
@@ -54,19 +54,20 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
       handlePick();
       setTouchControl(0)
       setTempCategory(null)
+      
 
     } else if ( yPos <= PULL_LINE ) {
       // 다시 리셋
       setTempCategory(null);
       setTouchControl(0);
-    }    
+    }
   }
 
   useEffect(() => {
     // category 안 들어오면 작동 안함
-    // if (category !== undefined) {
+    if (category !== undefined) {
       handleDrag();
-    // }
+    }
     if (touch) {
       // 잡으면 작아지고 불투명해짐
       TOUCH_STYLE = {
@@ -78,18 +79,21 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
       // 놓으면 카드 원래 사이즈로
       TOUCH_STYLE = {};
       setCardOpacity(1);
+      set({ xy: [0, 0] })
     }
-  }, [yPos, touch])
 
-
-  useEffect(() => {
     if (pass) {
-      handlePass();
-      setPass(false);
       // console.log('pass');
+      if(!touch){
+        handlePass();
+        setPass(false);
+        // console.log('do pass');
+      }
       
     }
-  }, [pass])
+  }, [yPos, touch, pass])
+
+
 
 
   useEffect(() => {
@@ -151,9 +155,9 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
     if (category === undefined) {
       // console.log('category undefined')
       // 카테고리 로드되기 전에는 안 보임 (원래 자리로 돌아가는 모션)
-      setCardOpacity(0);
+      // setCardOpacity(0);
 
-      // setPass(true);
+      setPass(true);
 
     } // 카테고리 로드되고 나면 나타남
     else {
@@ -164,26 +168,8 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
     }
   }, [category])
 
-  useEffect(() => {
-    setTimeout(() => {
-        if (pass && category === undefined) {
-          handlePass();
-          // console.log('timeout')
-        }
-      }, 7000)
-
-      return () => {
-        clearTimeout();
-      }
-  })
-
 
   return (
-    <>
-    {category === undefined
-    ?
-      <Spinner animation="border" variant="light" />
-    :
       <animated.div {...bind()}
         className="pull-card"
         style={{ 
@@ -191,6 +177,13 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
           ...TOUCH_STYLE,
           opacity: cardOpacity
         }}>
+          {category === undefined
+          ?
+          <div style={{display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <Spinner animation="border" variant="light" />
+          </div>
+          :
+          <>
               <div className="card-content">
                   <div className="fbold SDGreen" 
                   style={{fontSize : touch ? 16 : 32, userSelect: 'none'}}
@@ -198,23 +191,23 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
                     {category}
                   </div>
               </div>
-        {!touch &&
-          <div className="card-info">
-            <Row>
-              <Col>
-                <div className="LeftSDGreen f12" style={{textAlign: 'center', userSelect: 'none'}}>하위 카테고리 숫자</div>
-                <div className="SDGreen f24" style={{userSelect: 'none'}}>{categoryNum}</div>
-              </Col>
-              <Col>
-                <div className="LeftSDGreen f12" style={{textAlign: 'center', userSelect: 'none'}}>하위 문서 숫자</div>
-                <div className="SDGreen f24" style={{userSelect: 'none'}}>{pageNum}</div>
-              </Col>
-            </Row>
-          </div>
+          {!touch &&
+            <div className="card-info">
+              <Row>
+                <Col>
+                  <div className="LeftSDGreen f12" style={{textAlign: 'center', userSelect: 'none'}}>하위 카테고리 숫자</div>
+                  <div className="SDGreen f24" style={{userSelect: 'none'}}>{categoryNum}</div>
+                </Col>
+                <Col>
+                  <div className="LeftSDGreen f12" style={{textAlign: 'center', userSelect: 'none'}}>하위 문서 숫자</div>
+                  <div className="SDGreen f24" style={{userSelect: 'none'}}>{pageNum}</div>
+                </Col>
+              </Row>
+            </div>
+          }
+        </>
         }
       </animated.div>
-    }
-    </>
   );
 };
 

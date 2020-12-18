@@ -84,7 +84,7 @@ const GameCardPage = () => {
       
       // 5개 고르면 자동 종료
       // 마지막 선택까지 selectedPage에 반영되게
-      if (selectedCategory.length === CATEGORY_NUM) handleFinish()
+      if (selectedCategory.length === CATEGORY_NUM) handleFinish({finishResult: list})
     }
   }
 
@@ -138,7 +138,7 @@ const GameCardPage = () => {
     // console.log('showMainCategory : ', showMainCategory)
 
     // 첫 카드가 안 나와서 강제로 하나 넘김
-    handleOnSwipe(direction.LEFT);
+    // handleOnSwipe(direction.LEFT);
     } catch (e) {
         // console.log(e)
       }
@@ -243,10 +243,11 @@ const GameCardPage = () => {
 
     let index = cardIndex + 1;
     setCardIndex(index);
+    // console.log('cardIndex: ', index)
   }
 
-  const handleFinish = (finishScore) => {
-    history.push({pathname: '/result', state: { result: selectedPage, category: selectedCategory, score: finishScore !== undefined ? finishScore : score }})
+  const handleFinish = ({ finishScore, finishResult }) => {
+    history.push({pathname: '/result', state: { result: finishResult !== undefined ? finishResult : selectedPage, category: selectedCategory, score: finishScore !== undefined ? finishScore : score }})
   }
 
   // useEffect(() => {
@@ -258,7 +259,7 @@ const GameCardPage = () => {
     // result가 0이면 자동 종료
     if (selectedCategory.length > 1 && selectedPage.length === 0) {
       setScore(0);
-      handleFinish(0);
+      handleFinish({finishScore: 0});
     } 
   }, [selectedPage, handleFinish])
 
