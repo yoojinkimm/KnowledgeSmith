@@ -5,5 +5,6 @@ import LoginPage from './LoginPage';
 import MyPage from './MyPage';
 import LeaderBoardPage from './LeaderBoardPage';
 import TutorialPage from './TutorialPage';
+import GameDetailPage from './GameDetailPage'
 
-export { LandingPage, GameCardPage, ResultPage, LoginPage, MyPage, LeaderBoardPage, TutorialPage };
+export { LandingPage, GameCardPage, ResultPage, LoginPage, MyPage, LeaderBoardPage, TutorialPage, GameDetailPage };

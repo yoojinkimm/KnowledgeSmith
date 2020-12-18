@@ -8,6 +8,8 @@ import { UserContext } from "../../providers/UserProvider";
 import { Logo } from '../../data/images/index';
 import { Spinner } from 'react-bootstrap'
 
+import Tappable from 'react-tappable';
+
 import "./mypage.css";
 
 
@@ -105,13 +107,16 @@ const MyPage = ({history}) => {
             <>
               { myData !== null && myData.map((item, index) => {
                 return(
-                  <div className="mypage-category-box">
+                  <div className="mypage-category-box"
+                  onClick={() =>  history.push({pathname: '/mygame', state: { data: item }})}>
+                    <Tappable onTap={() =>  history.push({pathname: '/mygame', state: { data: item }})}>
                       <div className="SDPink-lh24 f16 fbold">
                           {item.wikiresults.length} Results | {item.score!==null && `${item.score} | `}{item.category[0]}
                       </div>
                       <div className="LeftSDPink f12">
                           {/* {item.date.slice(5,7)} {item.date.slice(8,10)}. {item.date.slice(0,4)} */}
                       </div>
+                    </Tappable>
                   </div>
                 )
               })}

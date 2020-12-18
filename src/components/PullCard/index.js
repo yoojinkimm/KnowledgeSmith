@@ -153,7 +153,7 @@ const PullCard = ({ category, index, handlePick, setTempCategory, width, handleP
       // 카테고리 로드되기 전에는 안 보임 (원래 자리로 돌아가는 모션)
       setCardOpacity(0);
 
-      setPass(true);
+      // setPass(true);
 
     } // 카테고리 로드되고 나면 나타남
     else {
