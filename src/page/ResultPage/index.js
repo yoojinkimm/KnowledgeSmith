@@ -117,7 +117,7 @@ const ResultPage = ({history}) => {
 
   return (
     <div style={{display: 'flex', flex: 1, height: '100%', width: '100%'}}>
-        <div className="background" style={{paddingBottom: 100, boxSizing: 'content-box'}}>
+        <div className="background" style={{paddingBottom: 100, boxSizing: 'border-box'}}>
 
           {loading 
           ?
@@ -182,7 +182,7 @@ const ResultPage = ({history}) => {
                     </div>
                  </div>
             </div>
-            <div style={{width: '100%', display: 'flex', flexDirection: 'row', marginTop: 12}}>
+            <div className="category-scroll">
               {categoryList.map((value, index) => {
                 var item = JSON.stringify(value);
                 return(
@@ -194,12 +194,7 @@ const ResultPage = ({history}) => {
                       style={{marginRight: 0}}
                     >
                       <div className="LeftSDPink f12">
-                        {item.length > 8
-                        ?
-                          `${item.slice(1, 8)} …`
-                        :
-                          `${item.slice(1, item.length - 1)}`
-                        }
+                        {`${item.slice(1, item.length - 1)}`}
                       </div>
                   </div>
                   :
@@ -207,12 +202,7 @@ const ResultPage = ({history}) => {
                       className="result-category-box"
                     >
                       <div className="LeftSDPink f12">
-                        {item.length > 8
-                        ?
-                          `${item.slice(1, 8)} …`
-                        :
-                          `${item.slice(1, item.length - 1)}`
-                        }
+                        {`${item.slice(1, item.length - 1)}`}
                       </div>
                   </div>
                   }

@@ -75,6 +75,15 @@
   justify-content: space-between;
 }
 
+.category-scroll {
+  display: flex;
+  flex-direction: row;
+  margin-top: 12px;
+  white-space: nowrap;
+  overflow: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
 .result-category-box {
   padding: 8px;
   margin-right: 8px;
