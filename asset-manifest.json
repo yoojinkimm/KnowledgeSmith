@@ -1,27 +1,32 @@
 {
   "files": {
-    "main.css": "/static/css/main.058796dc.chunk.css",
-    "main.js": "/static/js/main.cafb5c02.chunk.js",
-    "main.js.map": "/static/js/main.cafb5c02.chunk.js.map",
+    "main.css": "/static/css/main.fe88323c.chunk.css",
+    "main.js": "/static/js/main.7c9377be.chunk.js",
+    "main.js.map": "/static/js/main.7c9377be.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.7d06a2d5.js",
     "runtime-main.js.map": "/static/js/runtime-main.7d06a2d5.js.map",
-    "static/js/2.ced4045e.chunk.js": "/static/js/2.ced4045e.chunk.js",
-    "static/js/2.ced4045e.chunk.js.map": "/static/js/2.ced4045e.chunk.js.map",
+    "static/js/2.50073c34.chunk.js": "/static/js/2.50073c34.chunk.js",
+    "static/js/2.50073c34.chunk.js.map": "/static/js/2.50073c34.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.5aa20c622c3537966c63cd9a1af14aa8.js": "/precache-manifest.5aa20c622c3537966c63cd9a1af14aa8.js",
+    "precache-manifest.2d1062363d1470a09eb7057be9a5453f.js": "/precache-manifest.2d1062363d1470a09eb7057be9a5453f.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.058796dc.chunk.css.map": "/static/css/main.058796dc.chunk.css.map",
-    "static/js/2.ced4045e.chunk.js.LICENSE.txt": "/static/js/2.ced4045e.chunk.js.LICENSE.txt",
+    "static/css/main.fe88323c.chunk.css.map": "/static/css/main.fe88323c.chunk.css.map",
+    "static/js/2.50073c34.chunk.js.LICENSE.txt": "/static/js/2.50073c34.chunk.js.LICENSE.txt",
     "static/media/App.css": "/static/media/Voyage-Regular.b7bed5c7.woff",
     "static/media/combined-shape.bdc9230c.svg": "/static/media/combined-shape.bdc9230c.svg",
     "static/media/knowledgesmih.58aea2da.svg": "/static/media/knowledgesmih.58aea2da.svg",
     "static/media/logo_google.dd8ebc1c.svg": "/static/media/logo_google.dd8ebc1c.svg",
-    "static/media/star_icon.8282bc61.svg": "/static/media/star_icon.8282bc61.svg"
+    "static/media/star_icon.8282bc61.svg": "/static/media/star_icon.8282bc61.svg",
+    "static/media/tutorial_1.png": "/static/media/tutorial_1.ab9b8fd8.png",
+    "static/media/tutorial_2.png": "/static/media/tutorial_2.1dbb529c.png",
+    "static/media/tutorial_3.png": "/static/media/tutorial_3.62e4d5cd.png",
+    "static/media/tutorial_4.png": "/static/media/tutorial_4.f3700667.png",
+    "static/media/tutorial_5.png": "/static/media/tutorial_5.12d63958.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7d06a2d5.js",
-    "static/js/2.ced4045e.chunk.js",
-    "static/css/main.058796dc.chunk.css",
-    "static/js/main.cafb5c02.chunk.js"
+    "static/js/2.50073c34.chunk.js",
+    "static/css/main.fe88323c.chunk.css",
+    "static/js/main.7c9377be.chunk.js"
   ]
 }
