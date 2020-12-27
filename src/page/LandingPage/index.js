@@ -80,6 +80,9 @@ const LandingPage = ({history}) => {
 
                         <div className="LeftSDPink f12" style={{marginTop: 20}}>개발</div>
                         <div className="LeftSDPink f12">Web Dev</div>
+
+                        <div className="LeftSDPink f12" style={{marginTop: 20}}>일러스트</div>
+                        <div className="LeftSDPink f12">Illustration</div>
                     </div>
 
                     <div className="name">
@@ -91,6 +94,9 @@ const LandingPage = ({history}) => {
 
                         <div className="LeftSDPink f12" style={{marginTop: 20}}>김유진</div>
                         <div className="LeftSDPink f12">Yoojin</div>
+
+                        <div className="LeftSDPink f12" style={{marginTop: 20}}>김시준</div>
+                        <div className="LeftSDPink f12">Sijoon</div>
                     </div>
                 </div>
 
